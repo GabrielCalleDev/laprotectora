@@ -38,7 +38,6 @@ imagenes_mascotas
 | id_mascota      | integer       | Identificador mascota a la que pertenece la imagen|
 | nombre          | string (50)   | Nombre descriptivo de la imagen                   |
 | url             | varchar(255)  | Ruta al archivo de la imagen                      |
-| fecha_subida    | date          | Fecha en que se subió la imagen a la base de datos|
 | descripcion     | text          | Descripción de la imagen (opcional)               |
 +-----------------+---------------+---------------------------------------------------+
 
@@ -84,16 +83,18 @@ personas
 +-------------------+---------------+-------------------------------------------------+
 | id_persona        | integer       | Identificador único de la persona               |
 | nombre            | string(100)   | Nombre completo de la persona                   |
+| apellidos         | string(100)   | Apellidos completo de la persona                |
+| dni               | string(9)     | Dni de la persona                               |
 | telefono          | string(20)    | Número de teléfono de la persona                |
 | fecha_nacimiento  | date          | Fecha de nacimiento de la persona.              |
-| direccion         | text          | Dirección postal de la persona                  |
+| direccion_calle   | string(50)    | Calle de la dirección de la persona             |
+| direccion_numero  | integer       | Número de la calle de la persona                |
 | direccion_detalles| string(50)    | Detalles de la dirección (2º 4º, etc..)         |
-| ciudad            | string(50)    | Ciudad de residencia de la persona.             |
-| codigo_postal     | string(10)    | Código postal de la persona.                    |
+| direccion_ciudad  | string(50)    | Ciudad de residencia de la persona.             |
+| direccion_cp      | string(10)    | Código postal de la persona.                    |
 | tipo              | string(50)    | Tipo de persona (voluntario, adoptante, etc.).  |
 | observaciones     | text          | Cualquier otra observación                      |
 | ocupacion         | string(50)    | Ocupación de la persona.                        |
-| notas             | text          | Notas adicionales sobre la persona.             |
 +-------------------+---------------+-------------------------------------------------+
 
 
@@ -105,7 +106,7 @@ usuarios
 | Campo             | Tipo          | Descripción                                     |
 +-------------------+---------------+-------------------------------------------------+
 | id_usuario        | integer       | Identificador único del usuario                 |
-| nombre_usuario    | string(50)    | Nombre de usuario del usuario                   |
+| usuario           | string(50)    | Nombre de usuario del usuario                   |
 | password          | string(255)   | Contraseña del usuario                          |
 | correo_electronico| string(100)   | Correo electrónico del usuario                  |
 | avatar            | varchar(255)  | URL de la imagen de perfil del usuario          |
@@ -113,6 +114,20 @@ usuarios
 | rol               | string(20)    | Rol o nivel de acceso del usuario               |
 | id_persona        | integer       | Identificador de la persona asociada al usuario |
 +-------------------+---------------+-------------------------------------------------+
+
+# ################################################################################### #
+
+roles
+
++-------------------+---------------+-------------------------------------------------+
+| Campo             | Tipo          | Descripción                                     |
++-------------------+---------------+-------------------------------------------------+
+| id                | integer       | Identificador único del rol                     |
+| nombre            | string(20)    | Nombre del Rol o nivel de acceso del usuario    |
+| descripcion       | string(50)    | Descripción del rol de usuaio                   |
+| id_usuario        | integer       | Identificador único de la usuario               |
++-------------------+---------------+-------------------------------------------------+
+
 
 # ################################################################################### #
 
@@ -198,7 +213,7 @@ adopciones
 |-----------------------|-----------|-------------------------------------------------|
 | id_adopcion           | integer   | Identificador único de la adopción              |
 | id_mascota            | integer   | Identificador de la mascota                     |
-| id_persona            | integer   | Identificador de la persona                     |
+| id_usuario            | integer   | Identificador del usuario                       |
 | estado_adopcion       | string(30)| Estado actual de la adopción                    |
 | observaciones         | text      | Comentarios adicionales                         |
 | id_seguimiento        | integer   | Identificador del seguimiento                   |
@@ -243,8 +258,11 @@ casas_acogida
 |--------------------|---------------|------------------------------------------------|
 | id_casa            | integer       | Identificador único de la casa de acogida      |
 | nombre             | string(100)   | Nombre de la casa de acogida                   |
-| direccion          | string(200)   | Dirección de la casa de acogida                |
-| ciudad             | string(50)    | Ciudad de ubicación de la casa de acogida      |
+| direccion_calle    | string(50)    | Calle de la dirección                          |
+| direccion_numero   | integer       | Número de la calle                             |
+| direccion_detalles | string(50)    | Detalles de la dirección (2º 4º, etc..)        |
+| direccion_ciudad   | string(50)    | Ciudad de residencia                           |
+| direccion_cp       | string(10)    | Código postal                                  |
 | telefono           | string(20)    | Número de teléfono de contacto                 |
 | correo_electronico | string(100)   | Correo electrónico de contacto                 |
 | responsable        | string(100)   | Nombre de la persona responsable               |

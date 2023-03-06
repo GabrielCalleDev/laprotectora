@@ -8,8 +8,8 @@ Diagrama de casos de uso:
 | - Registrar voluntario                 |
 | - Dar de baja voluntario               |
 | - Ver lista de voluntarios             |
-| - Buscaqueda de animales básica        |
-| - Buscaqueda de animales avanzada      |
+| - Busqueda de animales básica          |
+| - Busqueda de animales avanzada        |
 | - Buscar animal por especie            |
 | - Buscar animal por edad               |
 | - Adoptar animal                       |
