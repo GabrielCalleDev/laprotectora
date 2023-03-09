@@ -25,6 +25,7 @@ Mascotas
 | observaciones   | text          | Observaciones generales acerca de la mascota      |
 | historia        | text          | Antecedentes de la mascota                        |
 | castrado        | boolean       | ¿Ha sido castrada la mascota?                     |
+| id_casa_acogida | integer       | Casa de acogida donde está la mascota             |
 +-----------------+---------------+---------------------------------------------------+
 
 # ################################################################################### #
@@ -137,6 +138,7 @@ contactos_formulario
 | Campo             | Tipo          | Descripción                                     |
 |-------------------|---------------|-------------------------------------------------|
 | id_contacto       | integer       | Identificador único del contacto                |
+| id_usuario        | integer       | Identificador único del usuario                 |
 | nombre            | string(100)   | Nombre del contacto                             |
 | email             | string(100)   | Dirección de correo electrónico del contacto    |
 | telefono          | string(20)    | Número de teléfono del contacto                 |
@@ -242,12 +244,8 @@ cuestionarios
 |-------------------|---------------|-------------------------------------------------|
 | id_cuestionario   | integer       | Identificador único del cuestionario            |
 | fecha             | date          | Fecha en la que se completa el cuestionario     |
-| respuesta_1       | string(255)   | Respuesta a la primera pregunta del cuestionario|
-| respuesta_2       | string(255)   | Respuesta a la segunda pregunta del cuestionario|
-| respuesta_3       | string(255)   | Respuesta a la tercera pregunta del cuestionario|
-| respuesta_4       | string(255)   | Respuesta a la cuarta pregunta del cuestionario |
-| respuesta_5       | string(255)   | Respuesta a la quinta pregunta del cuestionario |
 | observaciones     | text          | Espacio para añadir comentarios adicionales     |
+| respuestas        | JSON          | Respuestas del cuestionar en formato JSON       |
 +-------------------+---------------+-------------------------------------------------+
 
 # ################################################################################### #
