@@ -35,15 +35,5 @@ ACTORES:
 - Sistema
 
 
-
-
-
-
-
-
-
-
-
-
 Posibles opciones a añadir:
 - Programar recogida de animales abandonados.
