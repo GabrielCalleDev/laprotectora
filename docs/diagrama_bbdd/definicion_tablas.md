@@ -112,7 +112,7 @@ usuarios
 | correo_electronico| string(100)   | Correo electrónico del usuario                  |
 | avatar            | varchar(255)  | URL de la imagen de perfil del usuario          |
 | estado            | boolean       | Estado del usuario (activo o inactivo)          |
-| rol               | string(20)    | Rol o nivel de acceso del usuario               |
+| id_rol            | string(20)    | Rol o nivel de acceso del usuario               |
 | id_persona        | integer       | Identificador de la persona asociada al usuario |
 +-------------------+---------------+-------------------------------------------------+
 
@@ -126,7 +126,6 @@ roles
 | id                | integer       | Identificador único del rol                     |
 | nombre            | string(20)    | Nombre del Rol o nivel de acceso del usuario    |
 | descripcion       | string(50)    | Descripción del rol de usuaio                   |
-| id_usuario        | integer       | Identificador único de la usuario               |
 +-------------------+---------------+-------------------------------------------------+
 
 
@@ -159,7 +158,7 @@ donaciones:
 | id_usuario        | integer       | Identificador del usuario que hizo la donación  |
 | fecha             | date          | Fecha en que se realizó la donación.            |
 | valor             | decimal(10,2) | Valor de la donación recibida                   |
-| tipo              | string(50)    | Tipo de donación                                |
+| tipo_donacion     | string(50)    | Tipo de donación                                |
 | descripcion       | text          | Descripción de la donación realizada.           |
 +-------------------+---------------+-------------------------------------------------+
 
@@ -193,21 +192,6 @@ Visitas
 
 # ################################################################################### #
 
-seguimientos:
-
-+----------------+---------------+----------------------------------------------------+
-| Campo          | Tipo          | Descripción                                        |
-|----------------|---------------|----------------------------------------------------|
-| id_seguimiento | integer       | Identificador único del seguimiento.               |
-| id_mascota     | integer       | Identificador de la mascota.                       |
-| id_usuario     | integer       | Identificador del usuario.                         |
-| fecha          | date          | Fecha en la que se realiza el seguimiento.         |
-| estado         | string(50)    | Estado actual de la adopción.                      |
-| observaciones  | text          | Comentarios adicionales sobre el seguimiento.      |
-+----------------+---------------+----------------------------------------------------+
-
-# ################################################################################### #
-
 adopciones
 
 +-------------------+---------------+-------------------------------------------------+
@@ -218,21 +202,21 @@ adopciones
 | id_usuario            | integer   | Identificador del usuario                       |
 | estado_adopcion       | string(30)| Estado actual de la adopción                    |
 | observaciones         | text      | Comentarios adicionales                         |
-| id_seguimiento        | integer   | Identificador del seguimiento                   |
 | id_cuestionario       | integer   | Identificador del cuestionario                  |
 +-------------------+---------------+-------------------------------------------------+
 
 # ################################################################################### #
 
-procesos_adopciones
+historial_adopciones
 
 +-------------------+---------------+-------------------------------------------------+
 | Campo             | Tipo          | Descripción                                     |
 |-------------------|---------------|-------------------------------------------------|
 | id_proceso        | integer       | Identificador único del proceso de adopción     |
 | id_adopcion       | integer       | Identificador de la adopción                    |
-| tipo              | string(50)    | Tipo de proceso realizado en la adopción        |
-| observaciones     | text          | Observaciones o comentarios adicionales         |
+| estado            | string(50)    | Tipo de proceso realizado en la adopción        |
+| actualizacion     | text          | Observaciones o comentarios adicionales         |
+| fecha             | datetime      | Fecha de la actualización                       |
 +-------------------+---------------+-------------------------------------------------+
 
 # ################################################################################### #
@@ -256,6 +240,7 @@ casas_acogida
 |--------------------|---------------|------------------------------------------------|
 | id_casa            | integer       | Identificador único de la casa de acogida      |
 | nombre             | string(100)   | Nombre de la casa de acogida                   |
+| responsable        | string(100)   | Nombre de la persona responsable               |
 | direccion_calle    | string(50)    | Calle de la dirección                          |
 | direccion_numero   | integer       | Número de la calle                             |
 | direccion_detalles | string(50)    | Detalles de la dirección (2º 4º, etc..)        |
@@ -263,7 +248,6 @@ casas_acogida
 | direccion_cp       | string(10)    | Código postal                                  |
 | telefono           | string(20)    | Número de teléfono de contacto                 |
 | correo_electronico | string(100)   | Correo electrónico de contacto                 |
-| responsable        | string(100)   | Nombre de la persona responsable               |
 | capacidad          | integer       | Capacidad máxima de animales                   |
 | observaciones      | text          | Cualquier otra información relevante           |
 +--------------------+---------------+------------------------------------------------+
