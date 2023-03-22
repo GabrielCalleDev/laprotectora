@@ -11,3 +11,61 @@ Una vez instalado se ejecutan los siguientes comandos:
 >npm install
 
 >npm run dev
+
+## Instalación de Sass
+>npm install sass --save-dev
+
+## Instalación de Tailwind sobre laravel.
+Instala Tailwind y sus dependencias mediante el comando npm:
+>npm install -D tailwindcss postcss autoprefixer
+
+Luego ejecuta el siguiente comando para inicializar Tailwind y crear los archivos de configuración tailwind.config.js y postcss.config.js:
+
+A modo de información, el flag -p se usa para crear el archivo postcss.config.js.
+>npx tailwindcss init -p
+
+
+A continuación edita el archivo tailwind.config.js y agrega las rutas hacia los archivos de plantilla con extensión .blade de Laravel, así como también hacia los posibles archivos JavaScript:
+```js
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./resources/**/*.blade.php",
+    "./resources/**/*.js",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
+
+Luego edita el archivo /resources/scss/app.scss de Laravel y agrega las directivas de los diferentes componentes o capas de Tailwind:
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+## Instalación Heroicons
+https://heroicons.com/
+https://github.com/tailwindlabs/heroicons
+>composer require blade-ui-kit/blade-heroicons
+
+Una vez instalado se puede utilizar de la siguiente manera: 
+```php
+<x-heroicon-o-chevron-down class="w-6 h-6 text-primary"/>
+```
+
+## Instalación AlpineJS
+https://alpinejs.dev/
+>npm install alpinejs
+
+Ahora hay que impotar el paquete e iniciarlizarlo, editamos el archivo app.js y añadimos lo siguiente:
+```js
+import Alpine from 'alpinejs'
+ 
+window.Alpine = Alpine
+ 
+Alpine.start()
+```

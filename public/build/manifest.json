@@ -1,12 +1,76 @@
 {
-  "resources/css/app.css": {
-    "file": "assets/app-b81c0223.css",
-    "isEntry": true,
-    "src": "resources/css/app.css"
+  "resources/img/dog.png": {
+    "file": "assets/dog-60a5974c.png",
+    "src": "resources/img/dog.png"
+  },
+  "resources/img/template/dona-300x300.png": {
+    "file": "assets/dona-300x300-351c1af1.png",
+    "src": "resources/img/template/dona-300x300.png"
+  },
+  "resources/img/template/faq-300x300.png": {
+    "file": "assets/faq-300x300-9336976a.png",
+    "src": "resources/img/template/faq-300x300.png"
+  },
+  "resources/img/template/gato-300x300.png": {
+    "file": "assets/gato-300x300-deb20595.png",
+    "src": "resources/img/template/gato-300x300.png"
+  },
+  "resources/img/template/other/cara-perrito.png": {
+    "file": "assets/cara-perrito-26300ddc.png",
+    "src": "resources/img/template/other/cara-perrito.png"
+  },
+  "resources/img/template/other/choque-mano-pata.jpg": {
+    "file": "assets/choque-mano-pata-7bb7c547.jpg",
+    "src": "resources/img/template/other/choque-mano-pata.jpg"
+  },
+  "resources/img/template/other/ejemplo_sombra.png": {
+    "file": "assets/ejemplo_sombra-c390a145.png",
+    "src": "resources/img/template/other/ejemplo_sombra.png"
+  },
+  "resources/img/template/other/gato-perro.jpg": {
+    "file": "assets/gato-perro-e0c07c7a.jpg",
+    "src": "resources/img/template/other/gato-perro.jpg"
+  },
+  "resources/img/template/other/icono-voluntario-mascota.png": {
+    "file": "assets/icono-voluntario-mascota-3dc4c670.png",
+    "src": "resources/img/template/other/icono-voluntario-mascota.png"
+  },
+  "resources/img/template/other/logo-perro.jpg": {
+    "file": "assets/logo-perro-062eea85.jpg",
+    "src": "resources/img/template/other/logo-perro.jpg"
+  },
+  "resources/img/template/other/mascotas-voluntarios.jpg": {
+    "file": "assets/mascotas-voluntarios-e52757a0.jpg",
+    "src": "resources/img/template/other/mascotas-voluntarios.jpg"
+  },
+  "resources/img/template/other/mascotas.jpg": {
+    "file": "assets/mascotas-fe3704bd.jpg",
+    "src": "resources/img/template/other/mascotas.jpg"
+  },
+  "resources/img/template/other/no-compres-adopta.jpeg": {
+    "file": "assets/no-compres-adopta-b9c5fe63.jpeg",
+    "src": "resources/img/template/other/no-compres-adopta.jpeg"
+  },
+  "resources/img/template/other/perrito-corazon.jpg": {
+    "file": "assets/perrito-corazon-3bf96ce9.jpg",
+    "src": "resources/img/template/other/perrito-corazon.jpg"
+  },
+  "resources/img/template/other/perro-corazon.jpg": {
+    "file": "assets/perro-corazon-98c56b56.jpg",
+    "src": "resources/img/template/other/perro-corazon.jpg"
+  },
+  "resources/img/template/perro-300x300.png": {
+    "file": "assets/perro-300x300-79c79d6e.png",
+    "src": "resources/img/template/perro-300x300.png"
   },
   "resources/js/app.js": {
     "file": "assets/app-60f5163b.js",
     "isEntry": true,
     "src": "resources/js/app.js"
+  },
+  "resources/scss/app.scss": {
+    "file": "assets/app-4068e991.css",
+    "isEntry": true,
+    "src": "resources/scss/app.scss"
   }
 }
