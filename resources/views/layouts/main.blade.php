@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Protectora de animales en Barcelona">
+    <link rel="icon" href="{{ Vite::asset('resources/img/dog.png') }}" type="image/x-icon">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>@yield('title', 'Protectora de animales')</title>
+    <!-- Styles and scripts of the application -->
+    @vite('resources/scss/app.scss')
+    <!-- Livewire styles -->
+    @livewireStyles
+    <!-- Application styles -->
+    @stack('styles')
+</head>
+<body class="font-poppins">
+    <main>
+        @if(Request::routeIs('home'))
+            @include('layout.header-home')
+        @else
+            @include('layout.header')
+        @endif
+        
+        <!-- Content -->
+        <div id="#content">
+            @yield('content')
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-primary px-0 md:px-2 py-10 text-gray-200 text-sm">
+            <!-- Footer sections -->
+            <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 md:text-center lg:text-start lg:grid-cols-5 p-4 md:p-0">
+                <!-- Footer brand shelter -->
+                <section id="shelter-brand" class="lg:col-span-2 pr-3">
+                    <img class="md:mx-auto lg:mx-0" src="{{ Vite::asset('resources/img/dog.png') }}">
+                    <p class="info-brand pt-5 leading-7">
+                        Cupidatat enim labore consectetur Lorem ullamco. Sunt nisi sit excepteur aute in eiusmod.
+                        Qui officia occaecat laboris anim nostrud elit commodo sit incididunt. Anim dolor esse sint
+                        labore dolor anim et nostrud dolor labore enim.
+                        <br>
+                        <span class="italic tracking-wider">
+                            <img class="inline-block" src="{{ Vite::asset('resources/img/footer-icono-email.svg') }}"/> <a href="mailto:info@info.com">info@info.com</a><br>
+                            <img class="inline-block" src="{{ Vite::asset('resources/img/footer-icono-phone.svg') }}"/> Phone: <a href="tel:+34654654654">654654654</a><br>
+                            (De lunes a viernes de 9:00 a 18:00)
+                        </span>
+                    </p>
+                </section>
+                <!-- Footer legal -->
+                <section id="legal" class="lg:pl-8">
+                    <nav>
+                        <h2 class="text-xl my-4 font-bold">Legal</h2>
+                        <ul>
+                            <li class="py-1.5"><a href="{{ route('legal') }}">Condiciones de uso</a></li>
+                            <li class="py-1.5"><a href="{{ route('legal') }}">Aviso legal</a></li>
+                            <li class="py-1.5"><a href="#">Política de privacidad</a></li>
+                            <li class="py-1.5"><a href="#">Política de cookies</a></li>
+                        </ul>
+                    </nav>
+                </section>
+            </div>
+            <!-- Final ©Copyleft de footer -->
+            <div class="container mx-auto p-4 lg:p-0">
+                <hr class="bg-white mb-10 md:my-10">
+                <section id="footer" class="flex justify-between">
+                    <div id="copyleft" class="italic">
+                        (ɔ)Protectora 2023
+                    </div>
+                    <div id="redes-sociales" class="flex">
+                        <div class="mr-1.5"><img class="w-7 text-white" src="{{ Vite::asset('resources/img/iconos-rrss-linkedin.svg') }}" alt=""></div>
+                        <div class="mr-1.5"><img src="{{ Vite::asset('resources/img/iconos-rrss-facebook.svg') }}"></div>
+                        <div><img src="{{ Vite::asset('resources/img/iconos-rrss-linstagram.svg') }}"></div>
+                    </div>
+                </section>
+            </div>
+        </footer>
+    </main>
+    <!-- Scripts de la aplicación -->
+    @vite('resources/js/app.js')
+    <!-- Livewire Scripts -->
+    @livewireScripts
+    <!-- Scripts de la aplicación -->
+    @stack('scripts')
+</body>
+
+</html>
