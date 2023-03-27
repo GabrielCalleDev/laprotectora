@@ -21,8 +21,8 @@ Route::get('/test', function () {
 Route::view('legal' , 'legal')->name('legal');
 
 Route::get('/', function () {
-    return view('index');
-});
+    return view('home');
+})->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
