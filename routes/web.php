@@ -14,8 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/test', function () {
+    return view('layouts.main');
+});
+
+Route::view('legal' , 'legal')->name('legal');
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::get('/dashboard', function () {

@@ -20,9 +20,9 @@
 <body class="font-poppins">
     <main>
         @if(Request::routeIs('home'))
-            @include('layout.header-home')
+            @include('layouts.header-home')
         @else
-            @include('layout.header')
+            @include('layouts.header')
         @endif
         
         <!-- Content -->
@@ -43,8 +43,8 @@
                         labore dolor anim et nostrud dolor labore enim.
                         <br>
                         <span class="italic tracking-wider">
-                            <img class="inline-block" src="{{ Vite::asset('resources/img/footer-icono-email.svg') }}"/> <a href="mailto:info@info.com">info@info.com</a><br>
-                            <img class="inline-block" src="{{ Vite::asset('resources/img/footer-icono-phone.svg') }}"/> Phone: <a href="tel:+34654654654">654654654</a><br>
+                            <img class="inline-block" src="{{ Vite::asset('resources/img/layout/footer-icono-email.svg') }}"/> <a href="mailto:info@info.com">info@info.com</a><br>
+                            <img class="inline-block" src="{{ Vite::asset('resources/img/layout/footer-icono-phone.svg') }}"/> Phone: <a href="tel:+34654654654">654654654</a><br>
                             (De lunes a viernes de 9:00 a 18:00)
                         </span>
                     </p>
@@ -70,9 +70,8 @@
                         (ɔ)Protectora 2023
                     </div>
                     <div id="redes-sociales" class="flex">
-                        <div class="mr-1.5"><img class="w-7 text-white" src="{{ Vite::asset('resources/img/iconos-rrss-linkedin.svg') }}" alt=""></div>
-                        <div class="mr-1.5"><img src="{{ Vite::asset('resources/img/iconos-rrss-facebook.svg') }}"></div>
-                        <div><img src="{{ Vite::asset('resources/img/iconos-rrss-linstagram.svg') }}"></div>
+                        <div class="mr-1.5"><img src="{{ Vite::asset('resources/img/layout/iconos-rrss-facebook.svg') }}"></div>
+                        <div><img src="{{ Vite::asset('resources/img/layout/iconos-rrss-linstagram.svg') }}"></div>
                     </div>
                 </section>
             </div>
