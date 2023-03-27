@@ -69,3 +69,8 @@ window.Alpine = Alpine
  
 Alpine.start()
 ```
+
+## Instalación de LiveWire
+
+Para instalar LiveWire se ha de ejecutar el siguiente comando:
+>composer require livewire/livewire
