@@ -82,7 +82,7 @@
                             x-on:click.outside="close($refs.button)"
                             :id="$id('dropdown-button')"
                             style="display: none;"
-                            class="relative md:absolute md:left-0 md:mt-2 w-52 md:rounded-md bg-white md:border text-black md:shadow-md px-3 md:py-4"
+                            class="relative md:absolute md:-left-5 md:mt-2 w-52 md:rounded-md bg-white md:border text-black md:shadow-md px-3 md:py-4"
                         >
                             <a href="#" class="flex items-center gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md md:px-4 py-2.5 text-left hover:bg-gray-50 disabled:text-gray-500 text-s {{ request()->routeIs('help.make-donation') ? 'font-bold' : '' }}">
                                 Haz un donativo
@@ -141,7 +141,7 @@
                             x-on:click.outside="close($refs.button)"
                             :id="$id('dropdown-button')"
                             style="display: none;"
-                            class="relative md:absolute md:left-0 md:mt-2 w-52 md:rounded-md bg-white md:border text-black md:shadow-md px-3 md:py-4"
+                            class="relative md:absolute md:-left-10 md:mt-2 w-52 md:rounded-md bg-white md:border text-black md:shadow-md px-3 md:py-4"
                         >
                             <a href="#" class="flex items-center gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md md:px-4 py-2.5 text-left hover:bg-gray-50 disabled:text-gray-500 text-s {{ request()->routeIs('adopt.pets') ? 'font-bold' : '' }}">
                                 Mascotas en adopción
