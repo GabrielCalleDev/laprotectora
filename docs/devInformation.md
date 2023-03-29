@@ -70,6 +70,21 @@ window.Alpine = Alpine
 Alpine.start()
 ```
 
+### Instalación del plugin alpinejs/collapse
+Para instalar el plugin collapse de alpine se ha de ejecutar:
+>npm install @alpinejs/collapse
+
+Se ha de realizar su importanción en javascript
+```js
+import Alpine from 'alpinejs'
+import collapse from '@alpinejs/collapse'
+
+window.Alpine = Alpine
+
+Alpine.plugin(collapse)
+Alpine.start()
+```
+
 ## Instalación de LiveWire
 
 Para instalar LiveWire se ha de ejecutar el siguiente comando:
