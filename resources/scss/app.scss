@@ -102,8 +102,8 @@
 |-------------------------------------------------------------------------*/
 @media (min-width: 1280px) {
     header{
-        height: 670px;
-        background-position: 0 -120px;
+        height: 590px;
+        background-position: 0 -100px;
     }
 }
 
@@ -111,7 +111,10 @@
 | Responsive view 1536px                                                   |
 |-------------------------------------------------------------------------*/
 @media (min-width: 1536px) {
-
+    header{
+        height: 700px;
+        background-position: 0 -150px;
+    }
 }
 
 
