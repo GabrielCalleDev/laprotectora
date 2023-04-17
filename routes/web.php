@@ -23,6 +23,8 @@ Route::get('/test', function () {
 
 Route::view('legal' , 'legal')->name('legal');
 
+Route::view('welcome' , 'welcome');
+
 Route::get('/', function () {
     return view('home');
 })->name('home');

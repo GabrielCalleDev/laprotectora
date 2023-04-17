@@ -30,8 +30,33 @@
     box-shadow: 0 15px 10px -10px #333;
 }
 
+.bg-content {
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at 85% 33%,rgba(0,255,235,.085),hsla(0,0%,100%,0) 25%),radial-gradient(circle at 12% 55%,rgba(108,99,255,.1),hsla(0,0%,100%,0) 25%);
+}
+
 .nav-shadow{
     box-shadow: 1px 3px 5px 0 rgba(32,32,32,0.3);
+}
+
+// Styles for text with background
+.bg-text-move{
+    position: relative;
+    --bg-size: 400%;
+    text-align: center;
+    color: transparent;
+    background: linear-gradient(30deg, theme('colors.secondary'),#be9c01, theme('colors.secondary')) 0 0/var(--bg-size) 100%;
+    -webkit-background-clip: text;
+    animation: move-bg 15s linear infinite;
+}
+@keyframes move-bg {
+    to {
+        background-position: var(--bg-size) 0
+    }
 }
 
 .nav-change-style{

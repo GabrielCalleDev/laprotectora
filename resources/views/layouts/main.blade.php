@@ -9,12 +9,12 @@
     <link rel="icon" href="{{ Vite::asset('resources/img/dog.png') }}" type="image/x-icon">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Protectora de animales')</title>
+    <title>{{ isset($title)? $title . ' | Protectora de animales' : 'Protectora de animales' }}</title>
     <!-- Styles and scripts of the application -->
     @vite('resources/scss/app.scss')
     <!-- Livewire styles -->
     @livewireStyles
-    <!-- Application styles -->
+    <!-- Stack styles -->
     @stack('styles')
 </head>
 <body class="font-poppins">
@@ -27,20 +27,22 @@
         
         <!-- Content -->
         <div id="#content">
-            @yield('content')
+            {{ $slot }}
         </div>
 
         <!-- Footer -->
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="-mt-20 md:-mt-40">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"  preserveAspectRatio=""
+        class="-mt-20 md:-mt-40"
+        >
             <path fill="#161515" d="M0,288L60,277.3C120,267,240,245,360,234.7C480,224,600,224,720,240C840,256,960,288,1080,282.7C1200,277,1320,235,1380,213.3L1440,192L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
         </svg>
         <footer class="bg-primary px-0 md:px-2 py-10 text-gray-200 text-sm">
             <!-- Footer sections -->
             <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 md:text-center lg:text-start lg:grid-cols-5 p-4 md:p-0">
                 <!-- Footer brand shelter -->
-                <section id="shelter-brand" class="lg:col-span-2 pr-3">
-                    <img class="md:mx-auto lg:mx-0 rounded-md w-24" src="{{ Vite::asset('resources/img/dog.png') }}">
-                    <p class="info-brand pt-5 leading-7">
+                <section id="shelter-brand" class="lg:col-span-2 pr-3 flex items-center">
+                    <img class="md:mx-auto lg:mx-0 rounded-md w-24 h-24" src="{{ Vite::asset('resources/img/dog.png') }}">
+                    <p class="info-brand p-5 leading-7">
                         Cupidatat enim labore consectetur Lorem ullamco. Sunt nisi sit excepteur aute in eiusmod.
                         Qui officia occaecat laboris anim nostrud elit commodo sit incididunt. Anim dolor esse sint
                         labore dolor anim et nostrud dolor labore enim.
@@ -102,11 +104,11 @@
             </div>
         </footer>
     </main>
-    <!-- Scripts de la aplicación -->
+    <!-- Application scripts -->
     @vite('resources/js/app.js')
     <!-- Livewire Scripts -->
     @livewireScripts
-    <!-- Scripts de la aplicación -->
+    <!-- Stack scripts -->
     @stack('scripts')
 </body>
 
