@@ -5,29 +5,29 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ShelterHouse extends Model
+class People extends Model
 {
     use HasFactory;
 
-    protected $table = 'shelters_houses';
+    protected $table = 'people';
     protected $fillable = [
         'name',
-        'responsible',
+        'last_name',
+        'dni',
+        'phone',
+        'birthdate',
         'street_address',
-        'street_number',
+        'address_number',
         'address_details',
         'city',
-        'postal_code',
-        'coordinates',
-        'phone',
-        'email',
-        'capacity',
+        'zip_code',
+        'type',
         'observations',
+        'occupation',
     ];
 
-    public function pets()
+    public function user()
     {
-        return $this->hasMany(Pet::class);
+        return $this->hasOne(User::class);
     }
-
 }

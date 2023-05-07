@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class AdoptionHistory extends Model
 {
     use HasFactory;
+
+    protected $table = 'adoption_histories';
+    protected $fillable = [
+        'adoption_id',
+        'status',
+        'update',
+    ];
+
+    public function adoption()
+    {
+        return $this->belongsTo(Adoption::class);
+    }
 }
