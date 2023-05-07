@@ -1,6 +1,26 @@
 
 ## Descripción de la base de datos
 
+Descripción de las tablas de la base de datos.
+| Tabla                 | Campos                                                                                                                                                      |
+|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `mascotas`            | `id`, `nombre`, `especie`, `raza`, `edad`, `sexo`, `color`, `tamano`, `peso`, `estado`, `fecha_ingreso`, `fecha_adopcion`, `enfermedades`, `medicamentos`, `historia`, `castrado`, `id_casa_acogida` |
+| `imagenes_mascotas`   | `id`, `id_mascota`, `nombre`, `url`, `descripcion`                                                                                                          |
+| `historial_mascotas`  | `id`, `id_mascota`, `fecha`, `tipo`, `descripcion`                                                                                                          |
+| `directorio_contactos` | `id`, `nombre`, `telefono`, `email`, `direccion`, `empresa`, `cargo`, `notas`, `tipo`                                                                      |
+| `personas`            | `id`, `nombre`, `apellidos`, `dni`, `telefono`, `fecha_nacimiento`, `direccion_calle`, `direccion_numero`, `direccion_detalles`, `direccion_ciudad`, `direccion_cp`, `tipo`, `observaciones`, `ocupacion`|
+| `usuarios`            | `id`, `usuario`, `password`, `correo_electronico`, `avatar`, `estado`, `id_rol`, `id_persona`                                                               |
+| `roles`               | `id`, `nombre`, `descripcion`                                                                                                                               |
+| `contactos_formulario`| `id`, `id_usuario`, `nombre`, `email`, `telefono`, `asunto`, `mensaje`, `fecha`, `estado`                                                                   |
+| `donaciones`          | `id`, `id_usuario`, `fecha`, `valor`, `tipo_donacion`, `descripcion`                                                                                        |
+| `favoritos`           | `id`, `id_usuario`, `id_mascota`                                                                                                                            |
+| `visitas`             | `id`, `fecha`, `id_usuario_visitante`, `id_mascota`, `descripcion`, `id_usuario_encargado`                                                                  |
+| `adopciones`          | `id`, `id_mascota`, `id_usuario`, `id_seguimiento`, `observaciones`, `id_cuestionario`                                                                      |
+| `estados_adopciones`  | `id`, `estado`                                                                                                                                              |
+| `procesos_adopciones` | `id`, `id_adopcion`, `tipo`, `observaciones`                                                                                                                |
+| `cuestionarios`       | `id`, `fecha`, `observaciones`, `respuestas (JSON)`                                                                                                         |
+| `casas_acogida`       | `id`, `nombre`, `responsable`, `direccion_calle`, `direccion_numero`, `direccion_detalles`, `direccion_ciudad`, `direccion_cp`, `telefono`, `correo_electronico`, `capacidad`, `observaciones`              |
+
 # ################################################################################### #
 
 Mascotas
