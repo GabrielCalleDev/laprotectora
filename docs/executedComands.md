@@ -16,18 +16,18 @@ php artisan make:migration create_contacts_directory_table --create=contacts_dir
 
 Models:
 
-php artisan make:model ShelterHouse
-php artisan make:model Pet
-php artisan make:model PetImage
-php artisan make:model HistoryPet
-php artisan make:model ContactForm
-php artisan make:model Donation
-php artisan make:model Favorite
-php artisan make:model Visit
-php artisan make:model Questionnaire
-php artisan make:model Adoption
-php artisan make:model AdoptionHistory
-php artisan make:model ContactsDirectory
+php artisan make:model ShelterHouse --seed --factory
+php artisan make:model Pet --seed --factory
+php artisan make:model PetImage --seed --factory
+php artisan make:model HistoryPet --seed --factory
+php artisan make:model ContactForm --seed --factory
+php artisan make:model Donation --seed --factory
+php artisan make:model Favorite --seed --factory
+php artisan make:model Visit --seed --factory
+php artisan make:model Questionnaire --seed --factory
+php artisan make:model Adoption --seed --factory
+php artisan make:model AdoptionHistory --seed --factory
+php artisan make:model ContactsDirectory --seed --factory
 
 Controllers:
 
