@@ -3,7 +3,7 @@ Migrations:
 php artisan make:migration create_shelters_houses_table --create=shelters_houses
 php artisan make:migration create_pets_table --create=pets
 php artisan make:migration create_pets_images_table --create=pets_images
-php artisan make:migration create_history_pets_table --create=history_pets
+php artisan make:migration create_pets_histories_table --create=pets_histories
 php artisan make:migration add_fields_to_users_table --table=users
 php artisan make:migration create_contact_form_table --create=contact_form
 php artisan make:migration create_donations_table --create=donations
@@ -13,13 +13,15 @@ php artisan make:migration create_questionnaires_table --create=questionnaires
 php artisan make:migration create_adoptions_table --create=adoptions
 php artisan make:migration create_adoptions_history_table 
 php artisan make:migration create_contacts_directory_table --create=contacts_directory
+php artisan make:migration create_people_table --create=people
+php artisan make:migration create_roles_table --create=roles
 
 Models:
 
 php artisan make:model ShelterHouse --seed --factory
 php artisan make:model Pet --seed --factory
 php artisan make:model PetImage --seed --factory
-php artisan make:model HistoryPet --seed --factory
+php artisan make:model PetHistory --seed --factory
 php artisan make:model ContactForm --seed --factory
 php artisan make:model Donation --seed --factory
 php artisan make:model Favorite --seed --factory
@@ -28,6 +30,9 @@ php artisan make:model Questionnaire --seed --factory
 php artisan make:model Adoption --seed --factory
 php artisan make:model AdoptionHistory --seed --factory
 php artisan make:model ContactsDirectory --seed --factory
+php artisan make:model People --seed --factory
+php artisan make:model Role --seed --factory
+
 
 Controllers:
 
@@ -43,3 +48,5 @@ php artisan make:controller QuestionnaireController --resource
 php artisan make:controller AdoptionController --resource
 php artisan make:controller AdoptionHistoryController --resource
 php artisan make:controller ContactsDirectoryController --resource
+php artisan make:controller PeopleController --resource
+php artisan make:controller RoleController --resource
