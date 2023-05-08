@@ -50,3 +50,7 @@ php artisan make:controller AdoptionHistoryController --resource
 php artisan make:controller ContactsDirectoryController --resource
 php artisan make:controller PeopleController --resource
 php artisan make:controller RoleController --resource
+
+Filament:
+php artisan make:filament-resource User --generate
+php artisan make:filament-resource ShelterHouse --generate
