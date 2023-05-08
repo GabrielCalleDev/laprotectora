@@ -66,7 +66,10 @@ class UserResource extends Resource
                     ->boolean(),
             ])
             ->filters([
-                //
+                Tables\Filters\Filter::make('verified')
+                    ->query(fn (Builder $query): Builder => $query->whereNotNull('email_verified_at')),
+                Tables\Filters\Filter::make('unverified')
+                    ->query(fn (Builder $query): Builder => $query->whereNull('email_verified_at')),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
