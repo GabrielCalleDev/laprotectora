@@ -67,3 +67,6 @@ php artisan make:filament-resource AdoptionHistory --generate
 php artisan make:filament-resource ContactsDirectory --generate
 php artisan make:filament-resource People --generate
 php artisan make:filament-resource Role --generate
+
+Translating Filament:
+php artisan vendor:publish --tag=filament-translations
