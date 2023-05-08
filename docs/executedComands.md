@@ -54,3 +54,16 @@ php artisan make:controller RoleController --resource
 Filament:
 php artisan make:filament-resource User --generate
 php artisan make:filament-resource ShelterHouse --generate
+php artisan make:filament-resource Pet --generate
+php artisan make:filament-resource PetImage --generate
+php artisan make:filament-resource PetHistory --generate
+php artisan make:filament-resource ContactForm --generate
+php artisan make:filament-resource Donation --generate
+php artisan make:filament-resource Favorite --generate
+php artisan make:filament-resource Visit --generate
+php artisan make:filament-resource Questionnaire --generate
+php artisan make:filament-resource Adoption --generate
+php artisan make:filament-resource AdoptionHistory --generate
+php artisan make:filament-resource ContactsDirectory --generate
+php artisan make:filament-resource People --generate
+php artisan make:filament-resource Role --generate
