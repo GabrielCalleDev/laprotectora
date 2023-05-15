@@ -89,3 +89,14 @@ Alpine.start()
 
 Para instalar LiveWire se ha de ejecutar el siguiente comando:
 >composer require livewire/livewire
+
+## Instalación de Filament
+Para instalar Filament se ha de ejecutar el siguiente comando:
+>composer require filament/filament
+
+Para crear un usuario usuario se ha de ejecutar el siguiente comando:
+>php artisan filament:user
+
+### Instalación del paquete doctrine/dbal
+Para instalar el paquete doctrine/dbal se ha de ejecutar el siguiente comando:
+>composer require doctrine/dbal
