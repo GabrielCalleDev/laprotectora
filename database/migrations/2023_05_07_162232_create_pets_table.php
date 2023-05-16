@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('species');
             $table->string('breed')->nullable();
-            $table->integer('age')->nullable();
+            $table->date('age')->nullable();
             $table->char('sex')->nullable();
             $table->string('color')->nullable();
             $table->string('size')->nullable();
