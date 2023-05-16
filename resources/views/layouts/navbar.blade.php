@@ -14,7 +14,7 @@
             class="container flex flex-wrap items-center justify-between mx-auto"
         >
             <a href="">
-                <img id="logo" src="{{ Vite::asset('resources/img/template/logo.png') }}" class="w-16 md:ml-3 rounded-lg" alt="Logo protectora" />
+                <img id="logo" src="{{ Vite::asset('resources/img/template/logo.png') }}" class="w-14 md:ml-3 rounded-lg" alt="Logo protectora" />
             </a>
             <img x-on:click="openMenu = !openMenu" class="boton-menu w-10 h-10 p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" src="{{ Vite::asset('resources/img/template/icono-boton-menu.svg') }}" alt="" style="margin-top:-13px;">
             <div class="menu-responsive w-full md:block md:w-auto">
