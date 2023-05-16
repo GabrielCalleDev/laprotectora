@@ -96,6 +96,12 @@
 }
 
 @media (max-width: 450px) {
+    header{
+        background-image: url('../img/template/header1.jpg');
+        background-position: center bottom;
+        background-repeat: no-repeat;
+        background-size: 300% auto;
+    }
     .menu-responsive{
         margin-left: -8px;
         margin-right: -8px;
@@ -108,7 +114,7 @@
 |-------------------------------------------------------------------------*/
 @media (min-width: 768px) {
     #header{
-        background-image: url('../img/template/fondo.jpg');
+        background-image: url('../img/template/header1.jpg');
         background-repeat: no-repeat;
         background-size: 100% auto;
         height: 430px;
@@ -128,7 +134,7 @@
         height: 570px;
     }
     header{
-        background-image: url('../img/template/fondo.jpg');
+        background-image: url('../img/template/header1.jpg');
         background-position: 0 0;
         background-size: 100% auto;
     }

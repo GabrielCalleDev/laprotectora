@@ -22,5 +22,27 @@
         <script>
             console.log("test")
         </script>
+        
+        <script>
+            // Change the background dinamically with setInterval
+            const images = [
+                `url("{{ Vite::asset('resources/img/template/header1.jpg') }}")`,
+                `url("{{ Vite::asset('resources/img/template/fondo.jpg') }}")`,
+                `url("{{ Vite::asset('resources/img/template/header2.jpg') }}")`,
+            ];
+
+            let i = 0;
+
+            function changeBg() {
+                document.querySelector('header').style.backgroundImage = images[i];
+                i++;
+                if (i === images.length) {
+                    i = 0;
+                }
+                setTimeout(changeBg, 4000);
+            }
+
+            changeBg();
+        </script>
     @endpush
 </x-main-layout>
