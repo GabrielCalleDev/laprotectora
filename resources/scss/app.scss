@@ -16,7 +16,7 @@
 | Definition of app styles                                                 |
 |-------------------------------------------------------------------------*/
 #header{
-    background-position: right bottom;
+    background-position: right center;
     background-size: 180% auto;
     overflow: auto;
     height: 460px;
@@ -113,7 +113,7 @@
 | Responsive view 768px                                                    |
 |-------------------------------------------------------------------------*/
 @media (min-width: 768px) {
-    #header{
+    header{
         background-image: url('../img/template/header1.jpg');
         background-repeat: no-repeat;
         background-size: 100% auto;
@@ -146,7 +146,7 @@
 @media (min-width: 1280px) {
     header{
         height: 590px;
-        background-position: 0 -100px;
+        // background-position:0 0px;
     }
 }
 
