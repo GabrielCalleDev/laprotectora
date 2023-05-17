@@ -21,13 +21,11 @@ Route::view('/', 'home')->name('home');
 
 Route::view('/la-protectora', 'protectora')->name('protectora');
 
-Route::view('/como-ayudar', 'como-ayudar')->name('como.ayudar');
-
 Route::view('/como-ayudar/haz-un-donativo', 'haz-un-donativo')->name('haz.un.donativo');
 
 Route::view('/como-ayudar/hazte-voluntario', 'hazte-voluntario')->name('hazte.voluntario');
 
-Route::view('/adopta', 'adopta')->name('adopta');
+Route::view('/adopciones', 'adopciones')->name('adopciones');
 
 Route::view('/contacto', 'contacto')->name('contacto');
 

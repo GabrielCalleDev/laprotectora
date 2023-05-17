@@ -24,10 +24,10 @@
             <nav>
                 <h2 class="text-xl my-4 font-bold">Protectora</h2>
                 <ul>
-                    <li class="py-1.5"><a href="#">Sobre nosotros</a></li>
-                    <li class="py-1.5"><a href="#">La protectora</a></li>
-                    <li class="py-1.5"><a href="#">Más información</a></li>
-                    <li class="py-1.5"><a href="#">Red de protectoras</a></li>
+                    <li class="py-1.5"><a href="{{ route('protectora') }}">Sobre nosotros</a></li>
+                    <li class="py-1.5"><a href="{{ route('protectora') }}">La protectora</a></li>
+                    <li class="py-1.5"><a href="{{ route('protectora') }}">Más información</a></li>
+                    <li class="py-1.5"><a href="{{ route('protectora') }}">Red de protectoras</a></li>
                 </ul>
             </nav>
         </section>
@@ -35,10 +35,10 @@
             <nav>
                 <h2 class="text-xl my-4 font-bold">¿Cómo ayudar?</h2>
                 <ul>
-                    <li class="py-1.5"><a href="#">Adopta</a></li>
-                    <li class="py-1.5"><a href="#">Acoge</a></li>
-                    <li class="py-1.5"><a href="#">Haz un donativo</a></li>
-                    <li class="py-1.5"><a href="#">Hazte voluntario</a></li>
+                    <li class="py-1.5"><a href="{{ route('adopciones') }}">Adopta</a></li>
+                    <li class="py-1.5"><a href="{{ route('adopciones') }}">Acoge</a></li>
+                    <li class="py-1.5"><a href="{{ route('haz.un.donativo') }}">Haz un donativo</a></li>
+                    <li class="py-1.5"><a href="{{ route('hazte.voluntario') }}">Hazte voluntario</a></li>
                 </ul>
             </nav>
         </section>
