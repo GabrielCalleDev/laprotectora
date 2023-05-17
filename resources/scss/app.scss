@@ -30,6 +30,14 @@
     box-shadow: 0 15px 10px -10px #333;
 }
 
+.shadow-square{
+    box-shadow: 5px 5px 0px 0px #333;
+}
+
+.shadow-text{
+    text-shadow: 3px 3px 0px #333;
+}
+
 .bg-content {
     position: absolute;
     left: 0;
