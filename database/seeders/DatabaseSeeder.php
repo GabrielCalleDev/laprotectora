@@ -39,6 +39,13 @@ class DatabaseSeeder extends Seeder
         // Eliminar todos los archivos del directorio public
         Storage::deleteDirectory('public'); // Storage::delete(Storage::allDirectories('public'));
 
+        // Configuración de los registros a crear:
+        $users         = 10;
+        $shelterHouses = 10;
+        $pets          = 10;
+        $contactForms  = 10;
+        $donations     = 10;
+
         // *****************************************************
         // Admin user creation
         $this->command->warn(PHP_EOL . 'Creating admin user...');
@@ -58,7 +65,7 @@ class DatabaseSeeder extends Seeder
         // // Users
         // $this->command->warn(PHP_EOL . 'Creating users...');
         
-        // $this->withProgressBar(10, fn () => People::factory(1)
+        // $this->withProgressBar($users, fn () => People::factory(1)
         //     ->afterCreating(function (People $people) {
         //         $this->command->warn(PHP_EOL . 'Creating user data for: '.$people->name.' '.$people->last_name);
         //         User::factory(1)->create([
@@ -72,7 +79,7 @@ class DatabaseSeeder extends Seeder
 
         // // ShelterHouses
         // $this->command->warn(PHP_EOL . 'Creating shelterHouses...');
-        // // $this->withProgressBar(10, fn () => ShelterHouse::factory(1)->create());
+        // $this->withProgressBar($shelterHouses, fn () => ShelterHouse::factory(1)->create());
         // $this->command->info('ShelterHouses created.');
 
 
@@ -81,7 +88,7 @@ class DatabaseSeeder extends Seeder
         // $this->command->warn(PHP_EOL . 'Creating pets...');
         // // Creating dogs
         // $this->command->warn(PHP_EOL . 'Creating 10 dogs...');
-        // $this->withProgressBar(10, fn () => Pet::factory(1)
+        // $this->withProgressBar($pets, fn () => Pet::factory(1)
         //     ->afterCreating(function (Pet $pet) {
         //         $this->command->warn(PHP_EOL . 'Creating pet histories for dog...');
         //         $this->withProgressBar(2, fn () => PetHistory::factory(1)->create([
@@ -98,7 +105,7 @@ class DatabaseSeeder extends Seeder
 
         // // Creating cats
         // $this->command->warn(PHP_EOL . 'Creating 10 cats...');
-        // $this->withProgressBar(10, fn () => Pet::factory(1)
+        // $this->withProgressBar($pets, fn () => Pet::factory(1)
         //     ->afterCreating(function (Pet $pet) {
         //         $this->command->warn(PHP_EOL . 'Creating pet histories for cat...');
         //         $this->withProgressBar(2, fn () => PetHistory::factory(1)->create([
@@ -115,12 +122,18 @@ class DatabaseSeeder extends Seeder
         // $this->command->info('10 cats created.');
 
 
-        // Contact form
-        $this->command->warn(PHP_EOL . 'Creating contact form data...');
-        $this->withProgressBar(10, fn () => ContactForm::factory(1)->create());
-        $this->command->info('ContactData created.');
+        // // Contact form
+        // $this->command->warn(PHP_EOL . 'Creating contact form data...');
+        // $this->withProgressBar($contactForms, fn () => ContactForm::factory(1)->create());
+        // $this->command->info('ContactData created.');
 
 
+        // Donations
+        $this->command->warn(PHP_EOL . 'Creating Donations...');
+        $this->withProgressBar($donations, fn () => Donation::factory(1)->create([
+            'user_id' => rand(1, User::count())
+        ]));
+        $this->command->info('Donations created.');
 
         // *****************************************************
         // Listado de usuarios creados en la base de datos
