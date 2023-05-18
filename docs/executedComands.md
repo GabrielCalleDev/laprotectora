@@ -70,3 +70,10 @@ php artisan make:filament-resource Role --generate
 
 Translating Filament:
 php artisan vendor:publish --tag=filament-translations
+
+
+## instalation of the package spatie-laravel-media-library-plugin
+composer require filament/spatie-laravel-media-library-plugin 
+php artisan vendor:publish --provider="Spatie\MediaLibrary\MediaLibraryServiceProvider" --tag="migrations"
+php artisan migrate
+
