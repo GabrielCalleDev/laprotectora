@@ -36,7 +36,9 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::patch('/avatar', [ProfileController::class, 'updateAvatar'])->name('profile.update.avatar');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::delete('/avatar', [ProfileController::class, 'destroyAvatar'])->name('profile.destroy.avatar');
 });
 
 require __DIR__.'/auth.php';

@@ -75,5 +75,5 @@ php artisan vendor:publish --tag=filament-translations
 ## instalation of the package spatie-laravel-media-library-plugin
 composer require filament/spatie-laravel-media-library-plugin 
 php artisan vendor:publish --provider="Spatie\MediaLibrary\MediaLibraryServiceProvider" --tag="migrations"
+php artisan vendor:publish --provider="Spatie\MediaLibrary\MediaLibraryServiceProvider" --tag="config"
 php artisan migrate
-
