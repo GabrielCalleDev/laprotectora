@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\People;
 use Closure;
 use App\Models\Pet;
 use App\Models\PetHistory;
@@ -45,6 +47,7 @@ class DatabaseSeeder extends Seeder
         User::factory(1)->create([
             'name' => 'Gabriel',
             'email' => 'gabriel.calle92@gmail.com',
+            'username' => 'gabriel',
         ]);
         $this->command->info('Admin user created.');
 
@@ -52,7 +55,16 @@ class DatabaseSeeder extends Seeder
         // *****************************************************
         // Users
         $this->command->warn(PHP_EOL . 'Creating users...');
-        // $this->withProgressBar(10, fn () => User::factory(1)->create());
+        
+        $this->withProgressBar(10, fn () => People::factory(1)
+            ->afterCreating(function (People $people) {
+                $this->command->warn(PHP_EOL . 'Creating user data for: '.$people->name.' '.$people->last_name);
+                User::factory(1)->create([
+                    'id_people' => $people->id,
+                ]);
+            })
+            ->create()
+        );
         $this->command->info('Users created.');
      
 
@@ -62,43 +74,43 @@ class DatabaseSeeder extends Seeder
         $this->command->info('ShelterHouses created.');
 
 
-        // *****************************************************
-        // Pets
-        $this->command->warn(PHP_EOL . 'Creating pets...');
-        // Creating dogs
-        $this->command->warn(PHP_EOL . 'Creating 10 dogs...');
-        $this->withProgressBar(10, fn () => Pet::factory(1)
-            ->afterCreating(function (Pet $pet) {
-                $this->command->warn(PHP_EOL . 'Creating pet histories for dog...');
-                $this->withProgressBar(2, fn () => PetHistory::factory(1)->create([
-                    'pet_id' => $pet->id,
-                ]));
-            })
-            ->create([
-                'species' => 'Perro',
-                'breed' => $this->faker->randomElement(['Mixed Breed', 'Husky', 'Golden Retriever', 'Boxer', 'Bulldog', 'Beagle', 'Poodle', 'Chihuahua', 'Pug', 'Rottweiler', 'Yorkshire Terrier']),
-                'weight' => $this->faker->randomFloat(2, 1, 40),
-            ])
-        );
-        $this->command->info('10 dogs created.');
+        // // *****************************************************
+        // // Pets
+        // $this->command->warn(PHP_EOL . 'Creating pets...');
+        // // Creating dogs
+        // $this->command->warn(PHP_EOL . 'Creating 10 dogs...');
+        // $this->withProgressBar(10, fn () => Pet::factory(1)
+        //     ->afterCreating(function (Pet $pet) {
+        //         $this->command->warn(PHP_EOL . 'Creating pet histories for dog...');
+        //         $this->withProgressBar(2, fn () => PetHistory::factory(1)->create([
+        //             'pet_id' => $pet->id,
+        //         ]));
+        //     })
+        //     ->create([
+        //         'species' => 'Perro',
+        //         'breed' => $this->faker->randomElement(['Mixed Breed', 'Husky', 'Golden Retriever', 'Boxer', 'Bulldog', 'Beagle', 'Poodle', 'Chihuahua', 'Pug', 'Rottweiler', 'Yorkshire Terrier']),
+        //         'weight' => $this->faker->randomFloat(2, 1, 40),
+        //     ])
+        // );
+        // $this->command->info('10 dogs created.');
 
-        // Creating cats
-        $this->command->warn(PHP_EOL . 'Creating 10 cats...');
-        $this->withProgressBar(10, fn () => Pet::factory(1)
-            ->afterCreating(function (Pet $pet) {
-                $this->command->warn(PHP_EOL . 'Creating pet histories for cat...');
-                $this->withProgressBar(2, fn () => PetHistory::factory(1)->create([
-                    'pet_id' => $pet->id,
-                ]));
-                $this->command->info('Pet histories created.');
-            })
-            ->create([
-                'species' => 'Gato',
-                'breed' => $this->faker->randomElement(['Mixed Breed','Maine Coon', 'Persa', 'Siames', 'Bengal', 'Sphynx', 'Ragdoll', 'Abisinio']),
-                'weight' => $this->faker->randomFloat(2, 1, 10),
-            ])
-        );
-        $this->command->info('10 cats created.');
+        // // Creating cats
+        // $this->command->warn(PHP_EOL . 'Creating 10 cats...');
+        // $this->withProgressBar(10, fn () => Pet::factory(1)
+        //     ->afterCreating(function (Pet $pet) {
+        //         $this->command->warn(PHP_EOL . 'Creating pet histories for cat...');
+        //         $this->withProgressBar(2, fn () => PetHistory::factory(1)->create([
+        //             'pet_id' => $pet->id,
+        //         ]));
+        //         $this->command->info('Pet histories created.');
+        //     })
+        //     ->create([
+        //         'species' => 'Gato',
+        //         'breed' => $this->faker->randomElement(['Mixed Breed','Maine Coon', 'Persa', 'Siames', 'Bengal', 'Sphynx', 'Ragdoll', 'Abisinio']),
+        //         'weight' => $this->faker->randomFloat(2, 1, 10),
+        //     ])
+        // );
+        // $this->command->info('10 cats created.');
 
 
 
