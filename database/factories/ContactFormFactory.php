@@ -17,7 +17,12 @@ class ContactFormFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->name(),
+            'email' => $this->faker->email(),
+            'phone' => $this->faker->randomNumber(9),
+            'subject' => $this->faker->sentence(),
+            'message' => $this->faker->paragraph(255),
+            'status' => $this->faker->randomElement(['Pendiente', 'En proceso', 'Completado']),
         ];
     }
 }

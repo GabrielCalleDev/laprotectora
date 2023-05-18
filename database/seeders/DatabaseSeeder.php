@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\ContactForm;
+use App\Models\Donation;
 use App\Models\People;
 use Closure;
 use App\Models\Pet;
@@ -52,26 +54,26 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Admin user created.');
 
 
-        // *****************************************************
-        // Users
-        $this->command->warn(PHP_EOL . 'Creating users...');
+        // // *****************************************************
+        // // Users
+        // $this->command->warn(PHP_EOL . 'Creating users...');
         
-        $this->withProgressBar(10, fn () => People::factory(1)
-            ->afterCreating(function (People $people) {
-                $this->command->warn(PHP_EOL . 'Creating user data for: '.$people->name.' '.$people->last_name);
-                User::factory(1)->create([
-                    'id_people' => $people->id,
-                ]);
-            })
-            ->create()
-        );
-        $this->command->info('Users created.');
+        // $this->withProgressBar(10, fn () => People::factory(1)
+        //     ->afterCreating(function (People $people) {
+        //         $this->command->warn(PHP_EOL . 'Creating user data for: '.$people->name.' '.$people->last_name);
+        //         User::factory(1)->create([
+        //             'id_people' => $people->id,
+        //         ]);
+        //     })
+        //     ->create()
+        // );
+        // $this->command->info('Users created.');
      
 
-        // ShelterHouses
-        $this->command->warn(PHP_EOL . 'Creating shelterHouses...');
-        // $this->withProgressBar(10, fn () => ShelterHouse::factory(1)->create());
-        $this->command->info('ShelterHouses created.');
+        // // ShelterHouses
+        // $this->command->warn(PHP_EOL . 'Creating shelterHouses...');
+        // // $this->withProgressBar(10, fn () => ShelterHouse::factory(1)->create());
+        // $this->command->info('ShelterHouses created.');
 
 
         // // *****************************************************
@@ -111,6 +113,12 @@ class DatabaseSeeder extends Seeder
         //     ])
         // );
         // $this->command->info('10 cats created.');
+
+
+        // Contact form
+        $this->command->warn(PHP_EOL . 'Creating contact form data...');
+        $this->withProgressBar(10, fn () => ContactForm::factory(1)->create());
+        $this->command->info('ContactData created.');
 
 
 
