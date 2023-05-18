@@ -34,18 +34,6 @@
             @enderror
         </div>
 
-        {{-- Si existe algún avatar, mostrar opcion de eliminarlo --}}
-        @if(auth()->user()->getMedia('avatars')->first() !== null)
-            <form method="post" action="{{ route('profile.destroy.avatar') }}" class="mt-6 space-y-6">
-                @csrf
-                @method('delete')
-                
-                <div>
-                    <x-danger-button>{{ __('Eliminar avatar') }}</x-danger-button>
-                </div>
-            </form>
-        @endif
-
         <div class="flex items-center gap-4 mt-2">
             <x-primary-button>{{ __('Actualizar avatar') }}</x-primary-button>
 
@@ -80,4 +68,15 @@
             @endif
         </div>
     </form>
+    {{-- Si existe algún avatar, mostrar opcion de eliminarlo --}}
+    @if(auth()->user()->getMedia('avatars')->first() !== null)
+        <form method="post" action="{{ route('profile.destroy.avatar') }}" class="mt-6 space-y-6">
+            @csrf
+            @method('delete')
+            
+            <div>
+                <x-danger-button>{{ __('Eliminar avatar') }}</x-danger-button>
+            </div>
+        </form>
+    @endif
 </section>
