@@ -12,6 +12,7 @@
     <title>{{ isset($title)? $title . ' | Protectora de animales' : 'Protectora de animales' }}</title>
     <!-- Styles and scripts of the application -->
     @vite('resources/scss/app.scss')
+    @vite('resources/scss/layout.scss')
     <!-- Livewire styles -->
     @livewireStyles
     <!-- Stack styles -->
@@ -37,6 +38,8 @@
     @vite('resources/js/app.js')
     <!-- Livewire Scripts -->
     @livewireScripts
+    <!-- Scripts de la plantilla -->
+    @vite('resources/js/layout.js')
     <!-- Stack scripts -->
     @stack('scripts')
 </body>
