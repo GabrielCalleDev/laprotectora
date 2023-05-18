@@ -62,9 +62,9 @@ class PetFactory extends Factory
             'adoption_date' => $this->faker->dateTimeBetween($oneYearAgo, $currentDate)->format('Y-m-d'),
             'health_conditions' => $this->faker->sentence(),
             'medications' => $this->faker->sentence(),
-            'history' => $this->faker->paragraph(),
+            'history' => $this->faker->sentence(255),
             'neutered' => $this->faker->boolean(),
-            'observations' => $this->faker->paragraph(),
+            'observations' => $this->faker->sentence(255),
             'shelter_house_id' => null,
         ];
     }

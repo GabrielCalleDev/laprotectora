@@ -18,7 +18,7 @@ class PetHistoryFactory extends Factory
     {
         return [
             'type' => $this->faker->randomElement(['vacuna', 'desparasitacion', 'enfermedad', 'cirugia', 'otro']),
-            'description' => $this->faker->sentence(),
+            'description' => $this->faker->sentence(255),
             'pet_id' => $this->faker->numberBetween(1, 3),                
         ];
     }
