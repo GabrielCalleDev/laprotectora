@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('zip_code')->nullable();
             $table->string('type', 20)->nullable();
             $table->string('observations', 100)->nullable();
-            $table->string('occupation', 50)->nullable();
+            $table->string('occupation', 255)->nullable();
             $table->timestamps();
         });
     }

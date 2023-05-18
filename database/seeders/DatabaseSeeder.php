@@ -13,6 +13,7 @@ use App\Models\Pet;
 use App\Models\PetHistory;
 use App\Models\User;
 use App\Models\ShelterHouse;
+use App\Models\Visit;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Collection;
@@ -43,9 +44,10 @@ class DatabaseSeeder extends Seeder
         // Configuración de los registros a crear:
         $users         = 10;
         $shelterHouses = 10;
-        $pets          = 20;
+        $pets          = 10;
         $contactForms  = 10;
         $donations     = 10;
+        $visits        = 10;
 
         // *****************************************************
         // Admin user creation
@@ -137,18 +139,28 @@ class DatabaseSeeder extends Seeder
         // $this->command->info('Donations created.');
 
         
-        // Favorites
-        $this->command->warn(PHP_EOL . 'Creating Favorites...');
-        $users = User::pluck('id');
-        $contador = 0;
-        $this->withProgressBar($users->count(), function () use (&$contador, $users) {
-            $user_id = $users[$contador];
-            $contador++;
-            return Favorite::factory(rand(1, ($users->count()/2) ))->create([
-                'user_id' => $user_id,
-            ]);
-        });
-        $this->command->info('Favorites created.');
+        // // Favorites
+        // $this->command->warn(PHP_EOL . 'Creating Favorites...');
+        // $users = User::pluck('id');
+        // $contador = 0;
+        // $this->withProgressBar($users->count(), function () use (&$contador, $users) {
+        //     $user_id = $users[$contador];
+        //     $contador++;
+        //     return Favorite::factory(rand(1, ($users->count()/2) ))->create([
+        //         'user_id' => $user_id,
+        //     ]);
+        // });
+        // $this->command->info('Favorites created.');
+
+
+        // Visits
+        $this->command->warn(PHP_EOL . 'Creating visits data...');
+        $this->withProgressBar($contactForms, fn () => Visit::factory($visits)->create());
+        $this->command->info('Visits data created.');
+
+
+
+
 
         // *****************************************************
         // Listado de usuarios creados en la base de datos
