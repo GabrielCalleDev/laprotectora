@@ -17,6 +17,7 @@ use App\Models\ContactForm;
 use App\Models\ShelterHouse;
 use App\Models\Questionnaire;
 use Faker\Generator as Faker;
+use App\Models\AdoptionHistory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Collection;
@@ -175,9 +176,16 @@ class DatabaseSeeder extends Seeder
         // *****************************************************
         // Adoptions
         $this->command->warn(PHP_EOL . 'Creating adoptions data...');
-        $this->withProgressBar($adoptions, fn () => Adoption::factory(1)->create());
+        $this->withProgressBar($adoptions, fn () => Adoption::factory(1)
+            ->afterCreating(function (Adoption $adoption) {
+                $this->command->warn(PHP_EOL . 'Creating adoption histories for adoption...');
+                AdoptionHistory::factory(6)->create([
+                    'adoption_id' => $adoption->id,
+                ]);
+            })
+            ->create()
+        );
         $this->command->info('Adoptions data created.');
-
 
 
         // *****************************************************
