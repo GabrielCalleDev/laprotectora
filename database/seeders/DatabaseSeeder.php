@@ -9,6 +9,7 @@ use App\Models\Pet;
 use App\Models\User;
 use App\Models\Visit;
 use App\Models\People;
+use App\Models\Adoption;
 use App\Models\Donation;
 use App\Models\Favorite;
 use App\Models\PetHistory;
@@ -43,13 +44,14 @@ class DatabaseSeeder extends Seeder
         Storage::deleteDirectory('public'); // Storage::delete(Storage::allDirectories('public'));
 
         // Configuración de los registros a crear:
-        $users         = 10;
-        $shelterHouses = 10;
-        $pets          = 10;
-        $contactForms  = 10;
-        $donations     = 10;
-        $visits        = 10;
+        $users          = 10;
+        $shelterHouses  = 10;
+        $pets           = 10;
+        $contactForms   = 10;
+        $donations      = 10;
+        $visits         = 10;
         $questionnaires = 10;
+        $adoptions      = 10;
 
         // *****************************************************
         // Admin user creation
@@ -164,13 +166,17 @@ class DatabaseSeeder extends Seeder
         // $this->command->info('Visits data created.');
 
 
+        // // *****************************************************
+        // // Questionnaires
+        // $this->command->warn(PHP_EOL . 'Creating questionnaires data...');
+        // $this->withProgressBar($questionnaires, fn () => Questionnaire::factory(1)->create());
+        // $this->command->info('Questionnaires data created.');
+
         // *****************************************************
-        // Questionnaires
-        $this->command->warn(PHP_EOL . 'Creating questionnaires data...');
-        $this->withProgressBar($questionnaires, fn () => Questionnaire::factory(1)->create());
-        $this->command->info('Questionnaires data created.');
-
-
+        // Adoptions
+        $this->command->warn(PHP_EOL . 'Creating adoptions data...');
+        $this->withProgressBar($adoptions, fn () => Adoption::factory(1)->create());
+        $this->command->info('Adoptions data created.');
 
 
 
