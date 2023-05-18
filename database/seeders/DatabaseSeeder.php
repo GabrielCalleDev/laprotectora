@@ -20,7 +20,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Eliminar directorios del directorio public
         Storage::deleteDirectory('public');
+        // Storage::delete(Storage::allDirectories('public'));
+        
 
         // Admin
         $this->command->warn(PHP_EOL . 'Creating admin user...');
@@ -32,7 +35,7 @@ class DatabaseSeeder extends Seeder
 
         // Users
         $this->command->warn(PHP_EOL . 'Creating users...');
-        $this->withProgressBar(10, fn () => User::factory(10)->create());
+        $this->withProgressBar(10, fn () => User::factory(1)->create());
         $this->command->info('Users created.');
         
     }
