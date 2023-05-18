@@ -1,5 +1,5 @@
 <!-- Header -->
-<div class="bg-white pb-4 md:pb-0">
+<div class="bg-primary h-20 md:text-white">
     <div id="header-pages" class="container mx-auto">
         @include('layouts.navbar')
     </div>

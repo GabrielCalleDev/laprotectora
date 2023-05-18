@@ -16,7 +16,7 @@
 | Definition of app styles                                                 |
 |-------------------------------------------------------------------------*/
 #header{
-    background-position: right bottom;
+    background-position: right center;
     background-size: 180% auto;
     overflow: auto;
     height: 460px;
@@ -28,6 +28,14 @@
 
 .shadow-bottom {
     box-shadow: 0 15px 10px -10px #333;
+}
+
+.shadow-square{
+    box-shadow: 5px 5px 0px 0px #333;
+}
+
+.shadow-text{
+    text-shadow: 3px 3px 0px #333;
 }
 
 .bg-content {
@@ -61,6 +69,9 @@
 
 .nav-change-style{
     @media (min-width: 640px) {
+        h1{
+            color: white !important;
+        }
         color: white !important;
         svg.nav-change{
             color: white;
@@ -113,7 +124,7 @@
 | Responsive view 768px                                                    |
 |-------------------------------------------------------------------------*/
 @media (min-width: 768px) {
-    #header{
+    header{
         background-image: url('../img/template/header1.jpg');
         background-repeat: no-repeat;
         background-size: 100% auto;
@@ -146,7 +157,7 @@
 @media (min-width: 1280px) {
     header{
         height: 590px;
-        background-position: 0 -100px;
+        // background-position:0 0px;
     }
 }
 
@@ -156,7 +167,7 @@
 @media (min-width: 1536px) {
     header{
         height: 700px;
-        background-position: 0 -150px;
+        background-position: 0 0px;
     }
 }
 
