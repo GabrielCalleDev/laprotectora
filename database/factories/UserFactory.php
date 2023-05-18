@@ -30,7 +30,7 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
             'username' => fake()->unique()->userName(),
             'status' => fake()->boolean(),
-            'rol' => fake()->randomElement(['admin', 'user']),
+            'role' => fake()->randomElement(['admin', 'user']),
             'id_people' => null,            
         ];
     }

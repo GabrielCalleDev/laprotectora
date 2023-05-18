@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('username', 50)->unique()->nullable();
             $table->boolean('status')->default(true);
-            $table->string('rol', 50)->default('user');
+            $table->string('role', 50)->default('user');
             $table->foreignId('id_people')
                 ->nullable()
                 ->constrained('people')->onDelete('cascade')->onUpdate('cascade')->nullable();
@@ -29,7 +29,7 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('username');
             $table->dropColumn('status');
-            $table->dropColumn('rol');
+            $table->dropColumn('role');
             $table->dropForeign(['id_people']);
             $table->dropColumn('id_people');
         });

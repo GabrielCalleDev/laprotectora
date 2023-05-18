@@ -8,7 +8,7 @@ Descripción de las tablas de la base de datos.
 | `historial_mascotas`  | `id`, `id_mascota`, `fecha`, `tipo`, `descripcion`                                                                                                          |
 | `directorio_contactos` | `id`, `nombre`, `telefono`, `email`, `direccion`, `empresa`, `cargo`, `notas`, `tipo`                                                                      |
 | `personas`            | `id`, `nombre`, `apellidos`, `dni`, `telefono`, `fecha_nacimiento`, `direccion_calle`, `direccion_numero`, `direccion_detalles`, `direccion_ciudad`, `direccion_cp`, `tipo`, `observaciones`, `ocupacion`|
-| `usuarios`            | `id`, `usuario`, `password`, `correo_electronico`, `avatar`, `estado`, `rol`, `id_persona`                                                               |
+| `usuarios`            | `id`, `usuario`, `password`, `correo_electronico`, `avatar`, `estado`, `role`, `id_persona`                                                               |
 | `contactos_formulario`| `id`, `id_usuario`, `nombre`, `email`, `telefono`, `asunto`, `mensaje`, `fecha`, `estado`                                                                   |
 | `donaciones`          | `id`, `id_usuario`, `fecha`, `valor`, `tipo_donacion`, `descripcion`                                                                                        |
 | `favoritos`           | `id`, `id_usuario`, `id_mascota`                                                                                                                            |
@@ -116,7 +116,7 @@ usuarios
 | correo_electronico| string(100)   | Correo electrónico del usuario                  |
 | avatar            | varchar(255)  | URL de la imagen de perfil del usuario          |
 | estado            | boolean       | Estado del usuario (activo o inactivo)          |
-| rol               | string(20)    | Rol o nivel de acceso del usuario               |
+| role              | string(20)    | role o nivel de acceso del usuario               |
 | id_persona        | integer       | Identificador de la persona asociada al usuario |
 +-------------------+---------------+-------------------------------------------------+
 
