@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Closure;
 use App\Models\User;
+use App\Models\ShelterHouse;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Collection;
@@ -20,27 +21,34 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Eliminar directorios del directorio public
-        Storage::deleteDirectory('public');
-        // Storage::delete(Storage::allDirectories('public'));
-        
+        // Eliminar todos los archivos del directorio public
+        Storage::deleteDirectory('public'); // Storage::delete(Storage::allDirectories('public'));
 
-        // Admin
+        // Admin user creation
         $this->command->warn(PHP_EOL . 'Creating admin user...');
         $this->withProgressBar(1, fn () => User::factory(1)->create([
             'name' => 'admin',
             'email' => 'admin@admin.com',
         ]));
+        User::factory(1)->create([
+            'name' => 'Gabriel',
+            'email' => 'gabriel.calle92@gmail.com',
+        ]);
         $this->command->info('Admin user created.');
 
         // Users
         $this->command->warn(PHP_EOL . 'Creating users...');
         $this->withProgressBar(10, fn () => User::factory(1)->create());
         $this->command->info('Users created.');
+     
+        // ShelterHouses
+        $this->command->warn(PHP_EOL . 'Creating shelterHouses...');
+        $this->withProgressBar(10, fn () => ShelterHouse::factory(1)->create());
+        $this->command->info('ShelterHouses created.');
         
     }
 
-    protected function withProgressBar(int $amount, Closure $createCollectionOfOne): Collection
+    public function withProgressBar(int $amount, Closure $createCollectionOfOne): Collection
     {
         $progressBar = new ProgressBar($this->command->getOutput(), $amount);
 
