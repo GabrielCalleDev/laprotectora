@@ -15,8 +15,12 @@ return new class extends Migration
             $table->string('username', 50)->unique()->nullable();
             $table->string('avatar', 255)->nullable();
             $table->boolean('status')->default(true);
-            // $table->foreignId('id_role')->constrained('roles')->onDelete('cascade')->onUpdate('cascade')->nullable();
-            // $table->foreignId('id_people')->constrained('people')->onDelete('cascade')->onUpdate('cascade')->nullable();
+            $table->foreignId('id_role')
+                ->nullable()
+                ->constrained('roles')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('id_people')
+                ->nullable()
+                ->constrained('people')->onDelete('cascade')->onUpdate('cascade')->nullable();
         });
     }
 
