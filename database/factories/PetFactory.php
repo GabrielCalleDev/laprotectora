@@ -78,7 +78,7 @@ class PetFactory extends Factory
                         $url = DatabaseSeeder::DOG_IMAGE_URL ." ". $pet->breed;
                         $url = str_replace(' ', '%20', $url);
 
-                        echo $url.PHP_EOL;
+                        echo PHP_EOL."Downloading image ". $i+1 .": [ ".$url." ]";
 
                         $pet
                             ->addMediaFromUrl($url)
@@ -87,6 +87,8 @@ class PetFactory extends Factory
                     } else if($pet->species == 'Gato'){
                         $url = DatabaseSeeder::CAT_IMAGE_URL ." ". $pet->breed;
                         $url = str_replace(' ', '%20', $url);
+
+                        echo PHP_EOL."Downloading image ". $i+1 .": [ ".$url." ]";
 
                         $pet
                             ->addMediaFromUrl($url)

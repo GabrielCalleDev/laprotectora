@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\HistoryPet>
  */
-class HistoryPetFactory extends Factory
+class PetHistoryFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,9 @@ class HistoryPetFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'type' => $this->faker->randomElement(['vacuna', 'desparasitacion', 'enfermedad', 'cirugia', 'otro']),
+            'description' => $this->faker->sentence(),
+            'pet_id' => $this->faker->numberBetween(1, 3),                
         ];
     }
 }
