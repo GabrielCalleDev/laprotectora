@@ -5,12 +5,10 @@ Descripción de las tablas de la base de datos.
 | Tabla                 | Campos                                                                                                                                                      |
 |-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `mascotas`            | `id`, `nombre`, `especie`, `raza`, `edad`, `sexo`, `color`, `tamano`, `peso`, `estado`, `fecha_ingreso`, `fecha_adopcion`, `enfermedades`, `medicamentos`, `historia`, `castrado`, `id_casa_acogida` |
-| `imagenes_mascotas`   | `id`, `id_mascota`, `nombre`, `url`, `descripcion`                                                                                                          |
 | `historial_mascotas`  | `id`, `id_mascota`, `fecha`, `tipo`, `descripcion`                                                                                                          |
 | `directorio_contactos` | `id`, `nombre`, `telefono`, `email`, `direccion`, `empresa`, `cargo`, `notas`, `tipo`                                                                      |
 | `personas`            | `id`, `nombre`, `apellidos`, `dni`, `telefono`, `fecha_nacimiento`, `direccion_calle`, `direccion_numero`, `direccion_detalles`, `direccion_ciudad`, `direccion_cp`, `tipo`, `observaciones`, `ocupacion`|
-| `usuarios`            | `id`, `usuario`, `password`, `correo_electronico`, `avatar`, `estado`, `id_rol`, `id_persona`                                                               |
-| `roles`               | `id`, `nombre`, `descripcion`                                                                                                                               |
+| `usuarios`            | `id`, `usuario`, `password`, `correo_electronico`, `avatar`, `estado`, `rol`, `id_persona`                                                               |
 | `contactos_formulario`| `id`, `id_usuario`, `nombre`, `email`, `telefono`, `asunto`, `mensaje`, `fecha`, `estado`                                                                   |
 | `donaciones`          | `id`, `id_usuario`, `fecha`, `valor`, `tipo_donacion`, `descripcion`                                                                                        |
 | `favoritos`           | `id`, `id_usuario`, `id_mascota`                                                                                                                            |
@@ -46,20 +44,6 @@ Mascotas
 | historia        | text          | Antecedentes de la mascota                        |
 | castrado        | boolean       | ¿Ha sido castrada la mascota?                     |
 | id_casa_acogida | integer       | Casa de acogida donde está la mascota             |
-+-----------------+---------------+---------------------------------------------------+
-
-# ################################################################################### #
-
-imagenes_mascotas
-
-+-----------------+---------------+---------------------------------------------------+
-| Campo           | Tipo          | Descripción                                       |
-+-----------------+---------------+---------------------------------------------------+
-| id_imagen       | integer       | Identificador único de la imagen                  |
-| id_mascota      | integer       | Identificador mascota a la que pertenece la imagen|
-| nombre          | string (50)   | Nombre descriptivo de la imagen                   |
-| url             | varchar(255)  | Ruta al archivo de la imagen                      |
-| descripcion     | text          | Descripción de la imagen (opcional)               |
 +-----------------+---------------+---------------------------------------------------+
 
 # ################################################################################### #
@@ -132,22 +116,9 @@ usuarios
 | correo_electronico| string(100)   | Correo electrónico del usuario                  |
 | avatar            | varchar(255)  | URL de la imagen de perfil del usuario          |
 | estado            | boolean       | Estado del usuario (activo o inactivo)          |
-| id_rol            | string(20)    | Rol o nivel de acceso del usuario               |
+| rol               | string(20)    | Rol o nivel de acceso del usuario               |
 | id_persona        | integer       | Identificador de la persona asociada al usuario |
 +-------------------+---------------+-------------------------------------------------+
-
-# ################################################################################### #
-
-roles
-
-+-------------------+---------------+-------------------------------------------------+
-| Campo             | Tipo          | Descripción                                     |
-+-------------------+---------------+-------------------------------------------------+
-| id                | integer       | Identificador único del rol                     |
-| nombre            | string(20)    | Nombre del Rol o nivel de acceso del usuario    |
-| descripcion       | string(50)    | Descripción del rol de usuaio                   |
-+-------------------+---------------+-------------------------------------------------+
-
 
 # ################################################################################### #
 
