@@ -1,0 +1,163 @@
+
+/*-------------------------------------------------------------------------|
+| Definition of app styles                                                 |
+|-------------------------------------------------------------------------*/
+#header{
+    background-position: right bottom;
+    background-size: 180% auto;
+    overflow: auto;
+    height: 460px;
+}
+
+#header-pages{
+    height: 45px;
+}
+
+.shadow-bottom {
+    box-shadow: 0 15px 10px -10px #333;
+}
+
+.bg-content {
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at 85% 33%,rgba(0,255,235,.085),hsla(0,0%,100%,0) 25%),radial-gradient(circle at 12% 55%,rgba(108,99,255,.1),hsla(0,0%,100%,0) 25%);
+}
+
+.nav-shadow{
+    box-shadow: 1px 3px 5px 0 rgba(32,32,32,0.3);
+}
+
+// Styles for text with background
+.bg-text-move{
+    position: relative;
+    --bg-size: 400%;
+    text-align: center;
+    color: transparent;
+    background: linear-gradient(30deg, theme('colors.secondary'),#be9c01, theme('colors.secondary')) 0 0/var(--bg-size) 100%;
+    -webkit-background-clip: text;
+    animation: move-bg 15s linear infinite;
+}
+@keyframes move-bg {
+    to {
+        background-position: var(--bg-size) 0
+    }
+}
+
+.nav-change-style{
+    @media (min-width: 640px) {
+        color: white !important;
+        svg.nav-change{
+            color: white;
+        }
+        .nav-change#boton-telefono{
+            background-color: white !important;
+            font-weight: 900;
+            color: theme('colors.primary') !important;
+        }
+        .nav-change#boton-telefono svg{
+            color: theme('colors.primary') !important;
+        }
+    }
+}
+
+.transition {
+    transition: all 0.3s ease;
+}
+
+/*-------------------------------------------------------------------------|
+| x-cloak - Alpine style configuration                                     |
+|-------------------------------------------------------------------------*/
+[x-cloak] {
+    display: none !important;
+}
+
+
+/*-------------------------------------------------------------------------|
+| Responsive view 450px                                                    |
+|-------------------------------------------------------------------------*/
+@media (min-width: 450px) {
+
+}
+
+@media (max-width: 450px) {
+    header{
+        background-image: url('../img/template/header1.jpg');
+        background-position: center bottom;
+        background-repeat: no-repeat;
+        background-size: 300% auto;
+    }
+    .menu-responsive{
+        margin-left: -8px;
+        margin-right: -8px;
+        width: 100vh;
+    }
+}
+
+/*-------------------------------------------------------------------------|
+| Responsive view 768px                                                    |
+|-------------------------------------------------------------------------*/
+@media (min-width: 768px) {
+    #header{
+        background-image: url('../img/template/header1.jpg');
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        height: 430px;
+    }
+
+    #header-pages{
+        height: 75px;
+    }
+}
+
+/*-------------------------------------------------------------------------|
+| Responsive view 1024px                                                   |
+|-------------------------------------------------------------------------*/
+@media (min-width: 1024px) {
+    #header{
+        background-image: none;
+        height: 570px;
+    }
+    header{
+        background-image: url('../img/template/header1.jpg');
+        background-position: 0 0;
+        background-size: 100% auto;
+    }
+}
+
+/*-------------------------------------------------------------------------|
+| Responsive view 1280px                                                   |
+|-------------------------------------------------------------------------*/
+@media (min-width: 1280px) {
+    header{
+        height: 590px;
+        background-position: 0 -100px;
+    }
+}
+
+/*-------------------------------------------------------------------------|
+| Responsive view 1536px                                                   |
+|-------------------------------------------------------------------------*/
+@media (min-width: 1536px) {
+    header{
+        height: 700px;
+        background-position: 0 -150px;
+    }
+}
+
+
+/*-------------------------------------------------------------------------|
+| Estilos de desarollo, borrar al finalizar. (herramienta desarollo)       |
+|-------------------------------------------------------------------------*/
+.bg-dev {
+    background-color: #e879f91a;
+    background-image: linear-gradient(135deg, #0aff2b80 10%, transparent 0, transparent 50%, #46ef4e80 0, #46ef4e80 60%, transparent 0, transparent);
+    background-size: 7.07px 7.07px;
+}
+.bg-dev-2 {
+    background-color: #e879f91a;
+    background-image: linear-gradient(135deg, #0a37ff80 10%, transparent 0, transparent 50%, #5146ef80 0, #5f46ef80 60%, transparent 0, transparent);
+    background-size: 7.07px 7.07px;
+}

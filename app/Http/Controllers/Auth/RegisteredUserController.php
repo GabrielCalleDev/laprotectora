@@ -42,6 +42,12 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        // Si existe el campo avatar
+        if ($request->has('avatar')) {
+            // Guardamos la imagen en el campo avatar
+            $user->addMediaFromRequest('avatar')->toMediaCollection('avatars');
+        }
+
         event(new Registered($user));
 
         Auth::login($user);

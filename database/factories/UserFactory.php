@@ -2,14 +2,19 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\User;
 use Illuminate\Support\Str;
+use Database\Seeders\DatabaseSeeder;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\UnreachableUrl;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
 class UserFactory extends Factory
 {
+    protected $model = User::class;
+    
     /**
      * Define the model's default state.
      *
@@ -29,6 +34,19 @@ class UserFactory extends Factory
             'id_role' => null,
             'id_people' => null,            
         ];
+    }
+
+    public function configure(): UserFactory
+    {
+        return $this->afterCreating(function (User $user) {
+            try {
+                $user
+                    ->addMediaFromUrl(DatabaseSeeder::IMAGE_URL)
+                    ->toMediaCollection('avatars');
+            } catch (UnreachableUrl $exception) {
+                return;
+            }
+        });
     }
 
     /**
