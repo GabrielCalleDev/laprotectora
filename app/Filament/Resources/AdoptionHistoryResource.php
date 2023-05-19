@@ -36,19 +36,19 @@ class AdoptionHistoryResource extends Resource
                     ->schema([
                         Card::make()
                             ->schema([
-                                Forms\Components\Select::make('adoption_status')
+                                Forms\Components\Select::make('adoption_id')
                                     // Obtener el nombre de la mascota
                                     ->relationship('adoption', 'id')
-                                    ->disabled()
                                     ->label('Id de la adopción en curso')
                                     // ->label('Adopcion de la mascota')
                                     ->hint('Id adopcion')
-                                    ->createOptionForm([
-                                        Forms\Components\Select::make('pet')
-                                            ->relationship('pet', 'name')
-                                            ->label('Nombre de la mascota')
-                                            ->required(),
-                                    ]),  
+                                    // ->createOptionForm([
+                                    //     Forms\Components\Select::make('pet')
+                                    //         ->relationship('pet', 'name')
+                                    //         ->label('Nombre de la mascota')
+                                    //         ->required(),
+                                    // ])
+                                    ->required(),
                                 Forms\Components\Select::make('status')
                                     ->options([
                                         'nuevo' => 'Nuevo',
@@ -163,11 +163,6 @@ class AdoptionHistoryResource extends Resource
     public static function getNavigationBadgeColor(): ?string
     {
         return static::getModel()::count() > 10 ? 'success' : 'warning';
-    }
-
-    protected function getCreatedNotificationTitle(): ?string
-    {
-        return 'User registered';
     }
 
     public static function getRelations(): array
