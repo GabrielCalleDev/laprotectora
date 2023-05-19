@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
         // Configuración de los registros a crear:
         $users          = 10;
         $shelterHouses  = 10;
-        $pets           = 10;
+        $pets           = 5;
         $contactForms   = 10;
         $donations      = 40;
         $visits         = 10;
@@ -96,13 +96,18 @@ class DatabaseSeeder extends Seeder
         // Pets
         $this->command->warn(PHP_EOL . 'Creating '.($pets*2).'pets...');
         // Creating dogs
-        $this->command->warn(PHP_EOL . 'Creating 10 dogs...');
+        $this->command->warn(PHP_EOL . 'Creating '.$pets.' dogs...');
         $this->withProgressBar($pets, fn () => Pet::factory(1)
             ->afterCreating(function (Pet $pet) {
                 $this->command->warn(PHP_EOL . 'Creating pet histories for dog: '.$pet->name);
                 $this->withProgressBar(2, fn () => PetHistory::factory(1)->create([
                     'pet_id' => $pet->id,
                 ]));
+                //Asignando una casa de acogida aleatoria
+                if (rand(0, 1)){
+                    $this->command->info('Setting a shelter house for cat: '.$pet->name);
+                    $pet->shelterHouse()->associate(ShelterHouse::inRandomOrder()->first())->save();
+                }
             })
             ->create([
                 'species' => 'Perro',
@@ -120,7 +125,11 @@ class DatabaseSeeder extends Seeder
                 $this->withProgressBar(2, fn () => PetHistory::factory(1)->create([
                     'pet_id' => $pet->id,
                 ]));
-                $this->command->info('Pet histories created.');
+                //Asignando una casa de acogida aleatoria
+                if (rand(0, 1)){
+                    $this->command->info('Setting a shelter house for cat: '.$pet->name);
+                    $pet->shelterHouse()->associate(ShelterHouse::inRandomOrder()->first())->save();
+                }
             })
             ->create([
                 'species' => 'Gato',
@@ -145,6 +154,7 @@ class DatabaseSeeder extends Seeder
             'user_id' => rand(1, User::count())
         ]));
         $this->command->info('Donations created.');
+
 
         // *****************************************************      
         // Favorites
@@ -174,6 +184,7 @@ class DatabaseSeeder extends Seeder
         $this->withProgressBar($questionnaires, fn () => Questionnaire::factory(1)->create());
         $this->command->info('Questionnaires data created.');
 
+
         // *****************************************************
         // Adoptions
         $this->command->warn(PHP_EOL . 'Creating adoptions data...');
@@ -198,7 +209,8 @@ class DatabaseSeeder extends Seeder
 
         // *****************************************************
         // Listado de usuarios creados en la base de datos
-        $this->command->info(PHP_EOL.'[ User list ] - All passwords are: "password"');
+        $this->command->question(PHP_EOL.'[ Contraseña ]: "password"');
+
         $this->command->table(
             ['Nombre', 'Email'],
             User::all(['name', 'email'])->toArray()

@@ -20,7 +20,7 @@ class DonationFactory extends Factory
             'user_id' => null,
             'value' => $this->faker->randomFloat(2, 1, 1000),
             'type' => $this->faker->randomElement(['Comida', 'Material', 'Efectivo', 'Tarjeta de crédito', 'Transferencia bancaria']),
-            'description' => $this->faker->paragraph(),
+            'description' => $this->faker->text(255),
         ];
     }
 }
