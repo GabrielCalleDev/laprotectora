@@ -57,7 +57,7 @@ class User extends Authenticatable implements FilamentUser, HasMedia
 
     public function canAccessFilament(Context $context): bool
     {
-        return $this->email === 'gabriel.calle92@gmail.com';
+        return $this->role === 'admin';
     }
 
     public function people()
