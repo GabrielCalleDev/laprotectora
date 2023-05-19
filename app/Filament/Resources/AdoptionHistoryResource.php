@@ -38,7 +38,8 @@ class AdoptionHistoryResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('adoption_id'),
                 Tables\Columns\TextColumn::make('status'),
-                Tables\Columns\TextColumn::make('update'),
+                Tables\Columns\TextColumn::make('update')
+                    ->limit(60),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')

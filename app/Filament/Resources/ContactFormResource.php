@@ -56,7 +56,8 @@ class ContactFormResource extends Resource
                 Tables\Columns\TextColumn::make('email'),
                 Tables\Columns\TextColumn::make('phone'),
                 Tables\Columns\TextColumn::make('subject'),
-                Tables\Columns\TextColumn::make('message'),
+                Tables\Columns\TextColumn::make('message')
+                    ->limit(30),
                 Tables\Columns\TextColumn::make('status'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),

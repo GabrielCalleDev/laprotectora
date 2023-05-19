@@ -41,7 +41,8 @@ class DonationResource extends Resource
                 Tables\Columns\TextColumn::make('user_id'),
                 Tables\Columns\TextColumn::make('value'),
                 Tables\Columns\TextColumn::make('type'),
-                Tables\Columns\TextColumn::make('description'),
+                Tables\Columns\TextColumn::make('description')
+                    ->limit(45),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')

@@ -79,15 +79,19 @@ class PetResource extends Resource
                 Tables\Columns\TextColumn::make('adoption_date')
                     ->date(),
                 Tables\Columns\TextColumn::make('health_conditions')
+                    ->limit(30)
                     ->toggleable(),
                 Tables\Columns\TextColumn::make('medications')
                     ->toggleable()
+                    ->limit(30)
                     ->toggledHiddenByDefault(),
                 Tables\Columns\TextColumn::make('history')
+                    ->limit(30)
                     ->toggleable(),
                 Tables\Columns\IconColumn::make('neutered')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('observations')
+                    ->limit(30)
                     ->toggleable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),

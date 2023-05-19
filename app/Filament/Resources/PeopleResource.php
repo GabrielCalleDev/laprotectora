@@ -66,7 +66,8 @@ class PeopleResource extends Resource
                 Tables\Columns\TextColumn::make('city'),
                 Tables\Columns\TextColumn::make('zip_code'),
                 Tables\Columns\TextColumn::make('type'),
-                Tables\Columns\TextColumn::make('observations'),
+                Tables\Columns\TextColumn::make('observations')
+                    ->limit(40),
                 Tables\Columns\TextColumn::make('occupation'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),

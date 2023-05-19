@@ -36,7 +36,8 @@ class QuestionnaireResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('observation'),
+                Tables\Columns\TextColumn::make('observation')
+                    ->limit(30),
 
                 // Forms\Components\Section::make('answers')
                 //     ->statePath('answers')

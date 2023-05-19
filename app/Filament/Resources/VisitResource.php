@@ -41,7 +41,8 @@ class VisitResource extends Resource
                 Tables\Columns\TextColumn::make('user_id'),
                 Tables\Columns\TextColumn::make('pet_id'),
                 Tables\Columns\TextColumn::make('user_id_responsible'),
-                Tables\Columns\TextColumn::make('description'),
+                Tables\Columns\TextColumn::make('description')
+                    ->limit(60),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')

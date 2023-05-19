@@ -41,7 +41,8 @@ class AdoptionResource extends Resource
                 Tables\Columns\TextColumn::make('user_id'),
                 Tables\Columns\TextColumn::make('questionnaire_id'),
                 Tables\Columns\TextColumn::make('status'),
-                Tables\Columns\TextColumn::make('observation'),
+                Tables\Columns\TextColumn::make('observation')
+                    ->limit(50),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
