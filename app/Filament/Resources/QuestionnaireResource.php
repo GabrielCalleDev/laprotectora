@@ -93,6 +93,13 @@ class QuestionnaireResource extends Resource
         return false; 
     }
 
+    // public static function getWidgets(): array
+    // {
+    //     return [
+    //         AdoptionHistoryResource\Widgets\AdoptionHistoriesOverview::class,
+    //     ];
+    // }
+
     public static function getPages(): array
     {
         return [
