@@ -17,6 +17,18 @@
     box-shadow: 0 15px 10px -10px #333;
 }
 
+.nav-shadow{
+    box-shadow: 1px 3px 5px 0 rgba(32,32,32,0.3);
+}
+
+// Background filament color
+.filament-layout {
+    background-image: radial-gradient(circle at top,rgba(var(--primary-color-100),1),#fff 50%);
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+// Style for point degradation
 .bg-content {
     position: absolute;
     left: 0;
@@ -24,10 +36,6 @@
     width: 100%;
     z-index: -1;
     background: radial-gradient(circle at 85% 33%,rgba(0,255,235,.085),hsla(0,0%,100%,0) 25%),radial-gradient(circle at 12% 55%,rgba(108,99,255,.1),hsla(0,0%,100%,0) 25%);
-}
-
-.nav-shadow{
-    box-shadow: 1px 3px 5px 0 rgba(32,32,32,0.3);
 }
 
 // Styles for text with background
@@ -49,6 +57,9 @@
 .nav-change-style{
     @media (min-width: 640px) {
         color: white !important;
+        li>a:hover, li>button:hover{
+            color: black !important;
+        }
         svg.nav-change{
             color: white;
         }
@@ -131,6 +142,10 @@
 | Responsive view 1280px                                                   |
 |-------------------------------------------------------------------------*/
 @media (min-width: 1280px) {
+    html{
+        background: -webkit-linear-gradient(to right, #c5c5c5, white,white, white,white,white,white,white, #f8f2ae);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #c5c5c5, white,white, white,white,white,white,white, #f8f2ae); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    }
     header{
         height: 590px;
         background-position: 0 -100px;
