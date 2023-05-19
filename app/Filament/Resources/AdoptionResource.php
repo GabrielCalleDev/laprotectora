@@ -23,7 +23,7 @@ class AdoptionResource extends Resource
     
     protected static ?string $navigationLabel = 'Adopciones';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-home-modern';
 
     protected static ?string $activeNavigationIcon = 'heroicon-s-document-text';
 
@@ -49,8 +49,8 @@ class AdoptionResource extends Resource
                                 Forms\Components\Select::make('questionnaire_id')
                                     ->relationship('questionnaire', 'id')
                                     ->label('Cuestionario')
-                                    ->hint('Id cuestionario')
-                                    ->required(),
+                                    ->hint('Id cuestionario'),
+                                    // ->required(),
                                 Forms\Components\Select::make('status')
                                     ->label('Estado')
                                     ->options([

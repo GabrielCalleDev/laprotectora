@@ -23,7 +23,7 @@ class AdoptionHistoryResource extends Resource
     
     protected static ?string $navigationLabel = 'Historial de adopciones';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-inbox-stack';
 
     protected static ?string $activeNavigationIcon = 'heroicon-s-document-text';
 
