@@ -29,6 +29,13 @@ class ShelterHouseResource extends Resource
                 Forms\Components\TextInput::make('responsible')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\TextInput::make('phone')
+                    ->tel()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('email')
+                    ->email()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('capacity'),
                 Forms\Components\TextInput::make('street_address')
                     ->required()
                     ->maxLength(255),
@@ -45,13 +52,6 @@ class ShelterHouseResource extends Resource
                     ->maxLength(255),
                 Forms\Components\TextInput::make('coordinates')
                     ->maxLength(255),
-                Forms\Components\TextInput::make('phone')
-                    ->tel()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('email')
-                    ->email()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('capacity'),
                 Forms\Components\TextInput::make('observations')
                     ->maxLength(255),
             ]);
@@ -63,15 +63,15 @@ class ShelterHouseResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('responsible'),
+                Tables\Columns\TextColumn::make('phone'),
+                Tables\Columns\TextColumn::make('email'),
+                Tables\Columns\TextColumn::make('capacity'),
                 Tables\Columns\TextColumn::make('street_address'),
                 Tables\Columns\TextColumn::make('street_number'),
                 Tables\Columns\TextColumn::make('address_details'),
                 Tables\Columns\TextColumn::make('city'),
                 Tables\Columns\TextColumn::make('postal_code'),
                 Tables\Columns\TextColumn::make('coordinates'),
-                Tables\Columns\TextColumn::make('phone'),
-                Tables\Columns\TextColumn::make('email'),
-                Tables\Columns\TextColumn::make('capacity'),
                 Tables\Columns\TextColumn::make('observations'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
@@ -79,10 +79,12 @@ class ShelterHouseResource extends Resource
                     ->dateTime(),
             ])
             ->filters([
-                //
+                //                    
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),

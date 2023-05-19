@@ -62,11 +62,14 @@ class DatabaseSeeder extends Seeder
         $this->withProgressBar(1, fn () => User::factory(1)->create([
             'name' => 'admin',
             'email' => 'admin@admin.com',
+            'username' => 'admin',
+            'role' => 'admin',
         ]));
         User::factory(1)->create([
             'name' => 'Gabriel',
             'email' => 'gabriel.calle92@gmail.com',
             'username' => 'gabriel',
+            'role' => 'admin',
         ]);
         $this->command->info('Admin user created.');
 
