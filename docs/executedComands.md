@@ -71,6 +71,10 @@ php artisan vendor:publish --provider="Spatie\MediaLibrary\MediaLibraryServicePr
 php artisan vendor:publish --provider="Spatie\MediaLibrary\MediaLibraryServiceProvider" --tag="config"
 php artisan migrate
 
+## Filament Packages instalation
+composer require filament/tables
+composer require filament/forms
+
 ### consultar imagenes de un modelo
 $pet->getMedia('images')->first()->getUrl();
 $pet->getMedia('images')->first()->getUrl('thumb');
