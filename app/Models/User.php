@@ -90,6 +90,11 @@ class User extends Authenticatable implements FilamentUser, HasMedia
         return $this->hasMany(ContactForm::class);
     }
 
+    public function getFilamentAvatarUrl(): ?string
+    {
+        return $this->getFirstMediaUrl('avatars');
+    }
+
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')
