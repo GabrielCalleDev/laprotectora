@@ -20,10 +20,25 @@ class QuestionnaireResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('observation')
-                    ->maxLength(255),
-                Forms\Components\TextArea::make('answers'),
-            ]);
+                Forms\Components\Card::make()
+                    ->schema([
+                        Forms\Components\TextInput::make('observation')
+                            ->maxLength(255),
+                        Forms\Components\Textarea::make('answers')
+                            ->afterStateHydrated(
+                                function ( Forms\Components\Textarea $component, array $state) {
+                                    $resultado = '';
+                                    foreach ($state as $key => $value) {
+                                        $resultado .= '[ '. $key . ' ] '. PHP_EOL .'- Question: ' . $value['question'] . ' '. PHP_EOL .'- Answer: ' . $value['answer'] . PHP_EOL;
+                                    }
+                                    return $component->state($resultado);
+                                }
+                            )
+                            ->disabled(),
+                    ])
+            ])
+            ->columns(1);
+            ;
     }
 
     public static function table(Table $table): Table
@@ -33,8 +48,17 @@ class QuestionnaireResource extends Resource
                 Tables\Columns\TextColumn::make('observation')
                     ->limit(30),
                 Tables\Columns\TextColumn::make('answers')
-                    ->limit(50),
-
+                    ->getStateUsing(
+                        function ($record) {
+                            $resultado = '';
+                            foreach ($record->answers as $key => $value) {
+                                $resultado .= '[ '. $key . ' ] - Question: ' . $value['question'] . ' | Answer: ' . $value['answer'] . ' | ';
+                            }
+                            return $resultado;
+                        }
+                    )
+                    ->wrap()
+                    ->limit(100),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
