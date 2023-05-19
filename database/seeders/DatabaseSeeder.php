@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
         // Configuración de los registros a crear:
         $users          = 10;
         $shelterHouses  = 10;
-        $pets           = 5;
+        $pets           = 10;
         $contactForms   = 10;
         $donations      = 40;
         $visits         = 10;
