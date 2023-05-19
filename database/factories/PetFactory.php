@@ -49,7 +49,7 @@ class PetFactory extends Factory
         $twoYearsAgo = $currentDate->subYears(2);
 
         return [
-            'name' => $this->faker->name(),
+            'name' => $this->faker->firstName(),
             'species' => $this->faker->randomElement(['Perro', 'Gato']),
             'breed' => null,
             'age' => $this->faker->dateTimeBetween('-10 years', '-1 year'),

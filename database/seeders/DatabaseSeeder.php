@@ -19,6 +19,7 @@ use App\Models\Questionnaire;
 use Faker\Generator as Faker;
 use App\Models\AdoptionHistory;
 use Illuminate\Database\Seeder;
+use App\Models\ContactsDirectory;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Collection;
 use Symfony\Component\Console\Helper\ProgressBar;
@@ -49,10 +50,11 @@ class DatabaseSeeder extends Seeder
         $shelterHouses  = 10;
         $pets           = 10;
         $contactForms   = 10;
-        $donations      = 10;
+        $donations      = 40;
         $visits         = 10;
         $questionnaires = 10;
         $adoptions      = 10;
+        $contacts       = 10;
 
         // *****************************************************
         // Admin user creation
@@ -71,107 +73,106 @@ class DatabaseSeeder extends Seeder
 
         // *****************************************************
         // Users
-        // $this->command->warn(PHP_EOL . 'Creating users...');
-        
-        // $this->withProgressBar($users, fn () => People::factory(1)
-        //     ->afterCreating(function (People $people) {
-        //         $this->command->warn(PHP_EOL . 'Creating user data for: '.$people->name.' '.$people->last_name);
-        //         User::factory(1)->create([
-        //             'id_people' => $people->id,
-        //         ]);
-        //     })
-        //     ->create()
-        // );
-        // $this->command->info('Users created.');
+        $this->command->warn(PHP_EOL . 'Creating users...');
+        $this->withProgressBar($users, fn () => People::factory(1)
+            ->afterCreating(function (People $people) {
+                $this->command->warn(PHP_EOL . 'Creating user data for: '.$people->name.' '.$people->last_name);
+                User::factory(1)->create([
+                    'id_people' => $people->id,
+                ]);
+            })
+            ->create()
+        );
+        $this->command->info('Users created.');
      
 
-        // // ShelterHouses
-        // $this->command->warn(PHP_EOL . 'Creating shelterHouses...');
-        // $this->withProgressBar($shelterHouses, fn () => ShelterHouse::factory(1)->create());
-        // $this->command->info('ShelterHouses created.');
+        // ShelterHouses
+        $this->command->warn(PHP_EOL . 'Creating shelterHouses...');
+        $this->withProgressBar($shelterHouses, fn () => ShelterHouse::factory(1)->create());
+        $this->command->info('ShelterHouses created.');
 
 
-        // // *****************************************************
-        // // Pets
-        // $this->command->warn(PHP_EOL . 'Creating pets...');
-        // // Creating dogs
-        // $this->command->warn(PHP_EOL . 'Creating 10 dogs...');
-        // $this->withProgressBar($pets, fn () => Pet::factory(1)
-        //     ->afterCreating(function (Pet $pet) {
-        //         $this->command->warn(PHP_EOL . 'Creating pet histories for dog...');
-        //         $this->withProgressBar(2, fn () => PetHistory::factory(1)->create([
-        //             'pet_id' => $pet->id,
-        //         ]));
-        //     })
-        //     ->create([
-        //         'species' => 'Perro',
-        //         'breed' => $this->faker->randomElement(['Mixed Breed', 'Husky', 'Golden Retriever', 'Boxer', 'Bulldog', 'Beagle', 'Poodle', 'Chihuahua', 'Pug', 'Rottweiler', 'Yorkshire Terrier']),
-        //         'weight' => $this->faker->randomFloat(2, 1, 40),
-        //     ])
-        // );
-        // $this->command->info('10 dogs created.');
+        // *****************************************************
+        // Pets
+        $this->command->warn(PHP_EOL . 'Creating '.($pets*2).'pets...');
+        // Creating dogs
+        $this->command->warn(PHP_EOL . 'Creating 10 dogs...');
+        $this->withProgressBar($pets, fn () => Pet::factory(1)
+            ->afterCreating(function (Pet $pet) {
+                $this->command->warn(PHP_EOL . 'Creating pet histories for dog: '.$pet->name);
+                $this->withProgressBar(2, fn () => PetHistory::factory(1)->create([
+                    'pet_id' => $pet->id,
+                ]));
+            })
+            ->create([
+                'species' => 'Perro',
+                'breed' => $this->faker->randomElement(['Mixed Breed', 'Husky', 'Golden Retriever', 'Boxer', 'Bulldog', 'Beagle', 'Poodle', 'Chihuahua', 'Pug', 'Rottweiler', 'Yorkshire Terrier']),
+                'weight' => $this->faker->randomFloat(2, 1, 40),
+            ])
+        );
+        $this->command->info($pets.' dogs created.');
 
-        // // Creating cats
-        // $this->command->warn(PHP_EOL . 'Creating 10 cats...');
-        // $this->withProgressBar($pets, fn () => Pet::factory(1)
-        //     ->afterCreating(function (Pet $pet) {
-        //         $this->command->warn(PHP_EOL . 'Creating pet histories for cat...');
-        //         $this->withProgressBar(2, fn () => PetHistory::factory(1)->create([
-        //             'pet_id' => $pet->id,
-        //         ]));
-        //         $this->command->info('Pet histories created.');
-        //     })
-        //     ->create([
-        //         'species' => 'Gato',
-        //         'breed' => $this->faker->randomElement(['Mixed Breed','Maine Coon', 'Persa', 'Siames', 'Bengal', 'Sphynx', 'Ragdoll', 'Abisinio']),
-        //         'weight' => $this->faker->randomFloat(2, 1, 10),
-        //     ])
-        // );
-        // $this->command->info('10 cats created.');
-
-
-        // // *****************************************************
-        // // Contact form
-        // $this->command->warn(PHP_EOL . 'Creating contact form data...');
-        // $this->withProgressBar($contactForms, fn () => ContactForm::factory(1)->create());
-        // $this->command->info('ContactData created.');
+        // Creating cats
+        $this->command->warn(PHP_EOL . 'Creating '.$pets.' cats...');
+        $this->withProgressBar($pets, fn () => Pet::factory(1)
+            ->afterCreating(function (Pet $pet) {
+                $this->command->warn(PHP_EOL . 'Creating pet histories for cat...');
+                $this->withProgressBar(2, fn () => PetHistory::factory(1)->create([
+                    'pet_id' => $pet->id,
+                ]));
+                $this->command->info('Pet histories created.');
+            })
+            ->create([
+                'species' => 'Gato',
+                'breed' => $this->faker->randomElement(['Mixed Breed','Maine Coon', 'Persa', 'Siames', 'Bengal', 'Sphynx', 'Ragdoll', 'Abisinio']),
+                'weight' => $this->faker->randomFloat(2, 1, 10),
+            ])
+        );
+        $this->command->info($pets.' cats created.');
 
 
-        // // *****************************************************
-        // // Donations
-        // $this->command->warn(PHP_EOL . 'Creating Donations...');
-        // $this->withProgressBar($donations, fn () => Donation::factory(1)->create([
-        //     'user_id' => rand(1, User::count())
-        // ]));
-        // $this->command->info('Donations created.');
-
-        // // *****************************************************      
-        // // Favorites
-        // $this->command->warn(PHP_EOL . 'Creating Favorites...');
-        // $users = User::pluck('id');
-        // $contador = 0;
-        // $this->withProgressBar($users->count(), function () use (&$contador, $users) {
-        //     $user_id = $users[$contador];
-        //     $contador++;
-        //     return Favorite::factory(rand(1, ($users->count()/2) ))->create([
-        //         'user_id' => $user_id,
-        //     ]);
-        // });
-        // $this->command->info('Favorites created.');
+        // *****************************************************
+        // Contact form
+        $this->command->warn(PHP_EOL . 'Creating contact form data...');
+        $this->withProgressBar($contactForms, fn () => ContactForm::factory(1)->create());
+        $this->command->info('ContactData created.');
 
 
-        // // *****************************************************
-        // // Visits
-        // $this->command->warn(PHP_EOL . 'Creating visits data...');
-        // $this->withProgressBar($contactForms, fn () => Visit::factory($visits)->create());
-        // $this->command->info('Visits data created.');
+        // *****************************************************
+        // Donations
+        $this->command->warn(PHP_EOL . 'Creating Donations...');
+        $this->withProgressBar($donations, fn () => Donation::factory(1)->create([
+            'user_id' => rand(1, User::count())
+        ]));
+        $this->command->info('Donations created.');
+
+        // *****************************************************      
+        // Favorites
+        $this->command->warn(PHP_EOL . 'Creating Favorites...');
+        $users = User::pluck('id');
+        $contador = 0;
+        $this->withProgressBar($users->count(), function () use (&$contador, $users) {
+            $user_id = $users[$contador];
+            $contador++;
+            return Favorite::factory(rand(1, ($users->count()/2) ))->create([
+                'user_id' => $user_id,
+            ]);
+        });
+        $this->command->info('Favorites created.');
 
 
-        // // *****************************************************
-        // // Questionnaires
-        // $this->command->warn(PHP_EOL . 'Creating questionnaires data...');
-        // $this->withProgressBar($questionnaires, fn () => Questionnaire::factory(1)->create());
-        // $this->command->info('Questionnaires data created.');
+        // *****************************************************
+        // Visits
+        $this->command->warn(PHP_EOL . 'Creating visits data...');
+        $this->withProgressBar($contactForms, fn () => Visit::factory($visits)->create());
+        $this->command->info('Visits data created.');
+
+
+        // *****************************************************
+        // Questionnaires
+        $this->command->warn(PHP_EOL . 'Creating questionnaires data...');
+        $this->withProgressBar($questionnaires, fn () => Questionnaire::factory(1)->create());
+        $this->command->info('Questionnaires data created.');
 
         // *****************************************************
         // Adoptions
@@ -187,10 +188,17 @@ class DatabaseSeeder extends Seeder
         );
         $this->command->info('Adoptions data created.');
 
+        
+        // *****************************************************
+        // Contacts directory
+        $this->command->warn(PHP_EOL . 'Creating contacts directory data...');
+        $this->withProgressBar($contacts, fn () => ContactsDirectory::factory(1)->create());
+        $this->command->info('Contacts directory data created.');
+
 
         // *****************************************************
         // Listado de usuarios creados en la base de datos
-        $this->command->info(PHP_EOL.'[ Listado de usuarios ]');
+        $this->command->info(PHP_EOL.'[ User list ] - All passwords are: "password"');
         $this->command->table(
             ['Nombre', 'Email'],
             User::all(['name', 'email'])->toArray()

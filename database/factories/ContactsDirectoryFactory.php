@@ -17,7 +17,14 @@ class ContactsDirectoryFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name'     => $this->faker->name(),
+            'phone'    => $this->faker->phoneNumber(),
+            'email'    => $this->faker->email(),
+            'address'  => $this->faker->address(),
+            'company'  => $this->faker->company(),
+            'position' => $this->faker->jobTitle(),
+            'notes'    => $this->faker->text(150),
+            'type'     => $this->faker->randomElement(['personal', 'professional']),
         ];
     }
 }
