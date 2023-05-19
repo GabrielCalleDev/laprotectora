@@ -70,6 +70,11 @@ class User extends Authenticatable implements FilamentUser, HasMedia
         return $this->belongsToMany(Pet::class, 'favorites')->withTimestamps();
     }
 
+    public function favorite()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+
     public function visits()
     {
         return $this->hasMany(Visit::class);

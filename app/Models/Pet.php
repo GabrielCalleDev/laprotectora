@@ -57,4 +57,9 @@ class Pet extends Model implements HasMedia
     {
         return $this->belongsToMany(User::class, 'favorites')->withTimestamps();
     }
+
+    public function favorite()
+    {
+        return $this->hasMany(Favorite::class);
+    }
 }
