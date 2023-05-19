@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Pet;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,10 @@ class VisitFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => $this->faker->numberBetween(1, User::count()),
+            'pet_id' => $this->faker->numberBetween(1, Pet::count()),
+            'user_id_responsible' => $this->faker->numberBetween(1, User::count()),
+            'description' => $this->faker->text(),
         ];
     }
 }

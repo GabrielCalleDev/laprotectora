@@ -12,7 +12,6 @@ class PetHistory extends Model
     protected $table = 'pets_histories';
     protected $fillable = [
         'pet_id',
-        'date',
         'type',
         'description',
     ];

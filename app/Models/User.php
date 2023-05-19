@@ -32,7 +32,7 @@ class User extends Authenticatable implements FilamentUser, HasMedia
         'username',
         'avatar',
         'status',
-        'id_role',
+        'role',
         'id_people',
     ];
 
@@ -58,11 +58,6 @@ class User extends Authenticatable implements FilamentUser, HasMedia
     public function canAccessFilament(Context $context): bool
     {
         return $this->email === 'gabriel.calle92@gmail.com';
-    }
-
-    public function role()
-    {
-        return $this->belongsTo(Role::class);
     }
 
     public function people()

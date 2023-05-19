@@ -9,7 +9,7 @@ class AdoptionHistory extends Model
 {
     use HasFactory;
 
-    protected $table = 'adoption_histories';
+    protected $table = 'adoptions_histories';
     protected $fillable = [
         'adoption_id',
         'status',

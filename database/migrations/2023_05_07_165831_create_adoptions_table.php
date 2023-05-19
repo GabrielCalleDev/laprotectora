@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('adoptions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pet_id')->constrained('pets')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('pet_id')->nullable()->constrained('pets')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('status', 100)->nullable();
             $table->string('observation', 255)->nullable();
             $table->foreignId('questionnaire_id')->nullable()->constrained('questionnaires')->onDelete('cascade')->onUpdate('cascade');

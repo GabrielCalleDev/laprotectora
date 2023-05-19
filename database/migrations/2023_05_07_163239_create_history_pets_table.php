@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('pets_histories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('pet_id')->nullable()->constrained('pets')->onDelete('cascade')->onUpdate('cascade');
-            $table->date('date');
-            $table->string('type');
+            $table->string('type')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
         });
