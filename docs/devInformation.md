@@ -164,3 +164,119 @@ https://filamentphp.com/docs/2.x/forms/fields#creating-new-records
 
 Tabs
 https://filamentphp.com/docs/2.x/forms/layout#tabs
+
+
+### Template forms configurado para Filament
+```php
+  return $form
+      ->schema([
+          Forms\Components\Group::make()
+              ->schema([
+                  Card::make()
+                      ->schema([
+                          Forms\Components\Select::make('pet_id')
+                              ->relationship('pet', 'name')
+                              ->label('Mascota')
+                              ->hint('En proceso de adopcion')
+                              ->required(),
+                          Forms\Components\Select::make('status')
+                              ->label('Estado')
+                              ->options([
+                                  'nuevo' => 'Nuevo',
+                                  'cuestionario' => 'Cuestionario',
+                                  'visita' => 'Visita',
+                                  'entrevista' => 'Entrevista',
+                                  'firma' => 'Firma',
+                                  'pago' => 'Pago',
+                                  'seguimiento' => 'Seguimiento',
+                                  'finalizado' => 'Finalizado',
+                                  'cancelado' => 'Cancelado',
+                              ])
+                              ->required(),
+                          Forms\Components\MarkdownEditor::make('observation')
+                              ->required()
+                              ->label('Observaciones')
+                              ->maxLength(255)
+                              ->columnSpan('full'),
+                      ])
+                      ->columns(2)
+              ])
+              ->columnSpan(['lg' => 2]),
+          
+          Forms\Components\Card::make()
+              ->schema([
+                  Forms\Components\Placeholder::make('created_at')
+                      ->label('Creado hace')
+                      ->content(fn (Adoption $record): ?string => $record->created_at?->diffForHumans()),
+                  Forms\Components\Placeholder::make('updated_at')
+                      ->label('Última actualización hace')
+                      ->content(fn (Adoption $record): ?string => $record->updated_at?->diffForHumans()),
+              ])
+              ->columnSpan(['lg' => 1])
+              ->hidden(fn (?Adoption $record) => $record === null),
+      ])
+      ->columns([
+          'sm' => 3,
+          'lg' => 3,
+      ]);
+
+
+
+
+  return $table
+    ->columns([
+        Tables\Columns\TextColumn::make('pet.name')
+            ->label('Mascota'),
+        Tables\Columns\TextColumn::make('user.name')
+            ->label('Adoptante'),
+        Tables\Columns\BadgeColumn::make('status')
+            ->getStateUsing(function (Adoption $record): string {
+                switch ($record->status) {
+                    case 'nuevo'        : return 'Nuevo';
+                    case 'cuestionario' : return 'Cuestionario';
+                    case 'visita'       : return 'Visita';
+                    case 'cancelado'    : return 'Cancelado';
+                }
+            })
+            ->color(static function ($state): string {
+                if ($state === 'Nuevo' || $state === 'Finalizado') {
+                    return 'success';
+                }else if ($state === 'Cancelado') {
+                    return 'danger';
+                }else if ($state === 'Firma') {
+                    return 'secondary';
+                }else if ($state === 'Cuestionario' || $state === 'Visita' || $state === 'Entrevista' || $state === 'Pago' || $state === 'Seguimiento') {
+                    return 'primary';
+                }
+                return 'secondary';
+            })
+            ->icons([
+                'heroicon-o-shield-check' => 'Finalizado',
+            ]),
+        Tables\Columns\TextColumn::make('observation')
+            ->limit(50)
+            ->tooltip(function (Tables\Columns\TextColumn $column): ?string {
+                $state = $column->getState();
+                if (strlen($state) <= 40) return null;
+                return $state;
+            }),
+        Tables\Columns\IconColumn::make('questionnaire_id')
+            ->label('Cuestionario')
+            ->boolean(),
+        Tables\Columns\TextColumn::make('created_at')
+            ->since(),
+        Tables\Columns\TextColumn::make('updated_at')
+            ->since(),
+    ])
+    ->filters([
+        //
+    ])
+    ->actions([
+        Tables\Actions\ViewAction::make(),
+        Tables\Actions\EditAction::make(),
+        Tables\Actions\DeleteAction::make(),
+    ])
+    ->bulkActions([
+        Tables\Actions\DeleteBulkAction::make(),
+    ]);
+```
