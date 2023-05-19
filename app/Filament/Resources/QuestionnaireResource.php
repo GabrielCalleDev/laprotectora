@@ -14,6 +14,12 @@ class QuestionnaireResource extends Resource
 {
     protected static ?string $model = Questionnaire::class;
 
+    protected static ?string $label = 'Cuestionarios rellenados';
+
+    protected static ?string $slug = 'cuestionarios';
+    
+    protected static ?string $navigationLabel = 'Cuestionarios de usuarios';
+    
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
@@ -81,7 +87,12 @@ class QuestionnaireResource extends Resource
             //
         ];
     }
-    
+
+    public static function canCreate(): bool
+    { 
+        return false; 
+    }
+
     public static function getPages(): array
     {
         return [
