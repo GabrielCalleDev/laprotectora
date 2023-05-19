@@ -8,14 +8,7 @@ use Filament\Forms\Form;
 use Filament\Tables\Table;
 use App\Models\Questionnaire;
 use Filament\Resources\Resource;
-use Filament\Forms\Components\Section;
-use Filament\Forms\Components\Textarea;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Forms\Components\TextInput;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\QuestionnaireResource\Pages;
-use App\Filament\Resources\QuestionnaireResource\RelationManagers;
 
 class QuestionnaireResource extends Resource
 {
@@ -28,7 +21,8 @@ class QuestionnaireResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('observation')
-                    ->maxLength(255)
+                    ->maxLength(255),
+                Forms\Components\TextArea::make('answers'),
             ]);
     }
 
@@ -38,14 +32,9 @@ class QuestionnaireResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('observation')
                     ->limit(30),
+                Tables\Columns\TextColumn::make('answers')
+                    ->limit(50),
 
-                // Forms\Components\Section::make('answers')
-                //     ->statePath('answers')
-                //     ->schema([
-                //         Forms\Components\TextInput::make('question'),
-                //         Forms\Components\TextInput::make('answer'),
-                //     ]),
-                    
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
