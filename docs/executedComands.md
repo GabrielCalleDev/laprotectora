@@ -77,3 +77,7 @@ composer require filament/spatie-laravel-media-library-plugin
 php artisan vendor:publish --provider="Spatie\MediaLibrary\MediaLibraryServiceProvider" --tag="migrations"
 php artisan vendor:publish --provider="Spatie\MediaLibrary\MediaLibraryServiceProvider" --tag="config"
 php artisan migrate
+
+### consultar imagenes de un modelo
+$pet->getMedia('images')->first()->getUrl();
+$pet->getMedia('images')->first()->getUrl('thumb');
