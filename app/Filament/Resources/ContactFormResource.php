@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
-use App\Models\User;
+use App\Filament\Resources\ContactFormResource\Pages;
+use App\Filament\Resources\ContactFormResource\RelationManagers;
+use App\Models\ContactForm;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,9 +13,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class UserResource extends Resource
+class ContactFormResource extends Resource
 {
-    protected static ?string $model = User::class;
+    protected static ?string $model = ContactForm::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -23,22 +23,27 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('id_people'),
+                Forms\Components\TextInput::make('user_id'),
                 Forms\Components\TextInput::make('name')
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(50),
                 Forms\Components\TextInput::make('email')
                     ->email()
                     ->required()
-                    ->maxLength(255),
-                Forms\Components\DateTimePicker::make('email_verified_at'),
-                Forms\Components\TextInput::make('username')
-                    ->maxLength(50),
-                Forms\Components\Toggle::make('status')
-                    ->required(),
-                Forms\Components\TextInput::make('role')
+                    ->maxLength(100),
+                Forms\Components\TextInput::make('phone')
+                    ->tel()
                     ->required()
-                    ->maxLength(50),
+                    ->maxLength(15),
+                Forms\Components\TextInput::make('subject')
+                    ->required()
+                    ->maxLength(100),
+                Forms\Components\Textarea::make('message')
+                    ->required()
+                    ->maxLength(65535),
+                Forms\Components\TextInput::make('status')
+                    ->required()
+                    ->maxLength(25),
             ]);
     }
 
@@ -46,22 +51,18 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\SpatieMediaLibraryImageColumn::make('image')
-                    ->label('Image')
-                    ->collection('avatars'),
-                Tables\Columns\TextColumn::make('id_people'),
+                Tables\Columns\TextColumn::make('user_id'),
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('email'),
-                Tables\Columns\TextColumn::make('username'),
-                Tables\Columns\TextColumn::make('email_verified_at')
-                    ->dateTime(),
+                Tables\Columns\TextColumn::make('phone'),
+                Tables\Columns\TextColumn::make('subject'),
+                Tables\Columns\TextColumn::make('message')
+                    ->limit(30),
+                Tables\Columns\TextColumn::make('status'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime(),
-                Tables\Columns\IconColumn::make('status')
-                    ->boolean(),
-                Tables\Columns\TextColumn::make('role'),
             ])
             ->filters([
                 //
@@ -84,9 +85,9 @@ class UserResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListUsers::route('/'),
-            'create' => Pages\CreateUser::route('/create'),
-            'edit' => Pages\EditUser::route('/{record}/edit'),
+            'index' => Pages\ListContactForms::route('/'),
+            'create' => Pages\CreateContactForm::route('/create'),
+            'edit' => Pages\EditContactForm::route('/{record}/edit'),
         ];
     }    
 }

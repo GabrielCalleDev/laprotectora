@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
-use App\Models\User;
+use App\Filament\Resources\ContactsDirectoryResource\Pages;
+use App\Filament\Resources\ContactsDirectoryResource\RelationManagers;
+use App\Models\ContactsDirectory;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,9 +13,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class UserResource extends Resource
+class ContactsDirectoryResource extends Resource
 {
-    protected static ?string $model = User::class;
+    protected static ?string $model = ContactsDirectory::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -23,22 +23,24 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('id_people'),
                 Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
+                    ->maxLength(150),
+                Forms\Components\TextInput::make('phone')
+                    ->tel()
+                    ->maxLength(150),
                 Forms\Components\TextInput::make('email')
                     ->email()
-                    ->required()
+                    ->maxLength(150),
+                Forms\Components\TextInput::make('address')
                     ->maxLength(255),
-                Forms\Components\DateTimePicker::make('email_verified_at'),
-                Forms\Components\TextInput::make('username')
-                    ->maxLength(50),
-                Forms\Components\Toggle::make('status')
-                    ->required(),
-                Forms\Components\TextInput::make('role')
-                    ->required()
-                    ->maxLength(50),
+                Forms\Components\TextInput::make('company')
+                    ->maxLength(150),
+                Forms\Components\TextInput::make('position')
+                    ->maxLength(150),
+                Forms\Components\TextInput::make('notes')
+                    ->maxLength(150),
+                Forms\Components\TextInput::make('type')
+                    ->maxLength(150),
             ]);
     }
 
@@ -46,22 +48,18 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\SpatieMediaLibraryImageColumn::make('image')
-                    ->label('Image')
-                    ->collection('avatars'),
-                Tables\Columns\TextColumn::make('id_people'),
                 Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('phone'),
                 Tables\Columns\TextColumn::make('email'),
-                Tables\Columns\TextColumn::make('username'),
-                Tables\Columns\TextColumn::make('email_verified_at')
-                    ->dateTime(),
+                Tables\Columns\TextColumn::make('address'),
+                Tables\Columns\TextColumn::make('company'),
+                Tables\Columns\TextColumn::make('position'),
+                Tables\Columns\TextColumn::make('notes'),
+                Tables\Columns\TextColumn::make('type'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime(),
-                Tables\Columns\IconColumn::make('status')
-                    ->boolean(),
-                Tables\Columns\TextColumn::make('role'),
             ])
             ->filters([
                 //
@@ -84,9 +82,9 @@ class UserResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListUsers::route('/'),
-            'create' => Pages\CreateUser::route('/create'),
-            'edit' => Pages\EditUser::route('/{record}/edit'),
+            'index' => Pages\ListContactsDirectories::route('/'),
+            'create' => Pages\CreateContactsDirectory::route('/create'),
+            'edit' => Pages\EditContactsDirectory::route('/{record}/edit'),
         ];
     }    
 }

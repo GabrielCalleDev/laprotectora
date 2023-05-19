@@ -2,10 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PetImageResource\Pages;
-use App\Filament\Resources\PetImageResource\RelationManagers;
-use App\Models\PetImage;
-use Filament\Forms\Components\Fieldset;
+use App\Filament\Resources\AdoptionResource\Pages;
+use App\Filament\Resources\AdoptionResource\RelationManagers;
+use App\Models\Adoption;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -14,9 +13,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class PetImageResource extends Resource
+class AdoptionResource extends Resource
 {
-    protected static ?string $model = PetImage::class;
+    protected static ?string $model = Adoption::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -24,18 +23,13 @@ class PetImageResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('pet_id')
-                    ->relationship('pet', 'name')
-                    ->searchable()
-                    ->required()
-                    ->label('Mascota')
-                    ->placeholder('Selecciona una mascota'),
-                Forms\Components\TextInput::make('name')
+                Forms\Components\TextInput::make('pet_id'),
+                Forms\Components\TextInput::make('user_id'),
+                Forms\Components\TextInput::make('questionnaire_id'),
+                Forms\Components\TextInput::make('status')
+                    ->maxLength(100),
+                Forms\Components\TextInput::make('observation')
                     ->maxLength(255),
-                Forms\Components\TextInput::make('url')
-                    ->maxLength(255),
-                Forms\Components\Textarea::make('description')
-                    ->maxLength(65535),
             ]);
     }
 
@@ -43,11 +37,12 @@ class PetImageResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('pet.name')
-                    ->label('Mascota'),
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('url'),
-                Tables\Columns\TextColumn::make('description'),
+                Tables\Columns\TextColumn::make('pet_id'),
+                Tables\Columns\TextColumn::make('user_id'),
+                Tables\Columns\TextColumn::make('questionnaire_id'),
+                Tables\Columns\TextColumn::make('status'),
+                Tables\Columns\TextColumn::make('observation')
+                    ->limit(50),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
@@ -74,9 +69,9 @@ class PetImageResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPetImages::route('/'),
-            'create' => Pages\CreatePetImage::route('/create'),
-            'edit' => Pages\EditPetImage::route('/{record}/edit'),
+            'index' => Pages\ListAdoptions::route('/'),
+            'create' => Pages\CreateAdoption::route('/create'),
+            'edit' => Pages\EditAdoption::route('/{record}/edit'),
         ];
     }    
 }

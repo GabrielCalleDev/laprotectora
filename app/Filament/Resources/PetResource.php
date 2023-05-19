@@ -6,6 +6,7 @@ use App\Filament\Resources\PetResource\Pages;
 use App\Filament\Resources\PetResource\RelationManagers;
 use App\Models\Pet;
 use Filament\Forms;
+use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -44,15 +45,15 @@ class PetResource extends Resource
                     ->maxLength(255),
                 Forms\Components\DatePicker::make('admission_date'),
                 Forms\Components\DatePicker::make('adoption_date'),
-                Forms\Components\TextInput::make('health_conditions')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('medications')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('history')
-                    ->maxLength(255),
+                Forms\Components\Textarea::make('health_conditions')
+                    ->maxLength(65535),
+                Forms\Components\Textarea::make('medications')
+                    ->maxLength(65535),
+                Forms\Components\Textarea::make('history')
+                    ->maxLength(65535),
+                Forms\Components\Textarea::make('observations')
+                    ->maxLength(65535),
                 Forms\Components\Toggle::make('neutered'),
-                Forms\Components\TextInput::make('observations')
-                    ->maxLength(255),
             ]);
     }
 
@@ -60,7 +61,9 @@ class PetResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('shelter_house_id'),
+                Tables\Columns\SpatieMediaLibraryImageColumn::make('product-image')
+                    ->label('Image')
+                    ->collection('pets'),
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('species'),
                 Tables\Columns\TextColumn::make('breed'),
@@ -75,22 +78,36 @@ class PetResource extends Resource
                     ->date(),
                 Tables\Columns\TextColumn::make('adoption_date')
                     ->date(),
-                Tables\Columns\TextColumn::make('health_conditions'),
-                Tables\Columns\TextColumn::make('medications'),
-                Tables\Columns\TextColumn::make('history'),
+                Tables\Columns\TextColumn::make('health_conditions')
+                    ->limit(30)
+                    ->toggleable(),
+                Tables\Columns\TextColumn::make('medications')
+                    ->toggleable()
+                    ->limit(30)
+                    ->toggledHiddenByDefault(),
+                Tables\Columns\TextColumn::make('history')
+                    ->limit(30)
+                    ->toggleable(),
                 Tables\Columns\IconColumn::make('neutered')
                     ->boolean(),
-                Tables\Columns\TextColumn::make('observations'),
+                Tables\Columns\TextColumn::make('observations')
+                    ->limit(30)
+                    ->toggleable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime(),
+                Tables\Columns\TextColumn::make('shelter_house_id')
+                    ->label('idCasa')
+                    ->sortable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),

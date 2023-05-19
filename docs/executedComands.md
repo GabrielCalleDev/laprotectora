@@ -2,7 +2,6 @@ Migrations:
 
 php artisan make:migration create_shelters_houses_table --create=shelters_houses
 php artisan make:migration create_pets_table --create=pets
-php artisan make:migration create_pets_images_table --create=pets_images
 php artisan make:migration create_pets_histories_table --create=pets_histories
 php artisan make:migration add_fields_to_users_table --table=users
 php artisan make:migration create_contact_form_table --create=contact_form
@@ -20,7 +19,6 @@ Models:
 
 php artisan make:model ShelterHouse --seed --factory
 php artisan make:model Pet --seed --factory
-php artisan make:model PetImage --seed --factory
 php artisan make:model PetHistory --seed --factory
 php artisan make:model ContactForm --seed --factory
 php artisan make:model Donation --seed --factory
@@ -31,14 +29,12 @@ php artisan make:model Adoption --seed --factory
 php artisan make:model AdoptionHistory --seed --factory
 php artisan make:model ContactsDirectory --seed --factory
 php artisan make:model People --seed --factory
-php artisan make:model Role --seed --factory
 
 
 Controllers:
 
 php artisan make:controller ShelterHouseController --resource
 php artisan make:controller PetController --resource
-php artisan make:controller PetImageController --resource
 php artisan make:controller HistoryPetController --resource
 php artisan make:controller ContactFormController --resource
 php artisan make:controller DonationController --resource
@@ -49,13 +45,11 @@ php artisan make:controller AdoptionController --resource
 php artisan make:controller AdoptionHistoryController --resource
 php artisan make:controller ContactsDirectoryController --resource
 php artisan make:controller PeopleController --resource
-php artisan make:controller RoleController --resource
 
 Filament:
 php artisan make:filament-resource User --generate
 php artisan make:filament-resource ShelterHouse --generate
 php artisan make:filament-resource Pet --generate
-php artisan make:filament-resource PetImage --generate
 php artisan make:filament-resource PetHistory --generate
 php artisan make:filament-resource ContactForm --generate
 php artisan make:filament-resource Donation --generate
@@ -66,7 +60,6 @@ php artisan make:filament-resource Adoption --generate
 php artisan make:filament-resource AdoptionHistory --generate
 php artisan make:filament-resource ContactsDirectory --generate
 php artisan make:filament-resource People --generate
-php artisan make:filament-resource Role --generate
 
 Translating Filament:
 php artisan vendor:publish --tag=filament-translations
@@ -77,6 +70,10 @@ composer require filament/spatie-laravel-media-library-plugin
 php artisan vendor:publish --provider="Spatie\MediaLibrary\MediaLibraryServiceProvider" --tag="migrations"
 php artisan vendor:publish --provider="Spatie\MediaLibrary\MediaLibraryServiceProvider" --tag="config"
 php artisan migrate
+
+## Filament Packages instalation
+composer require filament/tables
+composer require filament/forms
 
 ### consultar imagenes de un modelo
 $pet->getMedia('images')->first()->getUrl();

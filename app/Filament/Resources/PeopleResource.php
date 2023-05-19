@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ShelterHouseResource\Pages;
-use App\Filament\Resources\ShelterHouseResource\RelationManagers;
-use App\Models\ShelterHouse;
+use App\Filament\Resources\PeopleResource\Pages;
+use App\Filament\Resources\PeopleResource\RelationManagers;
+use App\Models\People;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,9 +13,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class ShelterHouseResource extends Resource
+class PeopleResource extends Resource
 {
-    protected static ?string $model = ShelterHouse::class;
+    protected static ?string $model = People::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -24,35 +24,28 @@ class ShelterHouseResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('responsible')
-                    ->required()
-                    ->maxLength(255),
+                    ->maxLength(50),
+                Forms\Components\TextInput::make('last_name')
+                    ->maxLength(50),
+                Forms\Components\TextInput::make('dni')
+                    ->maxLength(9),
                 Forms\Components\TextInput::make('phone')
-                    ->tel()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('email')
-                    ->email()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('capacity'),
+                    ->tel(),
+                Forms\Components\DatePicker::make('birthdate'),
                 Forms\Components\TextInput::make('street_address')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('street_number')
-                    ->required()
-                    ->maxLength(255),
+                    ->maxLength(100),
+                Forms\Components\TextInput::make('address_number'),
                 Forms\Components\TextInput::make('address_details')
-                    ->maxLength(255),
+                    ->maxLength(100),
                 Forms\Components\TextInput::make('city')
-                    ->required()
+                    ->maxLength(50),
+                Forms\Components\TextInput::make('zip_code')
                     ->maxLength(255),
-                Forms\Components\TextInput::make('postal_code')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('coordinates')
-                    ->maxLength(255),
+                Forms\Components\TextInput::make('type')
+                    ->maxLength(20),
                 Forms\Components\TextInput::make('observations')
+                    ->maxLength(100),
+                Forms\Components\TextInput::make('occupation')
                     ->maxLength(255),
             ]);
     }
@@ -62,30 +55,30 @@ class ShelterHouseResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('responsible'),
+                Tables\Columns\TextColumn::make('last_name'),
+                Tables\Columns\TextColumn::make('dni'),
                 Tables\Columns\TextColumn::make('phone'),
-                Tables\Columns\TextColumn::make('email'),
-                Tables\Columns\TextColumn::make('capacity'),
+                Tables\Columns\TextColumn::make('birthdate')
+                    ->date(),
                 Tables\Columns\TextColumn::make('street_address'),
-                Tables\Columns\TextColumn::make('street_number'),
+                Tables\Columns\TextColumn::make('address_number'),
                 Tables\Columns\TextColumn::make('address_details'),
                 Tables\Columns\TextColumn::make('city'),
-                Tables\Columns\TextColumn::make('postal_code'),
-                Tables\Columns\TextColumn::make('coordinates'),
+                Tables\Columns\TextColumn::make('zip_code'),
+                Tables\Columns\TextColumn::make('type'),
                 Tables\Columns\TextColumn::make('observations')
                     ->limit(40),
+                Tables\Columns\TextColumn::make('occupation'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime(),
             ])
             ->filters([
-                //                    
+                //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
@@ -102,9 +95,9 @@ class ShelterHouseResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListShelterHouses::route('/'),
-            'create' => Pages\CreateShelterHouse::route('/create'),
-            'edit' => Pages\EditShelterHouse::route('/{record}/edit'),
+            'index' => Pages\ListPeople::route('/'),
+            'create' => Pages\CreatePeople::route('/create'),
+            'edit' => Pages\EditPeople::route('/{record}/edit'),
         ];
     }    
 }

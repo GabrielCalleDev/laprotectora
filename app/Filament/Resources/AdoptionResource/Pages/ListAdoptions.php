@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\PetImageResource\Pages;
+namespace App\Filament\Resources\AdoptionResource\Pages;
 
-use App\Filament\Resources\PetImageResource;
+use App\Filament\Resources\AdoptionResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
-class ListPetImages extends ListRecords
+class ListAdoptions extends ListRecords
 {
-    protected static string $resource = PetImageResource::class;
+    protected static string $resource = AdoptionResource::class;
 
     protected function getHeaderActions(): array
     {
