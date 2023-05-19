@@ -51,9 +51,9 @@ class PetResource extends Resource
                     ->maxLength(65535),
                 Forms\Components\Textarea::make('history')
                     ->maxLength(65535),
-                Forms\Components\Toggle::make('neutered'),
                 Forms\Components\Textarea::make('observations')
                     ->maxLength(65535),
+                Forms\Components\Toggle::make('neutered'),
             ]);
     }
 
@@ -61,6 +61,9 @@ class PetResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\SpatieMediaLibraryImageColumn::make('product-image')
+                    ->label('Image')
+                    ->collection('pets'),
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('species'),
                 Tables\Columns\TextColumn::make('breed'),
@@ -75,17 +78,23 @@ class PetResource extends Resource
                     ->date(),
                 Tables\Columns\TextColumn::make('adoption_date')
                     ->date(),
-                Tables\Columns\TextColumn::make('health_conditions'),
-                Tables\Columns\TextColumn::make('medications'),
-                Tables\Columns\TextColumn::make('history'),
+                Tables\Columns\TextColumn::make('health_conditions')
+                    ->toggleable(),
+                Tables\Columns\TextColumn::make('medications')
+                    ->toggleable()
+                    ->toggledHiddenByDefault(),
+                Tables\Columns\TextColumn::make('history')
+                    ->toggleable(),
                 Tables\Columns\IconColumn::make('neutered')
                     ->boolean(),
-                Tables\Columns\TextColumn::make('observations'),
+                Tables\Columns\TextColumn::make('observations')
+                    ->toggleable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('shelter_house_id')
+                    ->label('idCasa')
                     ->sortable(),
             ])
             ->filters([
