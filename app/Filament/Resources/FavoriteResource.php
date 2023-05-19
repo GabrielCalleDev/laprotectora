@@ -31,11 +31,6 @@ class FavoriteResource extends Resource
 
     public static function form(Form $form): Form
     {
-        // return $form
-        //     ->schema([
-        //         Forms\Components\TextInput::make('user_id'),
-        //         Forms\Components\TextInput::make('pet_id'),
-        //     ]);
         return $form
         ->schema([
             Forms\Components\Group::make()
