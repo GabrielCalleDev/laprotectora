@@ -2,22 +2,31 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\AdoptionHistoryResource\Pages;
-use App\Filament\Resources\AdoptionHistoryResource\RelationManagers;
-use App\Models\AdoptionHistory;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Models\AdoptionHistory;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Card;
+use App\Filament\Resources\AdoptionHistoryResource\Pages;
 
 class AdoptionHistoryResource extends Resource
 {
     protected static ?string $model = AdoptionHistory::class;
 
+    protected static ?string $navigationGroup = 'Adopciones';
+
+    protected static ?string $label = 'Historial de adopciones';
+
+    protected static ?string $slug = 'historial-adopciones';
+    
+    protected static ?string $navigationLabel = 'Historial de adopciones';
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    protected static ?string $activeNavigationIcon = 'heroicon-s-document-text';
+
 
     public static function form(Form $form): Form
     {
@@ -25,7 +34,7 @@ class AdoptionHistoryResource extends Resource
             ->schema([
                 Forms\Components\Group::make()
                     ->schema([
-                        Forms\components\Card::make()
+                        Card::make()
                             ->schema([
                                 Forms\Components\Select::make('adoption_status')
                                     // Obtener el nombre de la mascota
@@ -56,10 +65,10 @@ class AdoptionHistoryResource extends Resource
                                 Forms\Components\MarkdownEditor::make('update')
                                     ->required()
                                     ->columnSpan('full'),
-                            ])->columns(2),
+                            ])
+                            ->columns(2)
                     ])
                     ->columnSpan(['lg' => 2]),
-                
                 
                 Forms\Components\Card::make()
                     ->schema([
@@ -123,14 +132,13 @@ class AdoptionHistoryResource extends Resource
                         // Only render the tooltip if the column contents exceeds the length limit.
                         return $state;
                     }),
-                // Tables\Columns\TextColumn::make('created_at')
-                //     ->since(),
-                
-                Tables\Columns\ViewColumn::make('created_at')
-                    ->getStateUsing(function (AdoptionHistory $record): string {
-                        return $record->created_at->diffForHumans();
-                    })
-                    ->view('test'),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->since(),
+                // Tables\Columns\ViewColumn::make('created_at')
+                //     ->getStateUsing(function (AdoptionHistory $record): string {
+                //         return $record->created_at->diffForHumans();
+                //     })
+                //     ->view('test'),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->since(),
             ])
@@ -138,13 +146,30 @@ class AdoptionHistoryResource extends Resource
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
     
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
+    public static function getNavigationBadgeColor(): ?string
+    {
+        return static::getModel()::count() > 10 ? 'success' : 'warning';
+    }
+
+    protected function getCreatedNotificationTitle(): ?string
+    {
+        return 'User registered';
+    }
+
     public static function getRelations(): array
     {
         return [

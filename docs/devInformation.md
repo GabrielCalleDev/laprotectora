@@ -162,3 +162,5 @@ Nuevo registro desde formulario
 https://filamentphp.com/docs/2.x/forms/fields#creating-new-records 
 
 
+Tabs
+https://filamentphp.com/docs/2.x/forms/layout#tabs
