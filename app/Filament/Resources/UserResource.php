@@ -61,6 +61,8 @@ class UserResource extends Resource
                     ->dateTime(),
                 Tables\Columns\IconColumn::make('status')
                     ->boolean(),
+                // Tables\Columns\CheckboxColumn::make('status'),
+                // Tables\Columns\ToggleColumn::make('status'),
                 Tables\Columns\TextColumn::make('role'),
             ])
             ->filters([

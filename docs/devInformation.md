@@ -97,6 +97,68 @@ Para instalar Filament se ha de ejecutar el siguiente comando:
 Para crear un usuario usuario se ha de ejecutar el siguiente comando:
 >php artisan filament:user
 
+## Paquetes utilizados:
+composer require filament/spatie-laravel-media-library-plugin 
+composer require filament/tables
+composer require filament/forms
+
 ### Instalación del paquete doctrine/dbal
 Para instalar el paquete doctrine/dbal se ha de ejecutar el siguiente comando:
 >composer require doctrine/dbal
+
+#### Artisan tinker
+> $adoptionHistory = AdoptionHistory::first()
+```php
+= App\Models\AdoptionHistory {#8004
+    id: 1,
+    adoption_id: 1,
+    status: "entrevista",
+    update: "Doloribus perspiciatis rem quas ut dolor beatae. Rerum rerum sunt error culpa voluptatem atque. Est sint expedita deleniti amet nihil ut. Hic totam iure ut qui est. Qui officia dicta 
+voluptatum officiis tenetur omnis.",
+    created_at: "2023-05-19 01:49:43",
+    updated_at: "2023-05-19 01:49:43",
+  }
+```
+
+> echo $adoptionHistory
+{"id":1,"adoption_id":1,"status":"entrevista","update":"Doloribus perspiciatis rem quas ut dolor beatae. Rerum rerum sunt error culpa voluptatem atque. Est sint expedita deleniti amet nihil ut. Hic totam iure ut qui est. Qui officia dicta voluptatum officiis tenetur omnis.","created_at":"2023-05-19T01:49:43.000000Z","updated_at":"2023-05-19T01:49:43.000000Z"}⏎
+
+> echo $adoptionHistory->adoption
+{"id":1,"pet_id":16,"user_id":7,"status":"cuestionario","observation":"Enim fugiat unde fugit qui nesciunt necessitatibus. Saepe quo quisquam commodi quia. Qui architecto quas ratione cumque illum quis. Similique est sed id voluptatibus sequi.","questionnaire_id":1,"created_at":"2023-05-19T01:49:43.000000Z","updated_at":"2023-05-19T01:49:43.000000Z"}⏎
+
+> echo $adoptionHistory->adoption->pet
+{"id":16,"name":"Jettie","species":"Gato","breed":"Bengal","age":"2018-12-27","sex":"M","color":"Negro","size":"Grande","weight":"7.18","adoption_status":"En adopci\u00f3n","admission_date":"2020-05-19","adoption_date":"2020-05-19","health_conditions":"Nihil et vero ratione aut placeat illo.","medications":"Officia quis veniam id error.","history":"Mollitia deserunt molestiae saepe tempora qui eius voluptatem.","neutered":1,"observations":"Qui sed saepe excepturi sunt quis doloribus voluptas.","shelter_house_id":3,"created_at":"2023-05-19T01:49:23.000000Z","updated_at":"2023-05-19T01:49:27.000000Z"}⏎
+
+> echo $adoptionHistory->adoption->pet->name
+Jettie⏎
+
+> echo $adoptionHistory->adoption->user->name
+Lauryn Bayer⏎
+
+
+
+### Iconos
+https://blade-ui-kit.com/blade-icons?set=1#search
+
+#### Tables
+Iconos
+https://filamentphp.com/docs/2.x/tables/columns/badge#adding-an-icon
+
+Color de campo
+https://filamentphp.com/docs/2.x/tables/columns/text#customizing-the-color
+
+Boleanos en icono
+https://filamentphp.com/docs/2.x/tables/columns/icon#handling-booleans
+
+```php
+  Tables\Columns\CheckboxColumn::make('status'),
+  Tables\Columns\ToggleColumn::make('status'),
+```
+
+
+
+#### FORMS
+Nuevo registro desde formulario
+https://filamentphp.com/docs/2.x/forms/fields#creating-new-records 
+
+

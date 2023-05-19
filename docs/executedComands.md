@@ -64,6 +64,9 @@ php artisan make:filament-resource People --generate
 Translating Filament:
 php artisan vendor:publish --tag=filament-translations
 
+## blade-ui-kit/blade-heroicons
+composer require blade-ui-kit/blade-heroicons
+
 
 ## instalation of the package spatie-laravel-media-library-plugin
 composer require filament/spatie-laravel-media-library-plugin 
