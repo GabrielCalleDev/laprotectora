@@ -9,4 +9,14 @@ use Filament\Resources\Pages\CreateRecord;
 class CreatePeople extends CreateRecord
 {
     protected static string $resource = PeopleResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->previousUrl ?? $this->getResource()::getUrl('index');
+    }
+
+    protected function getCreatedNotificationTitle(): ?string
+    {
+        return 'Se ha creado correctamente la persona';
+    }
 }
