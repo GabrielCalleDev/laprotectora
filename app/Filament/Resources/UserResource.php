@@ -2,43 +2,83 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
-use App\Models\User;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use App\Models\User;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Card;
+use App\Filament\Resources\UserResource\Pages;
 
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Protectora';
+
+    protected static ?string $label = 'Usuarios';
+
+    protected static ?string $slug = 'usuarios';
+    
+    protected static ?string $navigationLabel = 'Usuarios';
+
+    protected static ?string $navigationIcon = 'heroicon-o-user';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('id_people'),
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('email')
-                    ->email()
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\DateTimePicker::make('email_verified_at'),
-                Forms\Components\TextInput::make('username')
-                    ->maxLength(50),
-                Forms\Components\Toggle::make('status')
-                    ->required(),
-                Forms\Components\TextInput::make('role')
-                    ->required()
-                    ->maxLength(50),
+                Forms\Components\Group::make()
+                    ->schema([
+                        Card::make()
+                            ->schema([
+                                Forms\Components\TextInput::make('name')
+                                    ->label('Nombre')
+                                    ->required()
+                                    ->maxLength(255),
+                                Forms\Components\TextInput::make('email')
+                                    ->label('Correo electrónico')
+                                    ->email()
+                                    ->required()
+                                    ->maxLength(255),
+                                Forms\Components\DateTimePicker::make('email_verified_at')
+                                    ->label('Correo electrónico verificado')
+                                    ->required(),
+                                Forms\Components\TextInput::make('username')
+                                    ->label('Nombre de usuario')
+                                    ->maxLength(50),
+                                Forms\Components\Select::make('people_id')
+                                    ->label('Persona asociada')
+                                    ->hint('Persona')
+                                    ->relationship('people', 'name'),
+                                Forms\Components\Select::make('role')
+                                    ->options([
+                                        'admin' => 'Administrador',
+                                        'user' => 'Usuario',
+                                    ]),
+                                Forms\Components\Toggle::make('status')
+                                    ->required(),
+                            ])
+                            ->columns(2)
+                    ])
+                    ->columnSpan(['lg' => 2]),
+                
+                Forms\Components\Card::make()
+                    ->schema([
+                        Forms\Components\Placeholder::make('created_at')
+                            ->label('Última actualización')
+                            ->content(fn (User $record): ?string => $record->created_at?->diffForHumans()),
+                        Forms\Components\Placeholder::make('updated_at')
+                            ->label('Última actualización')
+                            ->content(fn (User $record): ?string => $record->updated_at?->diffForHumans()),
+                    ])
+                    ->columnSpan(['lg' => 1])
+                    ->hidden(fn (?User $record) => $record === null),
+            ])
+            ->columns([
+                'sm' => 3,
+                'lg' => 3,
             ]);
     }
 
@@ -47,29 +87,48 @@ class UserResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\SpatieMediaLibraryImageColumn::make('image')
-                    ->label('Image')
+                    ->label('Avatar')
                     ->collection('avatars'),
-                Tables\Columns\TextColumn::make('id_people'),
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('email'),
-                Tables\Columns\TextColumn::make('username'),
+                Tables\Columns\TextColumn::make('people.name')
+                    ->label('Persona'),
+                Tables\Columns\TextColumn::make('name')
+                    ->label('Nombre'),
+                Tables\Columns\TextColumn::make('email')
+                    ->label('Correo electrónico'),
+                Tables\Columns\TextColumn::make('username')
+                    ->label('Username'),
+                Tables\Columns\BadgeColumn::make('role')
+                    ->label('Rol')
+                    ->icon('heroicon-s-user')
+                    ->color(static function ($state): string {
+                        switch ($state) {
+                            case 'admin' : return 'success';
+                            case 'user'  : return 'warning';
+                            default      : return 'primary';
+                        }
+                    }),
+                Tables\Columns\IconColumn::make('status')
+                    ->label('Estado')
+                    ->boolean(),
                 Tables\Columns\TextColumn::make('email_verified_at')
+                    ->label('Verificado')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label('Creado')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Actualizado')
                     ->dateTime(),
-                Tables\Columns\IconColumn::make('status')
-                    ->boolean(),
                 // Tables\Columns\CheckboxColumn::make('status'),
                 // Tables\Columns\ToggleColumn::make('status'),
-                Tables\Columns\TextColumn::make('role'),
             ])
             ->filters([
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
@@ -81,6 +140,11 @@ class UserResource extends Resource
         return [
             //
         ];
+    }
+    
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
     }
     
     public static function getPages(): array

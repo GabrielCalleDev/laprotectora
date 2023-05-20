@@ -81,7 +81,7 @@ class DatabaseSeeder extends Seeder
             ->afterCreating(function (People $people) {
                 $this->command->warn(PHP_EOL . 'Creating user data for: '.$people->name.' '.$people->last_name);
                 User::factory(1)->create([
-                    'id_people' => $people->id,
+                    'people_id' => $people->id,
                 ]);
             })
             ->create()
