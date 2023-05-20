@@ -2,58 +2,109 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PetResource\Pages;
-use App\Filament\Resources\PetResource\RelationManagers;
 use App\Models\Pet;
 use Filament\Forms;
-use Filament\Forms\Components\Tabs\Tab;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Card;
+use App\Filament\Resources\PetResource\Pages;
 
 class PetResource extends Resource
 {
     protected static ?string $model = Pet::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Protectora';
+
+    protected static ?string $label = 'Mascotas';
+
+    protected static ?string $slug = 'mascotas';
+    
+    protected static ?string $navigationLabel = 'Mascotas';
+    
+    protected static ?string $navigationIcon = 'heroicon-o-finger-print';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('shelter_house_id'),
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('species')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('breed')
-                    ->maxLength(255),
-                Forms\Components\DatePicker::make('age'),
-                Forms\Components\TextInput::make('sex')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('color')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('size')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('weight'),
-                Forms\Components\TextInput::make('adoption_status')
-                    ->maxLength(255),
-                Forms\Components\DatePicker::make('admission_date'),
-                Forms\Components\DatePicker::make('adoption_date'),
-                Forms\Components\Textarea::make('health_conditions')
-                    ->maxLength(65535),
-                Forms\Components\Textarea::make('medications')
-                    ->maxLength(65535),
-                Forms\Components\Textarea::make('history')
-                    ->maxLength(65535),
-                Forms\Components\Textarea::make('observations')
-                    ->maxLength(65535),
-                Forms\Components\Toggle::make('neutered'),
+                Forms\Components\Group::make()
+                    ->schema([
+                        Card::make()
+                            ->schema([
+                                Forms\Components\TextInput::make('name')
+                                    ->label('Nombre')
+                                    ->required()
+                                    ->maxLength(255),
+                                Forms\Components\TextInput::make('species')
+                                    ->label('Especie')
+                                    ->required()
+                                    ->maxLength(255),
+                                Forms\Components\TextInput::make('breed')
+                                    ->label('Raza')
+                                    ->maxLength(255),
+                                Forms\Components\DatePicker::make('age')
+                                    ->label('Fecha de nacimiento'),
+                                Forms\Components\TextInput::make('sex')
+                                    ->label('Sexo')
+                                    ->maxLength(255),
+                                Forms\Components\TextInput::make('color')
+                                    ->label('Color')
+                                    ->maxLength(255),
+                                Forms\Components\TextInput::make('size')
+                                    ->label('Tamaño')
+                                    ->maxLength(255),
+                                Forms\Components\TextInput::make('weight')
+                                    ->suffix('Kg')
+                                    ->label('Peso'),
+                                Forms\Components\Select::make('shelter_house_id')
+                                    ->relationship('shelterHouse', 'name')
+                                    ->label('Asignar casa de acogida')
+                                    ->hint('Acogida'),
+                                Forms\Components\Select::make('adoption_status')
+                                    ->label('Estado de adopción')
+                                    ->options([
+                                        'Disponible' => 'Disponible',
+                                        'Adoptado' => 'Adoptado',
+                                        'En adopción' => 'En adopción',
+                                    ])
+                                    ->required(),
+                                Forms\Components\DatePicker::make('admission_date'),
+                                Forms\Components\DatePicker::make('adoption_date'),
+                                Forms\Components\Textarea::make('health_conditions')
+                                    ->rows(3)
+                                    ->maxLength(65535),
+                                Forms\Components\Textarea::make('medications')
+                                    ->rows(3)
+                                    ->maxLength(65535),
+                                Forms\Components\Textarea::make('history')
+                                    ->rows(3)
+                                    ->maxLength(65535),
+                                Forms\Components\Textarea::make('observations')
+                                    ->rows(3)
+                                    ->maxLength(65535),
+                                Forms\Components\Toggle::make('neutered'),
+                            ])
+                            ->columns(2)
+                    ])
+                    ->columnSpan(['lg' => 2]),
+                
+                Forms\Components\Card::make()
+                    ->schema([
+                        Forms\Components\Placeholder::make('created_at')
+                            ->label('Última actualización')
+                            ->content(fn (Pet $record): ?string => $record->created_at?->diffForHumans()),
+                        Forms\Components\Placeholder::make('updated_at')
+                            ->label('Última actualización')
+                            ->content(fn (Pet $record): ?string => $record->updated_at?->diffForHumans()),
+                    ])
+                    ->columnSpan(['lg' => 1])
+                    ->hidden(fn (?Pet $record) => $record === null),
+            ])
+            ->columns([
+                'sm' => 3,
+                'lg' => 3,
             ]);
     }
 
@@ -62,44 +113,82 @@ class PetResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\SpatieMediaLibraryImageColumn::make('product-image')
-                    ->label('Image')
+                    ->label('Imagen')
                     ->collection('pets'),
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('species'),
-                Tables\Columns\TextColumn::make('breed'),
+                Tables\Columns\TextColumn::make('name')
+                    ->label('Nombre'),
+                // Tables\Columns\TextColumn::make('adoption_status')
+                //     ->label('Estado de adopción'),
+                Tables\Columns\BadgeColumn::make('adoption_status')
+                    ->label('Estado')
+                    ->icon('heroicon-s-finger-print')
+                    ->getStateUsing(function (Pet $record): string {
+                        switch ($record->adoption_status) {
+                            case 'Disponible'  : return 'Disponible';
+                            case 'Adoptado'    : return 'Adoptado';
+                            case 'En adopción' : return 'En adopción';
+                            default            : return 'secondary';
+                        }
+                    })
+                    ->color(static function ($state): string {
+                        switch ($state) {
+                            case 'Disponible'  : return 'primary';
+                            case 'Adoptado'    : return 'success';
+                            case 'En adopción' : return 'warning';
+                            default            : return 'primary';
+                        }
+                    }),
+                Tables\Columns\BadgeColumn::make('species')
+                    ->label('Especie')
+                    ->icon('heroicon-s-finger-print')
+                    ->color('secondary'),
+                Tables\Columns\TextColumn::make('breed')
+                    ->label('Raza'),
                 Tables\Columns\TextColumn::make('age')
+                    ->label('Fecha de nacimiento')
                     ->date(),
-                Tables\Columns\TextColumn::make('sex'),
-                Tables\Columns\TextColumn::make('color'),
-                Tables\Columns\TextColumn::make('size'),
-                Tables\Columns\TextColumn::make('weight'),
-                Tables\Columns\TextColumn::make('adoption_status'),
+                Tables\Columns\TextColumn::make('sex')
+                    ->label('Sexo'),
+                Tables\Columns\TextColumn::make('color')
+                    ->label('Color'),
+                Tables\Columns\TextColumn::make('size')
+                    ->label('Tamaño'),
+                Tables\Columns\TextColumn::make('weight')
+                    ->label('Peso'),
                 Tables\Columns\TextColumn::make('admission_date')
+                    ->label('Fecha de ingreso')
                     ->date(),
                 Tables\Columns\TextColumn::make('adoption_date')
+                    ->label('Fecha de adopción')
                     ->date(),
                 Tables\Columns\TextColumn::make('health_conditions')
+                    ->label('Condiciones de salud')
                     ->limit(30)
                     ->toggleable(),
                 Tables\Columns\TextColumn::make('medications')
+                    ->label('Medicaciones')
                     ->toggleable()
                     ->limit(30)
                     ->toggledHiddenByDefault(),
                 Tables\Columns\TextColumn::make('history')
+                    ->label('Historia')
                     ->limit(30)
                     ->toggleable(),
                 Tables\Columns\IconColumn::make('neutered')
+                    ->label('Esterilizado')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('observations')
+                    ->label('Observaciones')
                     ->limit(30)
                     ->toggleable(),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label('Creado')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Actualizado')
                     ->dateTime(),
-                Tables\Columns\TextColumn::make('shelter_house_id')
-                    ->label('idCasa')
-                    ->sortable(),
+                Tables\Columns\TextColumn::make('shelterHouse.name')
+                    ->label('Casa de acogida'),
             ])
             ->filters([
                 //
@@ -119,6 +208,11 @@ class PetResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
     }
     
     public static function getPages(): array
