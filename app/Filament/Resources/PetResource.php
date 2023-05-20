@@ -10,6 +10,7 @@ use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Card;
 use App\Filament\Resources\PetResource\Pages;
+use App\Filament\Resources\PetResource\RelationManagers\PetHistoriesRelationManager;
 
 class PetResource extends Resource
 {
@@ -93,7 +94,7 @@ class PetResource extends Resource
                 Forms\Components\Card::make()
                     ->schema([
                         Forms\Components\Placeholder::make('created_at')
-                            ->label('Última actualización')
+                            ->label('Creado:')
                             ->content(fn (Pet $record): ?string => $record->created_at?->diffForHumans()),
                         Forms\Components\Placeholder::make('updated_at')
                             ->label('Última actualización')
@@ -206,7 +207,7 @@ class PetResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            PetHistoriesRelationManager::class,
         ];
     }
 

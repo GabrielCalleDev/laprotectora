@@ -34,13 +34,39 @@ class PetHistoryResource extends Resource
                     ->schema([
                         Card::make()
                             ->schema([
-                                Forms\Components\TextInput::make('pet_id'),
-                                Forms\Components\TextInput::make('type')
-                                    ->maxLength(255),
-                                Forms\Components\RichEditor::make('description')
+                                Forms\Components\Select::make('pet_id')
+                                    ->relationship('pet', 'name')
+                                    ->label('Mascota')
+                                    ->hint('Mascota a la que se añade el historial')
+                                    ->required(),
+                                Forms\Components\Select::make('type')
+                                    ->label('Tipo de actualización')
+                                    ->options([
+                                        'veterinario'     => 'Veterinario',
+                                        'vacuna'          => 'Vacuna',
+                                        'desparasitacion' => 'Desparasitación',
+                                        'enfermedad'      => 'Enfermedad',
+                                        'cirugia'         => 'Cirugía',
+                                        'otros'           => 'Otros',
+                                    ])
+                                    ->required(),
+                                Forms\Components\MarkdownEditor::make('description')
+                                    ->required()
+                                    ->toolbarButtons([
+                                        'attachFiles',
+                                        'blockquote',
+                                        'bold',
+                                        'bulletList',
+                                        'codeBlock',
+                                        'italic',
+                                        'link',
+                                        'orderedList',
+                                        'redo',
+                                        'table',
+                                        'undo',
+                                    ])
                                     ->columnSpan('full')
-                                    ->label('Descripción'),
-
+                                    ->maxLength(255),
                             ])
                             ->columns(2)
                     ])
@@ -55,8 +81,8 @@ class PetHistoryResource extends Resource
                             ->disabled()
                             ->label('Actualizado el'),
                     ])
-                    ->columnSpan(['lg' => 1]),
-                    // ->hidden(fn (?Pet $record) => $record === null),
+                    ->columnSpan(['lg' => 1])
+                    ->hidden(fn (?PetHistory $record) => $record === null),
             ])
             ->columns([
                 'sm' => 3,
