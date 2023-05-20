@@ -17,6 +17,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Filament\Navigation\NavigationGroup;
 
 class AdminContextProvider extends ContextProvider
 {
@@ -51,6 +52,22 @@ class AdminContextProvider extends ContextProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
+            ])
+            ->navigationGroups([
+                'Protectora',
+                'Adopciones',
+                'Otros',
             ]);
+            // ->navigationGroups([
+            //     NavigationGroup::make()
+            //          ->label('Protectora')
+            //         ->collapsed(),
+            //     NavigationGroup::make()
+            //         ->label('Adopciones')
+            //         ->collapsed(),
+            //     NavigationGroup::make()
+            //         ->label('Otros')
+            //         ->collapsed(),
+            // ]);
     }
 }
