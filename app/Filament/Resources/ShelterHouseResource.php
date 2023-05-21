@@ -97,7 +97,7 @@ class ShelterHouseResource extends Resource
                     ->hidden(fn (?ShelterHouse $record) => $record === null),
             ])
             ->columns([
-                'sm' => 3,
+                'sm' => 1,
                 'lg' => 3,
             ]);
     }
@@ -107,36 +107,67 @@ class ShelterHouseResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->icon('heroicon-s-home')
+                    ->searchable()
+                    ->sortable()
+                    ->limit(20)
                     ->label('Nombre'),
                 Tables\Columns\TextColumn::make('responsible')
+                    ->icon('heroicon-s-user')
+                    ->searchable()
+                    ->sortable()
+                    ->limit(20)
                     ->label('Responsable'),
                 Tables\Columns\TextColumn::make('phone')
+                    ->searchable()
+                    ->sortable()
                     ->label('Teléfono'),
                 Tables\Columns\TextColumn::make('email')
+                    ->searchable()
+                    ->sortable()
+                    ->limit(20)
                     ->label('Email'),
                 Tables\Columns\TextColumn::make('capacity')
+                    ->searchable()
+                    ->sortable()
                     ->label('Capacidad'),
                 Tables\Columns\TextColumn::make('street_address')
+                    ->searchable()
+                    ->sortable()
                     ->label('Dirección'),
                 Tables\Columns\TextColumn::make('street_number')
+                    ->searchable()
+                    ->sortable()
                     ->label('Número'),
                 Tables\Columns\TextColumn::make('address_details')
+                    ->searchable()
+                    ->sortable()
                     ->label('Detalles'),
                 Tables\Columns\TextColumn::make('city')
+                    ->searchable()
+                    ->sortable()
                     ->label('Ciudad'),
                 Tables\Columns\TextColumn::make('postal_code')
+                    ->searchable()
+                    ->sortable()
                     ->label('Código postal'),
                 Tables\Columns\TextColumn::make('coordinates')
+                    ->searchable()
+                    ->sortable()
                     ->label('Coordenadas'),
                 Tables\Columns\TextColumn::make('observations')
+                    ->searchable()
+                    ->sortable()
                     ->label('Observaciones')
                     ->limit(40),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->sortable()
                     ->label('Creado')
                     ->since(),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->sortable()
                     ->label('Actualizado')
-                    ->since(),
+                    ->since()
             ])
             ->filters([
                 //                    
@@ -156,6 +187,11 @@ class ShelterHouseResource extends Resource
         return [
             PetsRelationManager::class,
         ];
+    }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['name', 'phone', 'email'];
     }
 
     public static function getNavigationBadge(): ?string

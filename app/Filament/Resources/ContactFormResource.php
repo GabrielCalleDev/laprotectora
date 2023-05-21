@@ -97,6 +97,9 @@ class ContactFormResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\BadgeColumn::make('status')
+                    ->label('Estado')
+                    ->searchable()
+                    ->sortable()
                     ->getStateUsing(function (ContactForm $record): string {
                         switch ($record->status) {
                             case 'Nuevo'      : return 'Nuevo';
@@ -123,21 +126,39 @@ class ContactFormResource extends Resource
                     ->boolean()
                     ->trueIcon('heroicon-o-check-circle')
                     ->falseIcon('heroicon-o-x-circle'),
-                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('name')
+                    ->label('Nombre')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('subject')
+                    ->label('Asunto')
+                    ->searchable()
+                    ->sortable()
                     ->limit(30),
-                Tables\Columns\TextColumn::make('email'),
-                Tables\Columns\TextColumn::make('phone'),
+                Tables\Columns\TextColumn::make('email')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('phone')
+                    ->label('Teléfono')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('message')
+                    ->label('Mensaje')
+                    ->searchable()
+                    ->sortable()
                     ->limit(30),
                 Tables\Columns\TextColumn::make('user.name')
+                    ->searchable()
+                    ->sortable()
                     ->getStateUsing(function (ContactForm $record): string {
                         return ( !isset($record->user->name) ) ? 'Sin usuario' : $record->user->name;
                     })
                     ->label('Usuario'),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label('Creado')
                     ->since(),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Actualizado')
                     ->since(),
             ])
             ->filters([

@@ -90,17 +90,29 @@ class UserResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\SpatieMediaLibraryImageColumn::make('image')
+                    ->searchable()
+                    ->sortable()
                     ->label('Avatar')
                     ->collection('avatars'),
                 Tables\Columns\TextColumn::make('people.name')
+                    ->searchable()
+                    ->sortable()
                     ->label('Persona'),
                 Tables\Columns\TextColumn::make('name')
+                    ->searchable()
+                    ->sortable()
                     ->label('Nombre'),
                 Tables\Columns\TextColumn::make('email')
+                    ->searchable()
+                    ->sortable()
                     ->label('Correo electrónico'),
                 Tables\Columns\TextColumn::make('username')
+                    ->searchable()
+                    ->sortable()
                     ->label('Username'),
                 Tables\Columns\BadgeColumn::make('role')
+                    ->searchable()
+                    ->sortable()
                     ->label('Rol')
                     ->icon('heroicon-s-user')
                     ->color(static function ($state): string {
@@ -117,13 +129,13 @@ class UserResource extends Resource
                     ->label('Verificado')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->sortable()
                     ->label('Creado')
-                    ->dateTime(),
+                    ->since(),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->sortable()
                     ->label('Actualizado')
-                    ->dateTime(),
-                // Tables\Columns\CheckboxColumn::make('status'),
-                // Tables\Columns\ToggleColumn::make('status'),
+                    ->since(),
             ])
             ->filters([
                 //

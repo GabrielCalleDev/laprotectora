@@ -94,29 +94,45 @@ class ContactsDirectoryResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->label('Nombre')
                     ->icon('heroicon-o-user')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('phone')
                     ->label('Teléfono')
                     ->icon('heroicon-o-phone')
+                    ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
+                    ->sortable()
+                    ->searchable()
                     ->icon('heroicon-o-at-symbol')
                     ->label('Correo electrónico'),
                 Tables\Columns\TextColumn::make('address')
+                    ->sortable()
+                    ->searchable()
                     ->label('Dirección')
                     ->limit(50),
                 Tables\Columns\TextColumn::make('company')
+                    ->sortable()
+                    ->searchable()
                     ->label('Empresa'),
                 Tables\Columns\TextColumn::make('position')
+                    ->sortable()
+                    ->searchable()
                     ->label('Cargo'),
                 Tables\Columns\TextColumn::make('notes')
+                    ->sortable()
+                    ->searchable()
                     ->label('Notas')
                     ->limit(50),
                 Tables\Columns\TextColumn::make('type')
+                    ->sortable()
+                    ->searchable()
                     ->label('Tipo de contacto'),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label('Creado')
                     ->since(),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Actualizado')
                     ->since(),
             ])
             ->filters([
@@ -126,7 +142,6 @@ class ContactsDirectoryResource extends Resource
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
-                Tables\Actions\ForceDeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),

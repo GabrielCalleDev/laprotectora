@@ -95,13 +95,16 @@ class VisitResource extends Resource
                     ->sortable()
                     ->label('Responsable'),
                 Tables\Columns\TextColumn::make('description')
+                    ->label('Descripción')
                     ->searchable()
                     ->sortable()
                     ->limit(35),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label('Creación')
                     ->sortable()
                     ->since(),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Actualizado')
                     ->sortable()
                     ->since(),
             ])

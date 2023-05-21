@@ -106,10 +106,9 @@ class PeopleResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('type')
-                    ->label('Tipo')
-                    ->sortable(),
                 Tables\Columns\BadgeColumn::make('type')
+                    ->searchable()
+                    ->sortable()
                     ->icon('heroicon-s-user')
                     ->getStateUsing(function (People $record): string {
                         switch ($record->type) {
@@ -131,24 +130,62 @@ class PeopleResource extends Resource
                             default           : return 'primary';
                         }
                     }),
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('last_name'),
-                Tables\Columns\TextColumn::make('dni'),
-                Tables\Columns\TextColumn::make('phone'),
+                Tables\Columns\TextColumn::make('name')
+                    ->label('Nombre')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('last_name')
+                    ->label('Apellidos')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('dni')
+                    ->label('DNI')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('phone')
+                    ->label('Teléfono')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('birthdate')
+                    ->label('Cumpleaños')
+                    ->searchable()
+                    ->sortable()
                     ->date(),
-                Tables\Columns\TextColumn::make('street_address'),
-                Tables\Columns\TextColumn::make('address_number'),
-                Tables\Columns\TextColumn::make('address_details'),
-                Tables\Columns\TextColumn::make('city'),
-                Tables\Columns\TextColumn::make('zip_code'),
+                Tables\Columns\TextColumn::make('street_address')
+                    ->label('Dirección')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('address_number')
+                    ->label('Número')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('address_details')
+                    ->label('Detalles')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('city')
+                    ->label('Ciudad')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('zip_code')
+                    ->label('Código postal')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('observations')
+                    ->label('Observaciones')
+                    ->sortable()
                     ->limit(40),
                 Tables\Columns\TextColumn::make('occupation')
+                    ->label('Profesión')
+                    ->sortable()
                     ->limit(30),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label('Creado')
+                    ->sortable()
                     ->since(),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Creado')
+                    ->sortable()
                     ->since(),
             ])
             ->filters([

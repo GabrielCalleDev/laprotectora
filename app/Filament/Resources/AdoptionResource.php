@@ -106,13 +106,19 @@ class AdoptionResource extends Resource
                     })
                     ->collection('pets'),
                 Tables\Columns\TextColumn::make('pet.name')
+                    ->searchable()
+                    ->sortable()
                     ->icon('heroicon-s-finger-print')
                     ->color('secondary')
                     ->label('Mascota'),
                 Tables\Columns\TextColumn::make('user.name')
+                    ->searchable()
+                    ->sortable()
                     ->icon('heroicon-s-user')
                     ->label('Adoptante'),
                 Tables\Columns\BadgeColumn::make('status')
+                    ->searchable()
+                    ->sortable()
                     ->getStateUsing(function (Adoption $record): string {
                         switch ($record->status) {
                             case 'nuevo'        : return 'Nuevo';
@@ -142,6 +148,7 @@ class AdoptionResource extends Resource
                         'heroicon-o-shield-check' => 'Finalizado',
                     ]),
                 Tables\Columns\TextColumn::make('observation')
+                    ->searchable()
                     ->limit(50)
                     ->tooltip(function (Tables\Columns\TextColumn $column): ?string {
                         $state = $column->getState();
@@ -152,8 +159,12 @@ class AdoptionResource extends Resource
                     ->label('Cuestionario')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label('Creado')
+                    ->sortable()
                     ->since(),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Actualizado')
+                    ->sortable()
                     ->since(),
             ])
             ->filters([

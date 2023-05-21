@@ -90,13 +90,19 @@ class DonationResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('user.name')
+                    ->sortable()
+                    ->searchable()
                     ->weight('bold')
                     ->label('Usuario'),
                 Tables\Columns\TextColumn::make('value')
+                    ->sortable()
+                    ->searchable()
                     ->label('Valor')
                     ->money('eur'),
                 // Tables\Columns\TextColumn::make('type'),
                 Tables\Columns\BadgeColumn::make('type')
+                    ->sortable()
+                    ->label('Tipo de donación')
                     ->getStateUsing(function (Donation $record): string {
                         switch ($record->type) {
                             case 'Comida'                 : return 'Comida';
@@ -118,11 +124,15 @@ class DonationResource extends Resource
                         }
                     }),
                 Tables\Columns\TextColumn::make('description')
+                    ->sortable()
+                    ->searchable()
                     ->label('Descripción')
                     ->limit(45),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->sortable()
                     ->since(),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->sortable()
                     ->since(),
             ])
             ->filters([
