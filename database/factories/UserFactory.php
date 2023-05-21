@@ -31,7 +31,7 @@ class UserFactory extends Factory
             'username' => fake()->unique()->userName(),
             'status' => fake()->boolean(),
             'role' => fake()->randomElement(['admin', 'user']),
-            'id_people' => null,            
+            'people_id' => null,            
         ];
     }
 

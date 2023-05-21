@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('username', 50)->unique()->nullable();
             $table->boolean('status')->default(true);
             $table->string('role', 50)->default('user');
-            $table->foreignId('id_people')
+            $table->foreignId('people_id')
                 ->nullable()
                 ->constrained('people')->onDelete('cascade')->onUpdate('cascade')->nullable();
         });
@@ -30,8 +30,8 @@ return new class extends Migration
             $table->dropColumn('username');
             $table->dropColumn('status');
             $table->dropColumn('role');
-            $table->dropForeign(['id_people']);
-            $table->dropColumn('id_people');
+            $table->dropForeign(['people_id']);
+            $table->dropColumn('people_id');
         });
     }
 };

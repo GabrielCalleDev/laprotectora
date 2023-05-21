@@ -2,32 +2,93 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PetHistoryResource\Pages;
-use App\Filament\Resources\PetHistoryResource\RelationManagers;
-use App\Models\PetHistory;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
+use App\Models\PetHistory;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Card;
+use App\Filament\Resources\PetHistoryResource\Pages;
+use App\Models\Pet;
 
 class PetHistoryResource extends Resource
 {
     protected static ?string $model = PetHistory::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Otros';
+
+    protected static ?string $label = 'Historial de mascotas';
+
+    protected static ?string $slug = 'historial-de-mascotas';
+    
+    protected static ?string $navigationLabel = 'Actualizaciones de mascotas';
+    
+    protected static ?string $navigationIcon = 'heroicon-o-identification';
+
+    protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('pet_id'),
-                Forms\Components\TextInput::make('type')
-                    ->maxLength(255),
-                Forms\Components\Textarea::make('description')
-                    ->maxLength(65535),
+                Forms\Components\Group::make()
+                    ->schema([
+                        Card::make()
+                            ->schema([
+                                Forms\Components\Select::make('pet_id')
+                                    ->relationship('pet', 'name')
+                                    ->label('Mascota')
+                                    ->hint('Mascota a la que se añade el historial')
+                                    ->required(),
+                                Forms\Components\Select::make('type')
+                                    ->label('Tipo de actualización')
+                                    ->options([
+                                        'veterinario'     => 'Veterinario',
+                                        'vacuna'          => 'Vacuna',
+                                        'desparasitacion' => 'Desparasitación',
+                                        'enfermedad'      => 'Enfermedad',
+                                        'cirugia'         => 'Cirugía',
+                                        'otros'           => 'Otros',
+                                    ])
+                                    ->required(),
+                                Forms\Components\MarkdownEditor::make('description')
+                                    ->required()
+                                    ->toolbarButtons([
+                                        'attachFiles',
+                                        'blockquote',
+                                        'bold',
+                                        'bulletList',
+                                        'codeBlock',
+                                        'italic',
+                                        'link',
+                                        'orderedList',
+                                        'redo',
+                                        'table',
+                                        'undo',
+                                    ])
+                                    ->columnSpan('full')
+                                    ->maxLength(255),
+                            ])
+                            ->columns(2)
+                    ])
+                    ->columnSpan(['lg' => 2]),
+                
+                Forms\Components\Card::make()
+                    ->schema([
+                        Forms\Components\DateTimePicker::make('created_at')
+                            ->disabled()
+                            ->label('Creado el'),
+                        Forms\Components\DateTimePicker::make('updated_at')
+                            ->disabled()
+                            ->label('Actualizado el'),
+                    ])
+                    ->columnSpan(['lg' => 1])
+                    ->hidden(fn (?PetHistory $record) => $record === null),
+            ])
+            ->columns([
+                'sm' => 3,
+                'lg' => 3,
             ]);
     }
 
@@ -35,20 +96,26 @@ class PetHistoryResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('pet_id'),
-                Tables\Columns\TextColumn::make('type'),
+                Tables\Columns\TextColumn::make('pet.name')
+                    ->label('Mascota')
+                    ->icon('heroicon-o-finger-print')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('type')
+                    ->label('Tipo'),
                 Tables\Columns\TextColumn::make('description')
-                    ->limit(45),
+                    ->limit(30),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
+                    ->since(),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
+                    ->since(),
             ])
             ->filters([
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
@@ -60,6 +127,11 @@ class PetHistoryResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
     }
     
     public static function getPages(): array

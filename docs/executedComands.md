@@ -64,6 +64,9 @@ php artisan make:filament-resource People --generate
 Translating Filament:
 php artisan vendor:publish --tag=filament-translations
 
+## blade-ui-kit/blade-heroicons
+composer require blade-ui-kit/blade-heroicons
+
 
 ## instalation of the package spatie-laravel-media-library-plugin
 composer require filament/spatie-laravel-media-library-plugin 
@@ -78,3 +81,21 @@ composer require filament/forms
 ### consultar imagenes de un modelo
 $pet->getMedia('images')->first()->getUrl();
 $pet->getMedia('images')->first()->getUrl('thumb');
+
+### Creación de relaciones
+php artisan make:filament-relation-manager ShelterHousesResource pets name
+
+### Creación de widgets
+php artisan make:filament-widget AdoptionHistoriesOverview --resource=AdoptionHistoryResource
+```bash
+    root@3a72d3608423:/var/www/html# php artisan make:filament-widget AdoptionHistoriesOverview --resource=AdoptionHistoryResource
+
+    Where would you like to create this widget?:
+    [admin] App\Filament\Widgets
+    [     ] App\Http\Livewire
+    > admin
+
+    INFO  Successfully created AdoptionHistoriesOverview!  
+
+    INFO  Make sure to register the widget in `AdoptionHistoryResource::getWidgets()`, and then again in `getHeaderWidgets()` or `getFooterWidgets()` of any `AdoptionHistoryResource` page.
+``` 

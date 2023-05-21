@@ -15,7 +15,7 @@ class Questionnaire extends Model
         'answers',
     ];
     protected $casts = [
-        'answers' => 'string',
+        'answers' => 'array',
     ];
 
     public function adoption()
