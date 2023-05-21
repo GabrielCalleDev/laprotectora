@@ -12,17 +12,17 @@ class PetHistoriesRelationManager extends RelationManager
 {
     protected static string $relationship = 'petHistories';
 
+    protected static ?string $title = 'Historial de la mascota';
+
+    protected static ?string $label = 'Historial';
+
     protected static ?string $recordTitleAttribute = 'type';
 
     public function form(Form $form): Form
     {
         return $form
+            ->columns(1)
             ->schema([
-                Forms\Components\Select::make('pet_id')
-                    ->relationship('pet', 'name')
-                    ->label('Mascota')
-                    ->hint('Mascota a la que se añade el historial')
-                    ->required(),
                 Forms\Components\Select::make('type')
                     ->label('Tipo de actualización')
                     ->options([
@@ -49,8 +49,8 @@ class PetHistoriesRelationManager extends RelationManager
                         'table',
                         'undo',
                     ])
-                    ->columnSpan('full')
-                    ->maxLength(255),
+                    ->maxLength(255)
+                    ->required(),
             ]);
     }
 
@@ -58,16 +58,32 @@ class PetHistoriesRelationManager extends RelationManager
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('pet.name'),
-                Tables\Columns\TextColumn::make('type'),
+                Tables\Columns\TextColumn::make('pet.name')
+                    ->label('Mascota'),
+                Tables\Columns\TextColumn::make('type')
+                    ->searchable()
+                    ->sortable()
+                    ->label('Categoría'),
                 Tables\Columns\TextColumn::make('description')
+                    ->label('Descripción')
+                    ->searchable()
+                    ->sortable()
                     ->limit(40),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Creado')
+                    ->sortable()
                     ->since(),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('type')
+                    ->options([
+                        'veterinario'     => 'Veterinario',
+                        'vacuna'          => 'Vacuna',
+                        'desparasitacion' => 'Desparasitación',
+                        'enfermedad'      => 'Enfermedad',
+                        'cirugia'         => 'Cirugía',
+                        'otros'           => 'Otros',
+                    ]),
             ])
             ->headerActions([
                 Tables\Actions\CreateAction::make(),

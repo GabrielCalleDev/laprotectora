@@ -16,15 +16,17 @@ class PetHistoryResource extends Resource
 {
     protected static ?string $model = PetHistory::class;
 
-    protected static ?string $navigationGroup = 'Protectora';
+    protected static ?string $navigationGroup = 'Otros';
 
     protected static ?string $label = 'Historial de mascotas';
 
     protected static ?string $slug = 'historial-de-mascotas';
     
-    protected static ?string $navigationLabel = 'Historial de mascotas';
+    protected static ?string $navigationLabel = 'Actualizaciones de mascotas';
     
     protected static ?string $navigationIcon = 'heroicon-o-identification';
+
+    protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form
     {
