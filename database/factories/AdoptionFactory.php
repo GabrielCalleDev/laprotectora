@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Pet;
+use App\Models\User;
+use App\Models\Questionnaire;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +20,11 @@ class AdoptionFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'pet_id' => Pet::count() == 0 ? null : $this->faker->numberBetween(1, Pet::count()),
+            'user_id' => Pet::count() == 0 ? null : $this->faker->numberBetween(1, User::count()),
+            'status' => $this->faker->randomElement(['nuevo','cuestionario','visita','entrevista','firma','pago','seguimiento','finalizado','cancelado']),
+            'observation' => $this->faker->text(255),
+            'questionnaire_id' => Questionnaire::count() == 0 ? null : $this->faker->numberBetween(1, Questionnaire::count()),
         ];
     }
 }

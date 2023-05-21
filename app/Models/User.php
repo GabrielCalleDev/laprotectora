@@ -32,8 +32,8 @@ class User extends Authenticatable implements FilamentUser, HasMedia
         'username',
         'avatar',
         'status',
-        'id_role',
-        'id_people',
+        'role',
+        'people_id',
     ];
 
     /**
@@ -57,12 +57,7 @@ class User extends Authenticatable implements FilamentUser, HasMedia
 
     public function canAccessFilament(Context $context): bool
     {
-        return $this->email === 'gabriel.calle92@gmail.com';
-    }
-
-    public function role()
-    {
-        return $this->belongsTo(Role::class);
+        return $this->role === 'admin';
     }
 
     public function people()
@@ -73,6 +68,11 @@ class User extends Authenticatable implements FilamentUser, HasMedia
     public function favorites()
     {
         return $this->belongsToMany(Pet::class, 'favorites')->withTimestamps();
+    }
+
+    public function favorite()
+    {
+        return $this->hasMany(Favorite::class);
     }
 
     public function visits()
@@ -93,6 +93,11 @@ class User extends Authenticatable implements FilamentUser, HasMedia
     public function contact_forms()
     {
         return $this->hasMany(ContactForm::class);
+    }
+
+    public function getFilamentAvatarUrl(): ?string
+    {
+        return $this->getFirstMediaUrl('avatars');
     }
 
     public function registerMediaConversions(Media $media = null): void

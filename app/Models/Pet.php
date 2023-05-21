@@ -38,11 +38,6 @@ class Pet extends Model implements HasMedia
         return $this->belongsTo(ShelterHouse::class);
     }
 
-    public function images()
-    {
-        return $this->hasMany(Image::class);
-    }
-
     public function petHistories()
     {
         return $this->hasMany(PetHistory::class);
@@ -61,5 +56,10 @@ class Pet extends Model implements HasMedia
     public function favorites()
     {
         return $this->belongsToMany(User::class, 'favorites')->withTimestamps();
+    }
+
+    public function favorite()
+    {
+        return $this->hasMany(Favorite::class);
     }
 }

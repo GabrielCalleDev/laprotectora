@@ -17,7 +17,10 @@ class DonationFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => null,
+            'value' => $this->faker->randomFloat(2, 1, 1000),
+            'type' => $this->faker->randomElement(['Comida', 'Material', 'Efectivo', 'Tarjeta de crédito', 'Transferencia bancaria']),
+            'description' => $this->faker->text(255),
         ];
     }
 }

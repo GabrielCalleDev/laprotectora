@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Filament\Resources\DonationResource\Pages;
+
+use App\Filament\Resources\DonationResource;
+use Filament\Actions;
+use Filament\Resources\Pages\CreateRecord;
+
+class CreateDonation extends CreateRecord
+{
+    protected static string $resource = DonationResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->previousUrl ?? $this->getResource()::getUrl('index');
+    }
+
+    protected function getCreatedNotificationTitle(): ?string
+    {
+        return 'Se ha creado correctamente la donación';
+    }
+}

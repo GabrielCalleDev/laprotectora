@@ -24,11 +24,11 @@ return new class extends Migration
             $table->string('adoption_status')->nullable();
             $table->date('admission_date')->nullable();
             $table->date('adoption_date')->nullable();
-            $table->string('health_conditions')->nullable();
-            $table->string('medications')->nullable();
-            $table->string('history')->nullable();
+            $table->text('health_conditions')->nullable();
+            $table->text('medications')->nullable();
+            $table->text('history')->nullable();
             $table->boolean('neutered')->nullable();
-            $table->string('observations')->nullable();
+            $table->text('observations')->nullable();
             $table->foreignId('shelter_house_id')->nullable()->constrained('shelters_houses')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
