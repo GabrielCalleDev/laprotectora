@@ -14,8 +14,8 @@
             class="container flex flex-wrap items-center justify-between mx-auto"
         >
             <a href="{{ route('home') }}" class="flex items-center">
-                <img id="logo" src="{{ Vite::asset('resources/img/template/logo.png') }}" class="w-14 md:ml-3 rounded-lg" alt="Logo protectora" />
-                <h1 class="hidden lg:block text-2xl font-bold ml-2 nav-change">Protectora</h1>
+                <img id="logo" src="{{ Vite::asset('resources/img/template/logo.png') }}" class="w-14 md:ml-3 rounded-lg border-b-2 border-r" alt="Logo protectora" />
+                <h1 class="hidden lg:block text-2xl font-bold ml-2 nav-change rounded-lg p-3 border-b-2 border-l h-full nav-change-style">Protectora</h1>
             </a>
             <img x-on:click="openMenu = !openMenu" class="boton-menu w-10 h-10 p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" src="{{ Vite::asset('resources/img/template/icono-boton-menu.svg') }}" alt="" style="margin-top:-13px;">
             <div class="menu-responsive w-full md:block md:w-auto">
