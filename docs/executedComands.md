@@ -82,6 +82,8 @@ composer require filament/forms
 $pet->getMedia('images')->first()->getUrl();
 $pet->getMedia('images')->first()->getUrl('thumb');
 
+### Creación de relaciones
+php artisan make:filament-relation-manager ShelterHousesResource pets name
 
 ### Creación de widgets
 php artisan make:filament-widget AdoptionHistoriesOverview --resource=AdoptionHistoryResource
