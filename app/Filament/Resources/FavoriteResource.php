@@ -24,7 +24,7 @@ class FavoriteResource extends Resource
 
     protected static ?string $slug = 'favoritos';
     
-    protected static ?string $navigationLabel = 'Favoritos';
+    protected static ?string $navigationLabel = 'Favoritos de los usuarios';
     
     protected static ?string $navigationIcon = 'heroicon-o-star';
 

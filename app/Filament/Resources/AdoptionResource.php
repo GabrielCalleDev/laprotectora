@@ -10,6 +10,7 @@ use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Card;
 use App\Filament\Resources\AdoptionResource\Pages;
+use App\Filament\Resources\AdoptionResource\RelationManagers\AdoptionHistoriesRelationManager;
 
 class AdoptionResource extends Resource
 {
@@ -98,9 +99,18 @@ class AdoptionResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\SpatieMediaLibraryImageColumn::make('pet.id')
+                    ->label('Mascota')
+                    ->getStateUsing(function (Adoption $record): string {
+                        return $record->pet->getFirstMediaUrl('pets') ?? '';
+                    })
+                    ->collection('pets'),
                 Tables\Columns\TextColumn::make('pet.name')
+                    ->icon('heroicon-s-finger-print')
+                    ->color('secondary')
                     ->label('Mascota'),
                 Tables\Columns\TextColumn::make('user.name')
+                    ->icon('heroicon-s-user')
                     ->label('Adoptante'),
                 Tables\Columns\BadgeColumn::make('status')
                     ->getStateUsing(function (Adoption $record): string {
@@ -172,7 +182,7 @@ class AdoptionResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            AdoptionHistoriesRelationManager::class,
         ];
     }
     

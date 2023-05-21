@@ -10,6 +10,7 @@ use App\Models\ShelterHouse;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Card;
 use App\Filament\Resources\ShelterHouseResource\Pages;
+use App\Filament\Resources\ShelterHousesResource\RelationManagers\PetsRelationManager;
 
 class ShelterHouseResource extends Resource
 {
@@ -153,7 +154,7 @@ class ShelterHouseResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            PetsRelationManager::class,
         ];
     }
 

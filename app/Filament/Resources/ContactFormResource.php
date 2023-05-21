@@ -15,13 +15,15 @@ class ContactFormResource extends Resource
 {
     protected static ?string $model = ContactForm::class;
 
-    protected static ?string $navigationGroup = 'Otros';
+    protected static ?string $navigationGroup = 'Protectora';
 
     protected static ?string $label = 'Contactos recibidos';
 
     protected static ?string $slug = 'contactos-del-sistema';
     
     protected static ?string $navigationLabel = 'Contactos del sistema';
+
+    protected static ?int $navigationSort = 6;
     
     protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left-right';
 
@@ -94,11 +96,6 @@ class ContactFormResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user.name')
-                    ->getStateUsing(function (ContactForm $record): string {
-                        return ( !isset($record->user->name) ) ? 'Sin usuario' : $record->user->name;
-                    })
-                    ->label('Usuario'),
                 Tables\Columns\BadgeColumn::make('status')
                     ->getStateUsing(function (ContactForm $record): string {
                         switch ($record->status) {
@@ -133,6 +130,11 @@ class ContactFormResource extends Resource
                 Tables\Columns\TextColumn::make('phone'),
                 Tables\Columns\TextColumn::make('message')
                     ->limit(30),
+                Tables\Columns\TextColumn::make('user.name')
+                    ->getStateUsing(function (ContactForm $record): string {
+                        return ( !isset($record->user->name) ) ? 'Sin usuario' : $record->user->name;
+                    })
+                    ->label('Usuario'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->since(),
                 Tables\Columns\TextColumn::make('updated_at')

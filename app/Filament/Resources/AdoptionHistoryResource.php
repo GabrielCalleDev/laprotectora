@@ -15,13 +15,13 @@ class AdoptionHistoryResource extends Resource
 {
     protected static ?string $model = AdoptionHistory::class;
 
-    protected static ?string $navigationGroup = 'Adopciones';
+    protected static ?string $navigationGroup = 'Otros';
 
-    protected static ?string $label = 'Historial de adopciones';
+    protected static ?string $label = 'Actualizaciones de adopciones';
 
     protected static ?string $slug = 'historial-adopciones';
     
-    protected static ?string $navigationLabel = 'Historial de adopciones';
+    protected static ?string $navigationLabel = 'Actualizaciones de adopciones';
 
     protected static ?string $navigationIcon = 'heroicon-o-inbox-stack';
 
@@ -37,17 +37,9 @@ class AdoptionHistoryResource extends Resource
                         Card::make()
                             ->schema([
                                 Forms\Components\Select::make('adoption_id')
-                                    // Obtener el nombre de la mascota
                                     ->relationship('adoption', 'id')
                                     ->label('Id de la adopción en curso')
-                                    // ->label('Adopcion de la mascota')
                                     ->hint('Id adopcion')
-                                    // ->createOptionForm([
-                                    //     Forms\Components\Select::make('pet')
-                                    //         ->relationship('pet', 'name')
-                                    //         ->label('Nombre de la mascota')
-                                    //         ->required(),
-                                    // ])
                                     ->required(),
                                 Forms\Components\Select::make('status')
                                     ->options([
@@ -124,7 +116,6 @@ class AdoptionHistoryResource extends Resource
                         'heroicon-o-shield-check' => 'Finalizado',
                     ]),
                 Tables\Columns\TextColumn::make('update')
-                    // ->wrap(),
                     ->limit(40)
                     ->tooltip(function (Tables\Columns\TextColumn $column): ?string {
                         $state = $column->getState();
@@ -134,11 +125,6 @@ class AdoptionHistoryResource extends Resource
                     }),
                 Tables\Columns\TextColumn::make('created_at')
                     ->since(),
-                // Tables\Columns\ViewColumn::make('created_at')
-                //     ->getStateUsing(function (AdoptionHistory $record): string {
-                //         return $record->created_at->diffForHumans();
-                //     })
-                //     ->view('test'),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->since(),
             ])

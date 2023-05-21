@@ -10,6 +10,7 @@ use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Card;
 use App\Filament\Resources\UserResource\Pages;
+use App\Filament\Resources\UserResource\RelationManagers\PeopleRelationManager;
 
 class UserResource extends Resource
 {
@@ -140,7 +141,7 @@ class UserResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            PeopleRelationManager::class,
         ];
     }
     
