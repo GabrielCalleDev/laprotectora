@@ -96,9 +96,20 @@ class PetResource extends Resource
                                 Forms\Components\Toggle::make('neutered')
                                     ->label('Esterilizado'),
                             ])
-                            ->columns(2)
+                            ->columns(2),
+                        Forms\Components\Section::make('Subir imagenes')
+                            ->schema([
+                                Forms\components\View::make('Imagenes')
+                                    ->label('Imagenes de la mascota')
+                                    ->view('components.pets-gallery'),
+                                Forms\Components\FileUpload::make('image')
+                                    ->directory('pets')
+                                    ->disableLabel(),
+                            ])
+                            ->collapsible(),
                     ])
                     ->columnSpan(['lg' => 2]),
+
                 
                 Forms\Components\Card::make()
                     ->schema([
@@ -112,7 +123,7 @@ class PetResource extends Resource
                     ->columnSpan(['lg' => 1])
                     ->hidden(fn (?Pet $record) => $record === null),
             ])
-            ->columns('full');
+            ->columns(3);
     }
 
     public static function table(Table $table): Table
