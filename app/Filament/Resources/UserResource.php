@@ -156,6 +156,11 @@ class UserResource extends Resource
             PeopleRelationManager::class,
         ];
     }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['name', 'email', 'username'];
+    }
     
     public static function getNavigationBadge(): ?string
     {

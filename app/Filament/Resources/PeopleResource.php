@@ -208,6 +208,11 @@ class PeopleResource extends Resource
         ];
     }
 
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['name', 'last_name', 'dni', 'phone', 'street_address'];
+    }
+
     public static function getNavigationBadge(): ?string
     {
         return static::getModel()::count();

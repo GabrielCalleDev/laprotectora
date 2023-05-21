@@ -155,6 +155,11 @@ class ContactsDirectoryResource extends Resource
         ];
     }
 
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['name', 'phone', 'email', 'company'];
+    }
+
     public static function getNavigationBadge(): ?string
     {
         return static::getModel()::count();

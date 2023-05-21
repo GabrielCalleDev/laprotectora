@@ -262,6 +262,11 @@ class PetResource extends Resource
         ];
     }
 
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['name'];
+    }
+
     public static function getNavigationBadge(): ?string
     {
         return static::getModel()::count();

@@ -181,6 +181,12 @@ class ContactFormResource extends Resource
         ];
     }
 
+    
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['name', 'email', 'phone'];
+    }
+
     public static function getNavigationBadge(): ?string
     {
         return static::getModel()::count();
