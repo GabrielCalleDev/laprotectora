@@ -15,7 +15,7 @@ class ContactsDirectoryResource extends Resource
 {
     protected static ?string $model = ContactsDirectory::class;
 
-    protected static ?string $navigationGroup = 'Protectora';
+    protected static ?string $navigationGroup = 'Otros';
 
     protected static ?string $label = 'Directorio de contactos';
 

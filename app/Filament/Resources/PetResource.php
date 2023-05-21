@@ -10,6 +10,8 @@ use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Card;
 use App\Filament\Resources\PetResource\Pages;
+use App\Filament\Resources\PetResource\RelationManagers\VisitsRelationManager;
+use App\Filament\Resources\PetResource\RelationManagers\AdoptionRelationManager;
 use App\Filament\Resources\PetResource\RelationManagers\PetHistoriesRelationManager;
 
 class PetResource extends Resource
@@ -255,6 +257,8 @@ class PetResource extends Resource
     {
         return [
             PetHistoriesRelationManager::class,
+            VisitsRelationManager::class,
+            AdoptionRelationManager::class,
         ];
     }
 

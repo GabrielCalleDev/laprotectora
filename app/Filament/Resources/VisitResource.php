@@ -21,9 +21,11 @@ class VisitResource extends Resource
 
     protected static ?string $slug = 'visitas';
     
-    protected static ?string $navigationLabel = 'Visitas';
+    protected static ?string $navigationLabel = 'Gestionar visitas';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-group';
+
+    protected static ?int $navigationSort = 5;
 
     public static function form(Form $form): Form
     {
@@ -34,7 +36,7 @@ class VisitResource extends Resource
                     Card::make()
                         ->schema([
                             Forms\Components\Select::make('user_id')
-                                ->label('Usuario')
+                                ->label('Usuario visitante')
                                 ->hint('Usuario')
                                 ->relationship('user', 'name'),
                             Forms\Components\Select::make('pet_id')
@@ -79,18 +81,28 @@ class VisitResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('user.username')
                     ->icon('heroicon-o-user')
-                    ->label('Usuario'),
+                    ->searchable()
+                    ->sortable()
+                    ->label('Usuario visitante'),
                 Tables\Columns\TextColumn::make('pet.name')
                     ->icon('heroicon-o-finger-print')
+                    ->searchable()
+                    ->sortable()
                     ->label('Mascota'),
                 Tables\Columns\TextColumn::make('user.name')
                     ->icon('heroicon-o-user')
+                    ->searchable()
+                    ->sortable()
                     ->label('Responsable'),
                 Tables\Columns\TextColumn::make('description')
+                    ->searchable()
+                    ->sortable()
                     ->limit(35),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->sortable()
                     ->since(),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->sortable()
                     ->since(),
             ])
             ->filters([

@@ -25,6 +25,8 @@ class ShelterHouseResource extends Resource
     
     protected static ?string $navigationIcon = 'heroicon-o-home';
 
+    protected static ?int $navigationSort = 1;
+
     public static function form(Form $form): Form
     {
         return $form
