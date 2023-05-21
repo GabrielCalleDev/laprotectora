@@ -22,10 +22,10 @@ return new class extends Migration
             $table->integer('address_number')->nullable();
             $table->string('address_details', 100)->nullable();
             $table->string('city', 50)->nullable();
-            $table->integer('zip_code')->nullable();
+            $table->string('zip_code')->nullable();
             $table->string('type', 20)->nullable();
             $table->string('observations', 100)->nullable();
-            $table->string('occupation', 50)->nullable();
+            $table->string('occupation', 255)->nullable();
             $table->timestamps();
         });
     }

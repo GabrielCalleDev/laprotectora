@@ -38,6 +38,37 @@ class ProfileController extends Controller
     }
 
     /**
+     * Update the user's profile avatar.
+     */
+    public function updateAvatar(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'avatar' => ['required', 'max:2048'],
+        ]);
+
+        // borrar el avatar anterior de spatie/media-library
+        $request->user()->clearMediaCollection('avatars');
+
+        // guardar el nuevo avatar
+        $request->user()
+            ->addMediaFromRequest('avatar')
+            ->toMediaCollection('avatars');
+        
+        return Redirect::route('profile.edit')->with('status', 'avatar-updated');
+    }
+
+    /**
+     * Delete the user's profile avatar.
+     */
+    public function destroyAvatar(Request $request): RedirectResponse
+    {
+        // borrar el avatar anterior de spatie/media-library
+        $request->user()->clearMediaCollection('avatars');
+
+        return Redirect::route('profile.edit')->with('status', 'avatar-destroyed');
+    }
+
+    /**
      * Delete the user's account.
      */
     public function destroy(Request $request): RedirectResponse

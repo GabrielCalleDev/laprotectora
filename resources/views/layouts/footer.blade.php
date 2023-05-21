@@ -8,11 +8,9 @@
     <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 md:text-center lg:text-start lg:grid-cols-5 p-4 md:p-0">
         <!-- Footer brand shelter -->
         <section id="shelter-brand" class="lg:col-span-2 pr-3 flex items-center">
-            <img class="md:mx-auto lg:mx-0 rounded-md w-24 h-24" src="{{ Vite::asset('resources/img/dog.png') }}">
-            <p class="info-brand p-5 leading-7">
-                Cupidatat enim labore consectetur Lorem ullamco. Sunt nisi sit excepteur aute in eiusmod.
-                Qui officia occaecat laboris anim nostrud elit commodo sit incididunt. Anim dolor esse sint
-                labore dolor anim et nostrud dolor labore enim.
+            <img class="hidden md:block md:mx-auto lg:mx-0 rounded-md w-24 h-24" src="{{ Vite::asset('resources/img/dog.png') }}">
+            <p class="info-brand md:p-5 leading-7 text-justify">
+                <b>[ Sobre la protectora ]</b><br> labore consectetur Lorem ullamco. Sunt nisi sit excepteur aute in eiusmod laborum. Aliqua laboris.
                 <br>
                 <span class="italic tracking-wider">
                     <img class="inline-block" src="{{ Vite::asset('resources/img/layout/footer-icono-email.svg') }}"/> <a href="mailto:info@info.com">info@info.com</a><br>
@@ -24,12 +22,23 @@
         <!-- Footer legal -->
         <section id="legal" class="lg:pl-8">
             <nav>
-                <h2 class="text-xl my-4 font-bold">Legal</h2>
+                <h2 class="text-xl my-4 font-bold">Protectora</h2>
                 <ul>
-                    <li class="py-1.5"><a href="{{ route('legal') }}">Condiciones de uso</a></li>
-                    <li class="py-1.5"><a href="{{ route('legal') }}">Aviso legal</a></li>
-                    <li class="py-1.5"><a href="#">Política de privacidad</a></li>
-                    <li class="py-1.5"><a href="#">Política de cookies</a></li>
+                    <li class="py-1.5"><a href="{{ route('protectora') }}">Sobre nosotros</a></li>
+                    <li class="py-1.5"><a href="{{ route('protectora') }}">La protectora</a></li>
+                    <li class="py-1.5"><a href="{{ route('protectora') }}">Más información</a></li>
+                    <li class="py-1.5"><a href="{{ route('protectora') }}">Red de protectoras</a></li>
+                </ul>
+            </nav>
+        </section>
+        <section id="legal" class="lg:pl-8">
+            <nav>
+                <h2 class="text-xl my-4 font-bold">¿Cómo ayudar?</h2>
+                <ul>
+                    <li class="py-1.5"><a href="{{ route('adopciones') }}">Adopta</a></li>
+                    <li class="py-1.5"><a href="{{ route('adopciones') }}">Acoge</a></li>
+                    <li class="py-1.5"><a href="{{ route('haz.un.donativo') }}">Haz un donativo</a></li>
+                    <li class="py-1.5"><a href="{{ route('hazte.voluntario') }}">Hazte voluntario</a></li>
                 </ul>
             </nav>
         </section>
@@ -39,19 +48,8 @@
                 <ul>
                     <li class="py-1.5"><a href="{{ route('legal') }}">Condiciones de uso</a></li>
                     <li class="py-1.5"><a href="{{ route('legal') }}">Aviso legal</a></li>
-                    <li class="py-1.5"><a href="#">Política de privacidad</a></li>
-                    <li class="py-1.5"><a href="#">Política de cookies</a></li>
-                </ul>
-            </nav>
-        </section>
-        <section id="legal" class="lg:pl-8">
-            <nav>
-                <h2 class="text-xl my-4 font-bold">Legal</h2>
-                <ul>
-                    <li class="py-1.5"><a href="{{ route('legal') }}">Condiciones de uso</a></li>
-                    <li class="py-1.5"><a href="{{ route('legal') }}">Aviso legal</a></li>
-                    <li class="py-1.5"><a href="#">Política de privacidad</a></li>
-                    <li class="py-1.5"><a href="#">Política de cookies</a></li>
+                    <li class="py-1.5"><a href="{{ route('legal') }}">Política de privacidad</a></li>
+                    <li class="py-1.5"><a href="{{ route('legal') }}">Política de cookies</a></li>
                 </ul>
             </nav>
         </section>
@@ -64,8 +62,8 @@
                 (ɔ)Protectora 2023
             </div>
             <div id="redes-sociales" class="flex">
-                <div class="mr-1.5"><img src="{{ Vite::asset('resources/img/layout/iconos-rrss-facebook.svg') }}"></div>
-                <div><img src="{{ Vite::asset('resources/img/layout/iconos-rrss-linstagram.svg') }}"></div>
+                <div class="mr-1.5"><img src="{{ Vite::asset('resources/img/layout/iconos-rrss-facebook.svg') }}" alt="Icono facebook"></div>
+                <div><img src="{{ Vite::asset('resources/img/layout/iconos-rrss-linstagram.svg') }}" alt="Icono instagram"></div>
             </div>
         </section>
     </div>
