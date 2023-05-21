@@ -10,7 +10,7 @@
         <section id="shelter-brand" class="lg:col-span-2 pr-3 flex items-center">
             <img class="hidden md:block md:mx-auto lg:mx-0 rounded-md w-24 h-24" src="{{ Vite::asset('resources/img/dog.png') }}">
             <p class="info-brand md:p-5 leading-7 text-justify">
-                <b>[ Sobre la protectora ]</b><br> labore consectetur Lorem ullamco. Sunt nisi sit excepteur aute in eiusmod laborum. Aliqua laboris.
+                <b>[ Sobre la protectora ]</b><br> Nuestra labor es encontrar un hogar para los animales abandonados y maltratados.
                 <br>
                 <span class="italic tracking-wider">
                     <img class="inline-block" src="{{ Vite::asset('resources/img/layout/footer-icono-email.svg') }}"/> <a href="mailto:info@info.com">info@info.com</a><br>
