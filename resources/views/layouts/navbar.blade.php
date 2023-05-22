@@ -159,9 +159,9 @@
                             @auth
                                 <div class="p-2">Hola {{ Auth::user()->name }}</div>
 
-                                <!-- Profile -->
-                                <x-dropdown-link :href="route('profile.edit')">
-                                    {{ __('Profile') }}
+                                <!-- Escritorio -->
+                                <x-dropdown-link :href="route('dashboard')">
+                                    {{ __('Escritorio') }}
                                 </x-dropdown-link>
 
                                 <!-- Authentication -->
@@ -171,7 +171,7 @@
                                     <x-dropdown-link :href="route('logout')"
                                             onclick="event.preventDefault();
                                                         this.closest('form').submit();">
-                                        {{ __('Log Out') }}
+                                        {{ __('Cerrar sesión') }}
                                     </x-dropdown-link>
                                 </form>
                             @endauth
