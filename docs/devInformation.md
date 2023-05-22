@@ -135,6 +135,8 @@ Jettie⏎
 > echo $adoptionHistory->adoption->user->name
 Lauryn Bayer⏎
 
+## Toast
+https://realrashid.github.io/sweet-alert/demo
 
 
 ### Iconos

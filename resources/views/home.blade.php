@@ -34,187 +34,7 @@
     </section>
 
     <!-- Ayudanos a encontrarles un hogar -->
-    <section class="container mx-auto py-4 bg-gray-100 rounded-3xl mt-6">
-        <h1 class="text-4xl text-center font-poppinsBlack py-4">{{ __('Ayúdanos a encontrarles un hogar') }}</h1>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 text-center py-4 gap-2">
-            <div class="border-2 border-secondary rounded-2xl">
-                <img src="{{ Vite::asset('resources/img/template/main/perro-cara.png') }}" alt="Objetivo 1" class="mx-auto w-48 bg-white rounded-lg">
-                <hr class="border-4 border-quinary border-dashed mt-4">
-                <div class="px-2 pt-3 bg-yellow-200 rounded-b-2xl">
-                    <h2 class="text-xl font-poppinsBlack">{{ __('Yang') }}</h2>
-                    <div class="flex justify-around pt-2 pb-3">
-                        <p class="text-sm font-extrabold">
-                            {{ __('Raza') }}<br>
-                            {{ __('Mestizo') }}
-                        </p>
-                        <p class="text-sm font-extrabold">
-                            {{ __('Edad') }}<br>
-                            {{ __('18 meses') }}
-                        </p>
-                        <p class="text-sm font-extrabold">
-                            {{ __('Sexo') }}<br>
-                            {{ __('Macho') }}
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="border-2 border-secondary rounded-2xl">
-                <img src="{{ Vite::asset('resources/img/template/main/gato-cara.jpg') }}" alt="Objetivo 1" class="mx-auto w-48">
-                <hr class="border-4 border-quinary border-dashed mt-4">
-                <div class="px-2 pt-3 bg-yellow-200 rounded-b-2xl">
-                    <h2 class="text-xl font-poppinsBlack">{{ __('Calcetines') }}</h2>
-                    <div class="flex justify-around pt-2 pb-3">
-                        <p class="text-sm font-extrabold">
-                            {{ __('Raza') }}<br>
-                            {{ __('Mestizo') }}
-                        </p>
-                        <p class="text-sm font-extrabold">
-                            {{ __('Edad') }}<br>
-                            {{ __('18 meses') }}
-                        </p>
-                        <p class="text-sm font-extrabold">
-                            {{ __('Sexo') }}<br>
-                            {{ __('Macho') }}
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="border-2 border-secondary rounded-2xl">
-                <img src="{{ Vite::asset('resources/img/template/main/perro-cara.png') }}" alt="Objetivo 1" class="mx-auto w-48 bg-white">
-                <hr class="border-4 border-quinary border-dashed mt-4">
-                <div class="px-2 pt-3 bg-yellow-200 rounded-b-2xl">
-                    <h2 class="text-xl font-poppinsBlack">{{ __('Yang') }}</h2>
-                    <div class="flex justify-around pt-2 pb-3">
-                        <p class="text-sm font-extrabold">
-                            {{ __('Raza') }}<br>
-                            {{ __('Mestizo') }}
-                        </p>
-                        <p class="text-sm font-extrabold">
-                            {{ __('Edad') }}<br>
-                            {{ __('18 meses') }}
-                        </p>
-                        <p class="text-sm font-extrabold">
-                            {{ __('Sexo') }}<br>
-                            {{ __('Macho') }}
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="border-2 border-secondary rounded-2xl">
-                <img src="{{ Vite::asset('resources/img/template/main/perro-cara.png') }}" alt="Objetivo 1" class="mx-auto w-48 bg-white">
-                <hr class="border-4 border-quinary border-dashed mt-4">
-                <div class="px-2 pt-3 bg-yellow-200 rounded-b-2xl">
-                    <h2 class="text-xl font-poppinsBlack">{{ __('Yang') }}</h2>
-                    <div class="flex justify-around pt-2 pb-3">
-                        <p class="text-sm font-extrabold">
-                            {{ __('Raza') }}<br>
-                            {{ __('Mestizo') }}
-                        </p>
-                        <p class="text-sm font-extrabold">
-                            {{ __('Edad') }}<br>
-                            {{ __('18 meses') }}
-                        </p>
-                        <p class="text-sm font-extrabold">
-                            {{ __('Sexo') }}<br>
-                            {{ __('Macho') }}
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="border-2 border-secondary rounded-2xl">
-                <img src="{{ Vite::asset('resources/img/template/main/perro-cara.png') }}" alt="Objetivo 1" class="mx-auto w-48 bg-white rounded-lg">
-                <hr class="border-4 border-quinary border-dashed mt-4">
-                <div class="px-2 pt-3 bg-yellow-200 rounded-b-2xl">
-                    <h2 class="text-xl font-poppinsBlack">{{ __('Yang') }}</h2>
-                    <div class="flex justify-around pt-2 pb-3">
-                        <p class="text-sm font-extrabold">
-                            {{ __('Raza') }}<br>
-                            {{ __('Mestizo') }}
-                        </p>
-                        <p class="text-sm font-extrabold">
-                            {{ __('Edad') }}<br>
-                            {{ __('18 meses') }}
-                        </p>
-                        <p class="text-sm font-extrabold">
-                            {{ __('Sexo') }}<br>
-                            {{ __('Macho') }}
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="border-2 border-secondary rounded-2xl">
-                <img src="{{ Vite::asset('resources/img/template/main/perro-cara.png') }}" alt="Objetivo 1" class="mx-auto w-48 bg-white">
-                <hr class="border-4 border-quinary border-dashed mt-4">
-                <div class="px-2 pt-3 bg-yellow-200 rounded-b-2xl">
-                    <h2 class="text-xl font-poppinsBlack">{{ __('Yang') }}</h2>
-                    <div class="flex justify-around pt-2 pb-3">
-                        <p class="text-sm font-extrabold">
-                            {{ __('Raza') }}<br>
-                            {{ __('Mestizo') }}
-                        </p>
-                        <p class="text-sm font-extrabold">
-                            {{ __('Edad') }}<br>
-                            {{ __('18 meses') }}
-                        </p>
-                        <p class="text-sm font-extrabold">
-                            {{ __('Sexo') }}<br>
-                            {{ __('Macho') }}
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="border-2 border-secondary rounded-2xl">
-                <img src="{{ Vite::asset('resources/img/template/main/gato-cara.jpg') }}" alt="Objetivo 1" class="mx-auto w-48">
-                <hr class="border-4 border-quinary border-dashed mt-4">
-                <div class="px-2 pt-3 bg-yellow-200 rounded-b-2xl">
-                    <h2 class="text-xl font-poppinsBlack">{{ __('Calcetines') }}</h2>
-                    <div class="flex justify-around pt-2 pb-3">
-                        <p class="text-sm font-extrabold">
-                            {{ __('Raza') }}<br>
-                            {{ __('Mestizo') }}
-                        </p>
-                        <p class="text-sm font-extrabold">
-                            {{ __('Edad') }}<br>
-                            {{ __('18 meses') }}
-                        </p>
-                        <p class="text-sm font-extrabold">
-                            {{ __('Sexo') }}<br>
-                            {{ __('Macho') }}
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="border-2 border-secondary rounded-2xl">
-                <img src="{{ Vite::asset('resources/img/template/main/perro-cara.png') }}" alt="Objetivo 1" class="mx-auto w-48 bg-white">
-                <hr class="border-4 border-quinary border-dashed mt-4">
-                <div class="px-2 pt-3 bg-yellow-200 rounded-b-2xl">
-                    <h2 class="text-xl font-poppinsBlack">{{ __('Yang') }}</h2>
-                    <div class="flex justify-around pt-2 pb-3">
-                        <p class="text-sm font-extrabold">
-                            {{ __('Raza') }}<br>
-                            {{ __('Mestizo') }}
-                        </p>
-                        <p class="text-sm font-extrabold">
-                            {{ __('Edad') }}<br>
-                            {{ __('18 meses') }}
-                        </p>
-                        <p class="text-sm font-extrabold">
-                            {{ __('Sexo') }}<br>
-                            {{ __('Macho') }}
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div>
-            <a href="" class="max-w-md mx-auto flex justify-center items-center bg-secondary text-white font-poppinsBlack text-xl py-2 px-4 rounded-2xl hover:bg-secondaryHover transition duration-300 ease-in-out">
-                {{ __('Ver más') }}
-                <i class="fas fa-arrow-right ml-2"></i>
-            </a>
-        </div>
-    </section>
+    @livewire('pets') {{-- Componente de livewire --}}
 
     <!-- Welcome section -->
     <section id="welcome" class="container mx-auto bg-gray-100 rounded-3xl mt-6 py-6">
@@ -236,22 +56,28 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 text-center py-4">
             <div>
-                <img src="{{ Vite::asset('resources/img/template/main/colabora1.png') }}" alt="Objetivo 1" class="mx-auto rounded-xl">
-                <p class="text-center font-poppinsBlack px-4 py-2">
-                    {{ __('Adopta un animal') }}
-                </p>
+                <a href="{{ route('adoptions') }}">
+                    <img src="{{ Vite::asset('resources/img/template/main/colabora1.png') }}" alt="Objetivo 1" class="mx-auto rounded-xl">
+                    <p class="text-center font-poppinsBlack px-4 py-2">
+                        {{ __('Adopta un animal') }}
+                    </p>
+                </a>
             </div>
             <div>
-                <img src="{{ Vite::asset('resources/img/template/main/colabora2.png') }}" alt="Objetivo 1" class="mx-auto rounded-xl">
-                <p class="text-center font-poppinsBlack px-4 py-2">
-                    {{ __('Hazte voluntario') }}
-                </p>
+                <a href="{{ route('make.volunteer') }}">
+                    <img src="{{ Vite::asset('resources/img/template/main/colabora2.png') }}" alt="Objetivo 1" class="mx-auto rounded-xl">
+                    <p class="text-center font-poppinsBlack px-4 py-2">
+                        {{ __('Hazte voluntario') }}
+                    </p>
+                </a>
             </div>
             <div>
-                <img src="{{ Vite::asset('resources/img/template/main/colabora3.png') }}" alt="Objetivo 1" class="mx-auto rounded-xl">
-                <p class="text-center font-poppinsBlack px-4 py-2">
-                    {{ __('Haz donativo') }}
-                </p>
+                <a href="{{ route('make.donation') }}">
+                    <img src="{{ Vite::asset('resources/img/template/main/colabora3.png') }}" alt="Objetivo 1" class="mx-auto rounded-xl">
+                    <p class="text-center font-poppinsBlack px-4 py-2">
+                        {{ __('Haz donativo') }}
+                    </p>
+                </a>
             </div>
         </div>
     </section>

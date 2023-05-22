@@ -81,22 +81,22 @@
                             style="display: none;"
                             class="relative md:absolute md:-left-5 md:mt-2 w-52 md:rounded-md bg-white md:border-2 text-black md:shadow-md"
                         >
-                            <a href="{{ route('haz.un.donativo') }}" class="flex items-center px-4 gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md md:px-4 py-2.5 text-left hover:bg-gray-50 disabled:text-gray-500 text-s {{ request()->routeIs('help.make-donation') ? 'font-bold' : '' }}">
+                            <a href="{{ route('make.donation') }}" class="flex items-center px-4 gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md md:px-4 py-2.5 text-left hover:bg-gray-50 disabled:text-gray-500 text-s {{ request()->routeIs('help.make-donation') ? 'font-bold' : '' }}">
                                 Haz un donativo
                             </a>
                 
-                            <a href="{{ route('hazte.voluntario') }}" class="flex items-center px-4 gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md md:px-4 py-2.5 text-left hover:bg-gray-50 disabled:text-gray-500 text-s {{ request()->routeIs('help.make-volunteer') ? 'font-bold' : '' }}">
+                            <a href="{{ route('make.volunteer') }}" class="flex items-center px-4 gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md md:px-4 py-2.5 text-left hover:bg-gray-50 disabled:text-gray-500 text-s {{ request()->routeIs('help.make-volunteer') ? 'font-bold' : '' }}">
                                 Hazte voluntario
                             </a>
                         </div>
                     </li>
                     <li>
-                        <a href="{{ route('adopciones') }}" class="hover:bg-quinary block py-2 pl-3 pr-4 rounded-lg md:border-2 border-quinary md:py-2 md:px-2 lg:px-4">
+                        <a href="{{ route('adoptions') }}" class="hover:bg-quinary block py-2 pl-3 pr-4 rounded-lg md:border-2 border-quinary md:py-2 md:px-2 lg:px-4">
                             Adopciones
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('contacto') }}" class="hover:bg-quinary block py-2 pl-3 pr-4 rounded-lg md:border-2 border-quinary md:py-2 md:px-2 lg:px-4  {{ request()->routeIs('contact') ? 'font-bold' : '' }}">
+                        <a href="{{ route('contact') }}" class="hover:bg-quinary block py-2 pl-3 pr-4 rounded-lg md:border-2 border-quinary md:py-2 md:px-2 lg:px-4  {{ request()->routeIs('contact') ? 'font-bold' : '' }}">
                             Contacto
                         </a>
                     </li>
@@ -133,7 +133,15 @@
                         >
                             <div class="inline md:hidden">{{ __('Espacio personal') }}</div>
                             <span>
-                                <img src=" {{ Vite::asset('resources/img/template/login.png') }} " alt="" class="h-6 w-6 inline">
+                                @auth
+                                    @if (Auth::user()->getMedia('avatars')->first())
+                                        <img class="h-6 w-6 inline rounded-full border border-quinary" src="{{ Auth::user()->getMedia('avatars')->first()->getUrl('thumb') }}" alt="{{ Auth::user()->name }}" />
+                                    @endif
+                                @endauth
+
+                                @guest
+                                    <img src=" {{ Vite::asset('resources/img/template/login.png') }} " alt="" class="h-6 w-6 inline">
+                                @endguest
                                 <x-heroicon-o-chevron-down id="flecha-abajo" class="w-6 h-6 inline-block text-primary nav-change"/>
                             </span>
                         </button>
@@ -148,13 +156,35 @@
                             style="display: none;"
                             class="relative md:absolute md:-left-14 md:mt-2 w-40 md:rounded-md bg-white md:border-2 text-black md:shadow-md"
                         >
-                            <a href="{{ route('login') }}" class="flex items-center px-4 gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md md:px-4 py-2.5 text-left hover:bg-gray-50 disabled:text-gray-500 text-s {{ request()->routeIs('adopt.pets') ? 'font-bold' : '' }}">
-                                Iniciar sesión
-                            </a>
-                
-                            <a href="{{ route('register') }}" class="flex items-center px-4 gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md md:px-4 py-2.5 text-left hover:bg-gray-50 disabled:text-gray-500 text-s {{ request()->routeIs('adopt.happy-endings') ? 'font-bold' : '' }}">
-                                Registrarse
-                            </a>
+                            @auth
+                                <div class="p-2">Hola {{ Auth::user()->name }}</div>
+
+                                <!-- Escritorio -->
+                                <x-dropdown-link :href="route('dashboard')">
+                                    {{ __('Escritorio') }}
+                                </x-dropdown-link>
+
+                                <!-- Authentication -->
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+
+                                    <x-dropdown-link :href="route('logout')"
+                                            onclick="event.preventDefault();
+                                                        this.closest('form').submit();">
+                                        {{ __('Cerrar sesión') }}
+                                    </x-dropdown-link>
+                                </form>
+                            @endauth
+
+                            @guest
+                                <a href="{{ route('login') }}" class="flex items-center px-4 gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md md:px-4 py-2.5 text-left hover:bg-gray-50 disabled:text-gray-500 text-s {{ request()->routeIs('adopt.pets') ? 'font-bold' : '' }}">
+                                    Iniciar sesión
+                                </a>
+                    
+                                <a href="{{ route('register') }}" class="flex items-center px-4 gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md md:px-4 py-2.5 text-left hover:bg-gray-50 disabled:text-gray-500 text-s {{ request()->routeIs('adopt.happy-endings') ? 'font-bold' : '' }}">
+                                    Registrarse
+                                </a>
+                            @endguest
                         </div>
                     </li>
                 </ul>

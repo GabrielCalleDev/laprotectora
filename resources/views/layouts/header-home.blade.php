@@ -12,7 +12,7 @@
                 <p class="md:mt-8 mb-2 md:mb-4 text-white">
                     Con tu apoyo se pueden salvar<span class="font-bold text-quinary"> muchas vidas</span>. No compres, adopta. Hay muchas mascotas que te necesitan.
                 </p>
-                <a href=""><button class="my-2.5 px-10 py-2.5 mx-auto md:mx-0 bg-primary rounded-3xl text-white leading-1 shadow-sm shadow-white">¡Ver mascotas!</button></a>
+                <a href="{{ route('adoptions') }}"><button class="my-2.5 px-10 py-2.5 mx-auto md:mx-0 bg-primary rounded-3xl text-white leading-1 shadow-sm shadow-white">¡Ver mascotas!</button></a>
             </div>
         </section>
     </div>

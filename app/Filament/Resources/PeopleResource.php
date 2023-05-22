@@ -187,7 +187,7 @@ class PeopleResource extends Resource
                     ->label('Creado')
                     ->sortable()
                     ->since(),
-            ])
+            ])->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])

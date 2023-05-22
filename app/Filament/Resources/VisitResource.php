@@ -107,7 +107,7 @@ class VisitResource extends Resource
                     ->label('Actualizado')
                     ->sortable()
                     ->since(),
-            ])
+            ])->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])
