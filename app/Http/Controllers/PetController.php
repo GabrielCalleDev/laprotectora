@@ -21,9 +21,16 @@ class PetController extends Controller
         ]);
     }
 
-    public function request(Pet $pet)
+    public function requestInformation(Pet $pet)
     {
         return view('informacion',[
+            'pet' => $pet
+        ]);
+    }
+
+    public function requestAdoption(Pet $pet)
+    {
+        return view('adopcion',[
             'pet' => $pet
         ]);
     }
