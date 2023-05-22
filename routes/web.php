@@ -21,13 +21,15 @@ Route::view('/', 'home')->name('home');
 
 Route::view('/la-protectora', 'protectora')->name('protectora');
 
-Route::view('/como-ayudar/haz-un-donativo', 'haz-un-donativo')->name('haz.un.donativo');
+Route::view('/como-ayudar/haz-un-donativo', 'haz-un-donativo')->name('make.donation');
 
-Route::view('/como-ayudar/hazte-voluntario', 'hazte-voluntario')->name('hazte.voluntario');
+Route::view('/como-ayudar/hazte-voluntario', 'hazte-voluntario')->name('make.volunteer');
 
-Route::view('/adopciones', 'adopciones')->name('adopciones');
+Route::view('/voluntario/solicitud', 'solicitud-voluntario')->name('volunteer.request');
 
-Route::view('/contacto', 'contacto')->name('contacto');
+Route::view('/adopciones', 'adopciones')->name('adoptions');
+
+Route::view('/contacto', 'contacto')->name('contact');
 
 Route::view('legal' , 'legal')->name('legal');
 

@@ -81,22 +81,22 @@
                             style="display: none;"
                             class="relative md:absolute md:-left-5 md:mt-2 w-52 md:rounded-md bg-white md:border-2 text-black md:shadow-md"
                         >
-                            <a href="{{ route('haz.un.donativo') }}" class="flex items-center px-4 gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md md:px-4 py-2.5 text-left hover:bg-gray-50 disabled:text-gray-500 text-s {{ request()->routeIs('help.make-donation') ? 'font-bold' : '' }}">
+                            <a href="{{ route('make.donation') }}" class="flex items-center px-4 gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md md:px-4 py-2.5 text-left hover:bg-gray-50 disabled:text-gray-500 text-s {{ request()->routeIs('help.make-donation') ? 'font-bold' : '' }}">
                                 Haz un donativo
                             </a>
                 
-                            <a href="{{ route('hazte.voluntario') }}" class="flex items-center px-4 gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md md:px-4 py-2.5 text-left hover:bg-gray-50 disabled:text-gray-500 text-s {{ request()->routeIs('help.make-volunteer') ? 'font-bold' : '' }}">
+                            <a href="{{ route('make.volunteer') }}" class="flex items-center px-4 gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md md:px-4 py-2.5 text-left hover:bg-gray-50 disabled:text-gray-500 text-s {{ request()->routeIs('help.make-volunteer') ? 'font-bold' : '' }}">
                                 Hazte voluntario
                             </a>
                         </div>
                     </li>
                     <li>
-                        <a href="{{ route('adopciones') }}" class="hover:bg-quinary block py-2 pl-3 pr-4 rounded-lg md:border-2 border-quinary md:py-2 md:px-2 lg:px-4">
+                        <a href="{{ route('adoptions') }}" class="hover:bg-quinary block py-2 pl-3 pr-4 rounded-lg md:border-2 border-quinary md:py-2 md:px-2 lg:px-4">
                             Adopciones
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('contacto') }}" class="hover:bg-quinary block py-2 pl-3 pr-4 rounded-lg md:border-2 border-quinary md:py-2 md:px-2 lg:px-4  {{ request()->routeIs('contact') ? 'font-bold' : '' }}">
+                        <a href="{{ route('contact') }}" class="hover:bg-quinary block py-2 pl-3 pr-4 rounded-lg md:border-2 border-quinary md:py-2 md:px-2 lg:px-4  {{ request()->routeIs('contact') ? 'font-bold' : '' }}">
                             Contacto
                         </a>
                     </li>

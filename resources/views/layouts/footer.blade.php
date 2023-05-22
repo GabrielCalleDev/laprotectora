@@ -35,10 +35,10 @@
             <nav>
                 <h2 class="text-xl my-4 font-bold">¿Cómo ayudar?</h2>
                 <ul>
-                    <li class="py-1.5"><a href="{{ route('adopciones') }}">Adopta</a></li>
-                    <li class="py-1.5"><a href="{{ route('adopciones') }}">Acoge</a></li>
-                    <li class="py-1.5"><a href="{{ route('haz.un.donativo') }}">Haz un donativo</a></li>
-                    <li class="py-1.5"><a href="{{ route('hazte.voluntario') }}">Hazte voluntario</a></li>
+                    <li class="py-1.5"><a href="{{ route('adoptions') }}">Adopta</a></li>
+                    <li class="py-1.5"><a href="{{ route('adoptions') }}">Acoge</a></li>
+                    <li class="py-1.5"><a href="{{ route('make.donation') }}">Haz un donativo</a></li>
+                    <li class="py-1.5"><a href="{{ route('make.volunteer') }}">Hazte voluntario</a></li>
                 </ul>
             </nav>
         </section>
