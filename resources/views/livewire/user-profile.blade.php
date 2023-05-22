@@ -38,7 +38,7 @@
                                 </div>
                             </div>
                         @empty
-                            <p>No hay animales</p>
+                            <p class="p-4 bg-yellow-200 border border-yellow-200 max-w-2xl mx-auto rounded ">No tienes favoritos</p>
                         @endforelse
                     </div>
                 </div>
@@ -46,3 +46,6 @@
         </div>
     </div>
 </div>
+@push('scripts')
+    @include('components.alert')
+@endpush

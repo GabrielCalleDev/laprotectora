@@ -20,6 +20,7 @@ class UserProfile extends Component
     public function removeFavorite(Pet $pet){
         $this->user->favorites()->detach($pet->id);
         $this->favorites = auth()->user()->favorites;
+        $this->emit('alert', 'warning', 'Mascota eliminada de favoritos');
     }
 
     public function render()

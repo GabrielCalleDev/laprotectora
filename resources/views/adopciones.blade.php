@@ -55,7 +55,24 @@
                     </a>
                     <hr class="border-8 border-quinary border-dashed mt-2">
                     <div class="px-2 pt-3 bg-quinary rounded-b-2xl">
-                        <h2 class="text-xl font-poppinsBlack">{{ $pet->name }}</h2>
+                        <div class="flex justify-between">
+                            <h2 class="text-xl font-poppinsBlack mr-2">{{ $pet->name }}</h2>
+                            @auth
+                                @livewire('favorite-button', ['pet' => $pet])
+                            @endauth
+
+                            @guest
+                                <div class="flex items-center">
+                                    <a href="{{ route('login') }}" class="text-white bg-green-800 cursor-pointer px-2 rounded">
+                                        <div class="text-white bg-green-800 cursor-pointer px-2 rounded">
+                                            <x-heroicon-s-star class="w-6 h-6 inline-block border text-yellow-500 rounded-full"/>
+                                            <x-heroicon-s-plus-circle class="w-6 h-6 inline-block border border-green-600 rounded-full"/> Log in
+                                        </div>
+                                    </a>
+                                </div>
+                            @endguest
+                        </div>
+
                         <div class="flex justify-around pt-2 pb-3">
                             <p class="text-sm font-extrabold">
                                 {{ __('Tamaño') }}<br>
