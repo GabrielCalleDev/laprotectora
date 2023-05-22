@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PetController;
+use App\Http\Controllers\ProfileController;
 
 /*-------------------------------------------------------------------------------
 
@@ -14,12 +15,17 @@ use Illuminate\Support\Facades\Route;
     ` ` ` ` `           ''''               ` ` ` `          ` ` ` `` ` ` `` ` `
 
 |--------------------------------------------------------------------------------
-| Web Routes
+| Web Routes - Principal routes
 |------------------------------------------------------------------------------*/
 
 Route::view('/', 'home')->name('home');
 
 Route::view('/la-protectora', 'protectora')->name('protectora');
+
+
+/*--------------------------------------------------------------------------------
+| How to help routes
+--------------------------------------------------------------------------------*/
 
 Route::view('/como-ayudar/haz-un-donativo', 'haz-un-donativo')->name('make.donation');
 
@@ -27,7 +33,23 @@ Route::view('/como-ayudar/hazte-voluntario', 'hazte-voluntario')->name('make.vol
 
 Route::view('/voluntario/solicitud', 'solicitud-voluntario')->name('volunteer.request');
 
-Route::view('/adopciones', 'adopciones')->name('adoptions');
+
+/*--------------------------------------------------------------------------------
+| Adoptions routes
+--------------------------------------------------------------------------------*/
+
+Route::get('/adopciones', [PetController::class, 'index'])->name('adoptions');
+
+Route::get('/mascota/{pet}', [PetController::class, 'show'])->name('pet.show');
+
+Route::get('/mascota/mas-informacion/{pet}', [PetController::class, 'request'])->name('adoption.request');
+
+Route::get('/adopciones/busqueda', [PetController::class, 'search'])->name('adoptions.search');
+
+
+/*--------------------------------------------------------------------------------
+| Legal - Contact routes
+--------------------------------------------------------------------------------*/
 
 Route::view('/contacto', 'contacto')->name('contact');
 
