@@ -42,6 +42,8 @@
     @vite('resources/js/layout.js')
     <!-- Stack scripts -->
     @stack('scripts')
+    <!-- Sweetalert notifications -->
+    @include('sweetalert::alert')
 </body>
 
 </html>
