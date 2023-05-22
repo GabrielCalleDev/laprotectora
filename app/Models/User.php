@@ -106,4 +106,9 @@ class User extends Authenticatable implements FilamentUser, HasMedia
             ->width(50)
             ->height(50); 
     }
+
+    public function hasAdoptionsInProgress()
+    {
+        return $this->adoptions()->where('status', '!=', 'Finalizado')->count() > 0;
+    }
 }
