@@ -64,6 +64,11 @@ php artisan make:filament-resource People --generate
 Translating Filament:
 php artisan vendor:publish --tag=filament-translations
 
+
+## Livewire
+php artisan make:livewire home
+
+
 ## blade-ui-kit/blade-heroicons
 composer require blade-ui-kit/blade-heroicons
 
