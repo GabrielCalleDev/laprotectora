@@ -42,7 +42,7 @@ Route::get('/adopciones', [PetController::class, 'index'])->name('adoptions');
 
 Route::get('/mascota/{pet}', [PetController::class, 'show'])->name('pet.show');
 
-Route::get('/mascota/mas-informacion/{pet}', [PetController::class, 'request'])->name('adoption.request');
+Route::get('/mascota/solicitud-informacion/{pet}', [PetController::class, 'request'])->name('pet.request.information');
 
 Route::get('/adopciones/busqueda', [PetController::class, 'search'])->name('adoptions.search');
 

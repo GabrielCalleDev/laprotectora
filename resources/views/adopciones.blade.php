@@ -50,7 +50,7 @@
                 @php($petImageUrl = $pet->getMedia('pets')->first()->getUrl())
 
                 <div class="border-2 border-secondary rounded-2xl">
-                    <a href="{{ route('adoptions.pet.show', $pet) }}" class="block">
+                    <a href="{{ route('pet.show', $pet) }}" class="block">
                         <img src="{{ $petImageUrl }}" alt="{{ $pet->name }}" class="mx-auto w-full bg-white rounded-lg">
                     </a>
                     <hr class="border-8 border-quinary border-dashed mt-2">

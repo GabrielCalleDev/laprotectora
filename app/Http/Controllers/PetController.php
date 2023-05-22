@@ -23,7 +23,7 @@ class PetController extends Controller
 
     public function request(Pet $pet)
     {
-        return view('mas-informacion',[
+        return view('informacion',[
             'pet' => $pet
         ]);
     }
