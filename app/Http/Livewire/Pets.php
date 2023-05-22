@@ -32,36 +32,36 @@ class Pets extends Component
         $pets = $dogs->merge($cats);
 
         foreach ($pets as $pet) {
-            $fechaActual = Carbon::now();
+            $actualDate = Carbon::now();
             
-            // Convierte la fecha de nacimiento del animal en un objeto Carbon
-            $fechaNacimientoPet = Carbon::parse($pet->age);
+            // Convert to Carbon instance
+            $petBirthday = Carbon::parse($pet->age);
             
-            // Calcula la diferencia de años, meses y días entre la fecha dada y la fecha actual
-            $diff = $fechaNacimientoPet->diff($fechaActual);
+            // Calculate the difference
+            $diff = $petBirthday->diff($actualDate);
             
-            // Acceder a los componentes de la diferencia (años, meses)
-            $años = $diff->y;
-            $meses = $diff->m;
+            // Access the values
+            $years  = $diff->y;
+            $months = $diff->m;
 
-            if ($años == 1 && $meses == 1) {
-                $pet->age = "$años año, $meses mes";
-            } elseif ($años == 1 && $meses == 0) {
-                $pet->age = "$años año";
-            } elseif ($años == 0 && $meses == 1) {
-                $pet->age = "$meses mes";
-            } elseif ($años == 0 && $meses == 0) {
+            if ($years == 1 && $months == 1) {
+                $pet->age = "$years año, $months mes";
+            } elseif ($years == 1 && $months == 0) {
+                $pet->age = "$years año";
+            } elseif ($years == 0 && $months == 1) {
+                $pet->age = "$months mes";
+            } elseif ($years == 0 && $months == 0) {
                 $pet->age = "1 mes";
-            } elseif ($años == 1 && $meses > 1) {
-                $pet->age = "$años año, $meses meses";
-            } elseif ($años > 1 && $meses == 1) {
-                $pet->age = "$años años, $meses mes";
-            } elseif ($años > 1 && $meses == 0) {
-                $pet->age = "$años años";
-            } elseif ($años == 0 && $meses > 1) {
-                $pet->age = "$meses meses";
+            } elseif ($years == 1 && $months > 1) {
+                $pet->age = "$years año, $months meses";
+            } elseif ($years > 1 && $months == 1) {
+                $pet->age = "$years años, $months mes";
+            } elseif ($years > 1 && $months == 0) {
+                $pet->age = "$years años";
+            } elseif ($years == 0 && $months > 1) {
+                $pet->age = "$months meses";
             } else {
-                $pet->age = "$años años, $meses meses";
+                $pet->age = "$years años, $months meses";
             }           
         }
         
