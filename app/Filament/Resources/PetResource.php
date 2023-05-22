@@ -239,7 +239,7 @@ class PetResource extends Resource
                 Tables\Columns\TextColumn::make('shelterHouse.name')
                     ->sortable()
                     ->label('Casa de acogida'),
-            ])
+            ])->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])

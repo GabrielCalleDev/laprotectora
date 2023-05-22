@@ -10,7 +10,7 @@
         <section id="shelter-brand" class="lg:col-span-2 pr-3 flex items-center">
             <img class="hidden md:block md:mx-auto lg:mx-0 rounded-md w-24 h-24" src="{{ Vite::asset('resources/img/dog.png') }}">
             <p class="info-brand md:p-5 leading-7 text-justify">
-                <b>[ Sobre la protectora ]</b><br> labore consectetur Lorem ullamco. Sunt nisi sit excepteur aute in eiusmod laborum. Aliqua laboris.
+                <b>[ Sobre la protectora ]</b><br> Nuestra labor es encontrar un hogar para los animales abandonados y maltratados.
                 <br>
                 <span class="italic tracking-wider">
                     <img class="inline-block" src="{{ Vite::asset('resources/img/layout/footer-icono-email.svg') }}"/> <a href="mailto:info@info.com">info@info.com</a><br>
@@ -35,10 +35,10 @@
             <nav>
                 <h2 class="text-xl my-4 font-bold">¿Cómo ayudar?</h2>
                 <ul>
-                    <li class="py-1.5"><a href="{{ route('adopciones') }}">Adopta</a></li>
-                    <li class="py-1.5"><a href="{{ route('adopciones') }}">Acoge</a></li>
-                    <li class="py-1.5"><a href="{{ route('haz.un.donativo') }}">Haz un donativo</a></li>
-                    <li class="py-1.5"><a href="{{ route('hazte.voluntario') }}">Hazte voluntario</a></li>
+                    <li class="py-1.5"><a href="{{ route('adoptions') }}">Adopta</a></li>
+                    <li class="py-1.5"><a href="{{ route('adoptions') }}">Acoge</a></li>
+                    <li class="py-1.5"><a href="{{ route('make.donation') }}">Haz un donativo</a></li>
+                    <li class="py-1.5"><a href="{{ route('make.volunteer') }}">Hazte voluntario</a></li>
                 </ul>
             </nav>
         </section>
@@ -54,6 +54,9 @@
             </nav>
         </section>
     </div>
+
+    @include('components.cookies')
+
     <!-- Final ©Copyleft de footer -->
     <div class="container mx-auto p-4 lg:p-0">
         <hr class="bg-white mb-10 md:my-10">

@@ -105,10 +105,11 @@ class PetHistoryResource extends Resource
                 Tables\Columns\TextColumn::make('description')
                     ->limit(30),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->sortable()
                     ->since(),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->since(),
-            ])
+            ])->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])

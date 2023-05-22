@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PetController;
+use App\Http\Controllers\ProfileController;
 
 /*-------------------------------------------------------------------------------
 
@@ -14,20 +15,45 @@ use Illuminate\Support\Facades\Route;
     ` ` ` ` `           ''''               ` ` ` `          ` ` ` `` ` ` `` ` `
 
 |--------------------------------------------------------------------------------
-| Web Routes
+| Web Routes - Principal routes
 |------------------------------------------------------------------------------*/
 
 Route::view('/', 'home')->name('home');
 
 Route::view('/la-protectora', 'protectora')->name('protectora');
 
-Route::view('/como-ayudar/haz-un-donativo', 'haz-un-donativo')->name('haz.un.donativo');
 
-Route::view('/como-ayudar/hazte-voluntario', 'hazte-voluntario')->name('hazte.voluntario');
+/*--------------------------------------------------------------------------------
+| How to help routes
+--------------------------------------------------------------------------------*/
 
-Route::view('/adopciones', 'adopciones')->name('adopciones');
+Route::view('/como-ayudar/haz-un-donativo', 'haz-un-donativo')->name('make.donation');
 
-Route::view('/contacto', 'contacto')->name('contacto');
+Route::view('/como-ayudar/hazte-voluntario', 'hazte-voluntario')->name('make.volunteer');
+
+Route::view('/voluntario/solicitud', 'solicitud-voluntario')->name('volunteer.request');
+
+
+/*--------------------------------------------------------------------------------
+| Adoptions routes
+--------------------------------------------------------------------------------*/
+
+Route::get('/adopciones', [PetController::class, 'index'])->name('adoptions');
+
+Route::get('/mascota/{pet}', [PetController::class, 'show'])->name('pet.show');
+
+Route::get('/mascota/solicitud-informacion/{pet}', [PetController::class, 'requestInformation'])->name('pet.request.information');
+
+Route::get('/mascota/solicitud-adopcion/{pet}', [PetController::class, 'requestAdoption'])->name('pet.request.adoption');
+
+Route::get('/adopciones/busqueda', [PetController::class, 'search'])->name('adoptions.search');
+
+
+/*--------------------------------------------------------------------------------
+| Legal - Contact routes
+--------------------------------------------------------------------------------*/
+
+Route::view('/contacto', 'contacto')->name('contact');
 
 Route::view('legal' , 'legal')->name('legal');
 

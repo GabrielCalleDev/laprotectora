@@ -145,22 +145,21 @@ class ContactFormResource extends Resource
                 Tables\Columns\TextColumn::make('message')
                     ->label('Mensaje')
                     ->searchable()
-                    ->sortable()
                     ->limit(30),
                 Tables\Columns\TextColumn::make('user.name')
                     ->searchable()
-                    ->sortable()
                     ->getStateUsing(function (ContactForm $record): string {
                         return ( !isset($record->user->name) ) ? 'Sin usuario' : $record->user->name;
                     })
                     ->label('Usuario'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Creado')
+                    ->sortable()
                     ->since(),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->label('Actualizado')
                     ->since(),
-            ])
+            ])->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])
