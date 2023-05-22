@@ -54,6 +54,9 @@
             </nav>
         </section>
     </div>
+
+    @include('components.cookies')
+
     <!-- Final ©Copyleft de footer -->
     <div class="container mx-auto p-4 lg:p-0">
         <hr class="bg-white mb-10 md:my-10">

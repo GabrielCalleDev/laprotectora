@@ -56,22 +56,28 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 text-center py-4">
             <div>
-                <img src="{{ Vite::asset('resources/img/template/main/colabora1.png') }}" alt="Objetivo 1" class="mx-auto rounded-xl">
-                <p class="text-center font-poppinsBlack px-4 py-2">
-                    {{ __('Adopta un animal') }}
-                </p>
+                <a href="{{ route('adoptions') }}">
+                    <img src="{{ Vite::asset('resources/img/template/main/colabora1.png') }}" alt="Objetivo 1" class="mx-auto rounded-xl">
+                    <p class="text-center font-poppinsBlack px-4 py-2">
+                        {{ __('Adopta un animal') }}
+                    </p>
+                </a>
             </div>
             <div>
-                <img src="{{ Vite::asset('resources/img/template/main/colabora2.png') }}" alt="Objetivo 1" class="mx-auto rounded-xl">
-                <p class="text-center font-poppinsBlack px-4 py-2">
-                    {{ __('Hazte voluntario') }}
-                </p>
+                <a href="{{ route('make.volunteer') }}">
+                    <img src="{{ Vite::asset('resources/img/template/main/colabora2.png') }}" alt="Objetivo 1" class="mx-auto rounded-xl">
+                    <p class="text-center font-poppinsBlack px-4 py-2">
+                        {{ __('Hazte voluntario') }}
+                    </p>
+                </a>
             </div>
             <div>
-                <img src="{{ Vite::asset('resources/img/template/main/colabora3.png') }}" alt="Objetivo 1" class="mx-auto rounded-xl">
-                <p class="text-center font-poppinsBlack px-4 py-2">
-                    {{ __('Haz donativo') }}
-                </p>
+                <a href="{{ route('make.donation') }}">
+                    <img src="{{ Vite::asset('resources/img/template/main/colabora3.png') }}" alt="Objetivo 1" class="mx-auto rounded-xl">
+                    <p class="text-center font-poppinsBlack px-4 py-2">
+                        {{ __('Haz donativo') }}
+                    </p>
+                </a>
             </div>
         </div>
     </section>
