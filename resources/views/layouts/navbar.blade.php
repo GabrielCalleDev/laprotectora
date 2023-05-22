@@ -133,7 +133,15 @@
                         >
                             <div class="inline md:hidden">{{ __('Espacio personal') }}</div>
                             <span>
-                                <img src=" {{ Vite::asset('resources/img/template/login.png') }} " alt="" class="h-6 w-6 inline">
+                                @auth
+                                    @if (Auth::user()->getMedia('avatars')->first())
+                                        <img class="h-6 w-6 inline rounded-full border border-quinary" src="{{ Auth::user()->getMedia('avatars')->first()->getUrl('thumb') }}" alt="{{ Auth::user()->name }}" />
+                                    @endif
+                                @endauth
+
+                                @guest
+                                    <img src=" {{ Vite::asset('resources/img/template/login.png') }} " alt="" class="h-6 w-6 inline">
+                                @endguest
                                 <x-heroicon-o-chevron-down id="flecha-abajo" class="w-6 h-6 inline-block text-primary nav-change"/>
                             </span>
                         </button>
@@ -148,13 +156,35 @@
                             style="display: none;"
                             class="relative md:absolute md:-left-14 md:mt-2 w-40 md:rounded-md bg-white md:border-2 text-black md:shadow-md"
                         >
-                            <a href="{{ route('login') }}" class="flex items-center px-4 gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md md:px-4 py-2.5 text-left hover:bg-gray-50 disabled:text-gray-500 text-s {{ request()->routeIs('adopt.pets') ? 'font-bold' : '' }}">
-                                Iniciar sesión
-                            </a>
-                
-                            <a href="{{ route('register') }}" class="flex items-center px-4 gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md md:px-4 py-2.5 text-left hover:bg-gray-50 disabled:text-gray-500 text-s {{ request()->routeIs('adopt.happy-endings') ? 'font-bold' : '' }}">
-                                Registrarse
-                            </a>
+                            @auth
+                                <div class="p-2">Hola {{ Auth::user()->name }}</div>
+
+                                <!-- Profile -->
+                                <x-dropdown-link :href="route('profile.edit')">
+                                    {{ __('Profile') }}
+                                </x-dropdown-link>
+
+                                <!-- Authentication -->
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+
+                                    <x-dropdown-link :href="route('logout')"
+                                            onclick="event.preventDefault();
+                                                        this.closest('form').submit();">
+                                        {{ __('Log Out') }}
+                                    </x-dropdown-link>
+                                </form>
+                            @endauth
+
+                            @guest
+                                <a href="{{ route('login') }}" class="flex items-center px-4 gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md md:px-4 py-2.5 text-left hover:bg-gray-50 disabled:text-gray-500 text-s {{ request()->routeIs('adopt.pets') ? 'font-bold' : '' }}">
+                                    Iniciar sesión
+                                </a>
+                    
+                                <a href="{{ route('register') }}" class="flex items-center px-4 gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md md:px-4 py-2.5 text-left hover:bg-gray-50 disabled:text-gray-500 text-s {{ request()->routeIs('adopt.happy-endings') ? 'font-bold' : '' }}">
+                                    Registrarse
+                                </a>
+                            @endguest
                         </div>
                     </li>
                 </ul>
