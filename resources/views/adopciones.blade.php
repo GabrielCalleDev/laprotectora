@@ -54,7 +54,7 @@
                 <hr class="my-4 border-quinary border-8 border-dashed">
             </form>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 text-center gap-8 p-6 md:p-0 mt-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 text-center gap-8 p-6 md:p-4 mt-4">
 
             @forelse ($pets as $pet)
 
