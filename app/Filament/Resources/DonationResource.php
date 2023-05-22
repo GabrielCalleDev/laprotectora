@@ -134,7 +134,7 @@ class DonationResource extends Resource
                 Tables\Columns\TextColumn::make('updated_at')
                     ->sortable()
                     ->since(),
-            ])
+            ])->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])

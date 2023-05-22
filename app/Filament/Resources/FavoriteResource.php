@@ -85,12 +85,13 @@ class FavoriteResource extends Resource
                     ->icon('heroicon-o-finger-print')
                     ->label('Mascota'),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->sortable()
                     ->label('Creación')
                     ->since(),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->label('Actualización')
                     ->since(),
-            ])
+            ])->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])

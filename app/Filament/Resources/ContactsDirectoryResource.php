@@ -130,11 +130,12 @@ class ContactsDirectoryResource extends Resource
                     ->label('Tipo de contacto'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Creado')
+                    ->sortable()
                     ->since(),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->label('Actualizado')
                     ->since(),
-            ])
+            ])->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])

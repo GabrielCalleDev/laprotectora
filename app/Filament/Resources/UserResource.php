@@ -136,7 +136,7 @@ class UserResource extends Resource
                     ->sortable()
                     ->label('Actualizado')
                     ->since(),
-            ])
+            ])->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])
