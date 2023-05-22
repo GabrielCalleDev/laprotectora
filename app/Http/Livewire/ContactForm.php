@@ -3,19 +3,26 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use App\Models\ContactForm as ContactFormModel;
 
 class ContactForm extends Component
 {
+    public $show = false;
+
     public $name;
+    public $username;
     public $email;
+    public $phone;
     public $subject;
     public $message;
     public $checkbox = false;
-    public $username;
+
+    public $showForm = true;
 
     protected $rules = [
         'name'     => 'required|min:4',
         'email'    => 'required|email',
+        'phone'    => 'required',
         'subject'  => 'required|min:4',
         'message'  => 'required|min:4',
         'checkbox' => 'accepted',
@@ -28,6 +35,7 @@ class ContactForm extends Component
         'email.email'       => 'El email debe ser un email válido.',
         'subject.required'  => 'El asunto es obligatorio.',
         'subject.min'       => 'El asunto debe tener al menos 4 caracteres.',
+        'phone.required'    => 'El teléfono es obligatorio.',
         'message.required'  => 'El mensaje es obligatorio.',
         'message.min'       => 'El mensaje debe tener al menos 4 caracteres.',
         'checkbox.accepted' => 'Debes aceptar la política de privacidad y protección de datos.',
@@ -40,17 +48,29 @@ class ContactForm extends Component
 
     public function submit()
     {
-        $this->validate();
+        $validatedData = $this->validate();
 
-        $this->emit('alert', 'success', 'Contacto enviado correctamente.');
+        if(auth()->check()) {
+            $validatedData['user_id'] = auth()->user()->id;
+        }
+
+        $validatedData['status'] = 'Nuevo';
+
+        ContactFormModel::create($validatedData);
         
         $this->resetErrorBag();
+
+        $this->showForm = false;
+
+        $this->emit('alert', 'success', 'Solicitud de información recibida correctamente.');
     }
 
     public function loadUserIfAuthenticated()
     {
         if (auth()->check()) {
-            $this->username = auth()->user();
+            $this->username = auth()->user()->name;
+            $this->name = auth()->user()->name;
+            $this->email = auth()->user()->email;
         }
     }
 
