@@ -82,7 +82,7 @@ Primera parte del proyecto de fin de curso.
 <a name="bases_de_datos"></a>
 ## Diagrama de bases de datos
 ![Alt text](docs/diagrama_bbdd/diagrama_relacional_bbdd.png)
-![Alt text](docs/diagrama_bbdd/diagrama_relacional_phpmyadmin.PNG)
+![Alt text](docs/diagrama_bbdd/diagrama_relacional_phpmyadmin.png)
 
 <a name="wireframes"></a>
 ## Wireframes
